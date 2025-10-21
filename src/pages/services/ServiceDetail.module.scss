@@ -1,0 +1,188 @@
+.page {
+  --wrap: 1240px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --red: #b71c1c;
+  --ink: #101828;
+  --muted: #4b5563;
+}
+
+/* ===== HERO (band full-bleed, content centered) ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.band {
+//   position: relative;
+//   left: 50%;
+//   right: 50%;
+  width: 100dvw;
+//   margin-left: -50dvw;
+//   margin-right: -50dvw;
+
+  background: var(--red);
+  color: #fff;
+
+  display: grid;
+  place-items: center;
+  text-align: left;
+}
+
+.inner {
+  width: min(var(--wrap), 92vw);
+  padding: clamp(48px, 6.5vw, 96px) var(--gutter);
+}
+
+.title {
+    margin-top: 70px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  font-size: 46px;
+  text-align: center;
+}
+
+.slice {
+  width: 100%;
+  height: clamp(28px, 4.2vw, 56px);
+  display: block;
+}
+
+/* ===== CONTENT WRAPS ===== */
+.cardsWrap,
+.process,
+.backRow {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.cardsWrap {
+  display: grid;
+  place-items: center;
+  padding: 28px var(--gutter) 18px;
+}
+
+.cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+}
+
+/* ===== Cards ===== */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(17, 24, 39, 0.08);
+  border: 1px solid #eef0f4;
+  padding: 20px 20px 16px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cardTitle {
+  color: #1f2937;
+  font-weight: 800;
+  font-size: clamp(16px, 2.1vw, 22px);
+  margin: 6px 0 8px;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.cardBody {
+  color: #4b5563;
+  font-size: clamp(13px, 1.6vw, 15px);
+  line-height: 1.55;
+}
+
+/* ===== Process ===== */
+.process {
+  margin: 34px auto 8px;
+}
+
+.processHeading {
+  font-size: clamp(22px, 3.2vw, 30px);
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.step {
+  background: #fff;
+  border: 1px solid #eef0f4;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+  padding: 14px 16px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.stepNum {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.stepTitle {
+  font-weight: 800;
+  color: #111827;
+  font-size: 16px;
+}
+
+.stepSub {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+/* ===== Back link ===== */
+.backRow { margin: 28px auto 64px; }
+
+.backLink {
+  color:#99171C;
+  font-weight: 700;
+  font-size: 12px;
+  text-decoration: none;
+}
+.backLink:hover { text-decoration: underline; }
+
+/* =========================================================
+   PAGE-LOCAL FOOTER FIX (no global CSS touched)
+   Adds full-bleed only while this page is mounted.
+   We use :global so it compiles with CSS Modules.
+   ========================================================= */
+:global(body.sdBleed > footer) {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100dvw;
+  margin-left: -50dvw;
+  margin-right: -50dvw;
+}
+
+/* If your footer has an inner container, keep it centered */
+:global(body.sdBleed > footer .container),
+:global(body.sdBleed > footer .inner),
+:global(body.sdBleed > footer .wrap) {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}

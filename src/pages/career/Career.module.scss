@@ -1,0 +1,181 @@
+/* Page-scoped tokens (same pattern as Portfolio) */
+.page{
+  --container: 1240px;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --cta: #e11d48; /* red button */
+  color: var(--text);
+}
+
+/* Standard centered container */
+.container{
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 0 24px;
+}
+
+/* ---------------- FULL-WIDTH HERO ---------------- */
+.hero{
+  position: relative;
+  width: 100vw;
+ height: 400px;
+  min-height:520px;
+  display: flex;
+  align-items: center;
+  overflow: clip;
+}
+
+.heroBg{
+  position: absolute;
+  inset: 0;
+ background: rgba(82, 12, 14, 0.699);
+  z-index: 0;
+}
+.heroShade{
+  position:absolute; inset:0;
+background: rgba(82, 12, 14, 0.699); pointer-events:none;
+  z-index: 1;
+}
+.heroDecor::before,
+.heroDecor::after{
+  content:"";
+  position:absolute;
+  width:520px; height:520px; border-radius:24px;
+  transform:rotate(35deg);
+  filter:blur(.4px);
+}
+// .heroDecor::before{ left:-180px; top:-180px; background:linear-gradient(135deg,#3b82f6,#9333ea); opacity:.35; }
+// .heroDecor::after { right:-180px; top:-80px;  background:linear-gradient(135deg,#22d3ee,#6366f1); opacity:.45; }
+
+.breadcrumb{
+  display:inline-flex; gap:10px; align-items:center; justify-content:center;
+  font-size:12px; letter-spacing:.06em; text-transform:uppercase; opacity:.9; color:#fff;
+  margin-top: 8px;
+}
+.breadcrumb a{ color:inherit; text-decoration:none; }
+.bcSep{ opacity:.7; }
+
+.heroTitle{
+  color:#fff;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+  margin-top: 8px;
+  text-align:center;
+}
+
+/* ---------------- INTRO (centered) ---------------- */
+.intro{
+  padding: 56px 0 12px;
+  text-align: center;
+  margin-top: 50px;
+}
+.h1{
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .02em;
+  font-size: clamp(28px, 3.4vw, 42px);
+  margin: 0 0 10px;
+}
+.lead{
+  max-width: 980px;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 18px;
+  margin: 0 auto;         /* center the paragraph block */
+}
+
+/* ---------------- PERKS GRID (centered) ---------------- */
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px 72px;
+  justify-content: center;   /* center the columns */
+  justify-items: center;     /* center each card inside its column */
+  padding: 38px 0 80px;
+  text-align: center;        /* center text in the grid by default */
+}
+.card{
+  max-width: 520px;
+}
+.h3{
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.05;
+  margin: 0 0 14px;
+  font-size: clamp(22px, 3vw, 36px);
+}
+.h3Line{ display: block; }
+.body{
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+/* ---------------- OPPORTUNITIES (already centered) ---------------- */
+.opps{
+  text-align: center;
+  padding: 14px 0 96px;
+}
+.h2{
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .02em;
+  font-size: clamp(28px, 4.2vw, 44px);
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+.tagline{
+  color: var(--muted);
+  font-size: 18px;
+  margin: 0 0 24px;
+}
+
+/* CTA button */
+.cta{
+  background-color: #99171C;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+  // background: var(--cta);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 6px 16px;
+  border-radius: 36px;
+  box-shadow: 0 10px 24px rgba(225, 29, 72, .25);
+  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
+}
+.cta:hover{ filter: brightness(1.03); box-shadow: 0 12px 28px rgba(225, 29, 72, .32); }
+.cta:active{ transform: translateY(1px); }
+.ctaIcon{ transform: translateY(.5px); }
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1100px){
+  .grid{ grid-template-columns: 1fr; gap: 40px; }
+  .card{ max-width: 720px; }
+}
+
+@media (max-width: 720px){
+  .grid{
+ padding: 0px !important;
+ margin: 0px !important;
+  }
+}
+.hero .container {
+  position: relative;
+  z-index: 2;          /* <-- this is the fix */
+  color: #fff;         /* ensures white text */
+  text-align: center;
+}
+
+/* your existing title style is fine */
+.heroTitle{
+  color:#fff;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+  margin-top: 8px;
+}

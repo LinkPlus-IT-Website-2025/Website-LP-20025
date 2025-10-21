@@ -1,0 +1,113 @@
+.svcCard{
+  /* Base (md) */
+  --card-w: 300px;
+  --svc-radius: 16px;
+
+  /* image sizing (either aspect-ratio or fixed height via --svc-img-h) */
+  --svc-img-ar-w: 16;
+  --svc-img-ar-h: 12;
+  --svc-img-h: auto;
+
+  /* panel */
+  --svc-panel-w: 80%;
+  --svc-panel-bottom: -12px;
+  --svc-panel-pad: 14px 16px 16px;
+
+  /* typography/sizing */
+  --svc-title: 18px;
+  --svc-excerpt: 13.5px;
+  --svc-badge: 20px;
+  --svc-icon: 18px;
+
+  position: relative;
+  width: var(--card-w);
+  max-width: 100%;
+  border-radius: var(--svc-radius);
+  overflow: visible;
+  justify-self: center;
+
+  & * { box-sizing: border-box; }
+}
+
+/* 🔺 Larger presets */
+.lg{
+  --card-w: 420px;
+  --svc-img-ar-h: 10;
+  --svc-panel-w: 86%;
+  --svc-panel-bottom: -16px;
+  --svc-panel-pad: 16px 18px 18px;
+  --svc-title: 20px;
+  --svc-excerpt: 14px;
+  --svc-badge: 22px;
+  --svc-icon: 20px;
+}
+
+/* 🔺🔺 Extra large */
+.xl{
+  --card-w: 500px;
+  /* If you prefer a fixed image height instead of aspect ratio, set it here */
+  --svc-img-h: 320px;
+  --svc-img-ar-h: 9;       /* still used if --svc-img-h is 'auto' */
+  --svc-panel-w: 88%;
+  --svc-panel-bottom: -18px;
+  --svc-panel-pad: 18px 20px 20px;
+  --svc-title: 22px;
+  --svc-excerpt: 15px;
+  --svc-badge: 24px;
+  --svc-icon: 22px;
+}
+
+.svcImage{
+  width: 100%;
+  /* Use a fixed height if --svc-img-h is set; otherwise fall back to aspect-ratio */
+  height: var(--svc-img-h);
+  aspect-ratio: var(--svc-img-ar-w) / var(--svc-img-ar-h);
+  object-fit: cover;
+  border-radius: var(--svc-radius);
+  display: block;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+}
+
+.svcPanel{
+  position: absolute;
+  left: 50%;
+  bottom: var(--svc-panel-bottom);
+  transform: translateX(-50%);
+  width: var(--svc-panel-w);
+  padding: var(--svc-panel-pad);
+  background: #fff;
+  border-radius: calc(var(--svc-radius) - 2px);
+  text-align: left;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  border: 1px solid rgba(2,6,23,.06);
+  z-index: 2;
+}
+
+.svcHeader{ display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.svcBadge{ width:var(--svc-badge); height:var(--svc-badge); display:grid; place-items:center; flex:0 0 auto; }
+.svcIcon{ width:var(--svc-icon); height:var(--svc-icon); }
+
+.svcHeading{ min-width:0; }
+.svcCategory{ margin:0 0 2px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; }
+.svcTitle{ margin:0; color:#0f172a; font-weight:800; letter-spacing:-.01em; line-height:1.25; font-size:var(--svc-title); }
+
+.svcExcerpt{
+  margin:6px 0 0;
+  color:#6b7280;
+  font-size:var(--svc-excerpt);
+  line-height:1.65;
+  display:-webkit-box;
+  -webkit-line-clamp: 2; /* show a bit more text on bigger cards */
+  -webkit-box-orient: vertical;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Mobile */
+@media (max-width: 720px){
+  .svcCard{ --card-w: 100%; }
+  .lg, .xl{
+    --svc-panel-w: 92%;
+    --svc-panel-bottom: -14px;
+  }
+}

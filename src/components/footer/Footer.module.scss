@@ -1,0 +1,225 @@
+/* ===============================
+   Footer.module.scss (fixed)
+   =============================== */
+
+.footerContainer {
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.footerBackground {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #801316;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* subtle veil + padding */
+.footerOverlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(128, 19, 23, 0.5);
+  backdrop-filter: blur(2px);
+  padding: 60px 0 0;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* --- Left brand column --- */
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Row with logo + “LinkPlus IT” wordmark (keeps them centered vertically) */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+/* If you want logo + paragraph on ONE ROW, wrap them in .footerAbout */
+.footerAbout {
+  display: flex;
+  align-items: center;   /* text vertically centered next to logo */
+  gap: 14px;
+  flex-wrap: nowrap;     /* don’t wrap on wide screens */
+}
+@media (max-width: 576px) {
+  .footerAbout { flex-wrap: wrap; } /* stack on phones */
+}
+
+/* Footer brand logo image */
+.brandLogo {
+  height: 256px;  /* bigger default */
+  width: auto;
+  display: block;
+  flex: 0 0 auto;
+  margin-top: -110px;
+}
+@media (max-width: 1145px) { .brandLogo { height: 48px; } }
+@media (max-width: 640px)  { .brandLogo { height: 36px; } }
+
+.logoIcon { display: flex; align-items: center; justify-content: center; }
+
+.hexagon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: bold; font-size: 18px;
+}
+
+.brandName {
+  color: #fff !important;
+  margin: 0 !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+}
+
+.brandDescription {
+  color: #cbd5e0 !important;
+  line-height: 1.6;
+  font-size: 14px;
+  text-align: left;
+  margin-left: 17px;
+  margin-top: -110px;
+}
+
+/* socials */
+.socialIcons { margin-top: 8px; justify-content: center; }
+.socialLink {
+  color: #cbd5e0 !important;
+  font-size: 18px;
+  transition: all .3s ease;
+  &:hover { color: #99171c !important; transform: translateY(-2px); }
+}
+
+/* section titles */
+.sectionTitle {
+  color: #fff !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin-bottom: 24px !important;
+}
+
+/* links */
+.footerLinks {
+  display: flex; flex-direction: column; gap: 4px; align-items: center;
+}
+.footerLinkWrapper { position: relative; margin-bottom: 8px; }
+.footerLink {
+  display: flex; align-items: center; gap: 8px;
+  color: #cbd5e0 !important; text-decoration: none !important;
+  padding: 8px 12px; border-radius: 6px; transition: all .3s ease;
+  position: relative; overflow: hidden;
+  &:hover {
+    color: #fff !important; background-color: #99171c !important;
+    transform: translateX(4px); box-shadow: 0 4px 12px #99171c;
+    .footerLinkBullet { opacity: 1; transform: translateX(0); }
+  }
+}
+.footerLinkBullet {
+  font-size: 10px; opacity: 0; transform: translateX(-10px);
+  transition: all .3s ease; color: #fff;
+}
+
+/* contact block */
+.contactInfo { display: flex; flex-direction: column; gap: 16px; }
+.contactAddress { color: #cbd5e0 !important; line-height: 1.6; font-size: 14px; }
+.contactPhone { display: flex; flex-direction: column; gap: 4px; }
+.phoneLabel { color: #cbd5e0 !important; font-size: 14px; }
+.phoneNumber {
+  color: #fff !important; font-weight: 600 !important; font-size: 16px !important;
+  text-decoration: none !important; transition: all .3s ease;
+  &:hover { color: #99171c !important; }
+}
+.contactEmail { color: #cbd5e0 !important; font-size: 14px; }
+
+/* bottom bar */
+.footerBottom {
+  margin-top: 40px; padding: 24px 0;
+  border-top: 1px solid rgba(255,255,255,.1); text-align: center;
+}
+.copyrightText { color: #cbd5e0 !important; font-size: 14px; }
+.brandHighlight { color: #6366f1; font-weight: 600; }
+
+/* ===== Awards / badges (de-duplicated) ===== */
+.awardsBlock { display: grid; gap: 10px; margin-top: 6px; }
+.awardLine { color: #f3f4f6; font-size: 13px; line-height: 1.5; }
+.badgesRow { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  display: inline-flex; align-items: center; padding: 6px 10px;
+  color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .02em;
+}
+
+/* Optional single-line award text block */
+.awardItem { display: block; color: #e5e7eb; line-height: 1.5; margin-bottom: 8px; }
+
+/* certificate logos row (if you have it) */
+.certRow {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center;
+  width: 100%; margin-top: 6px;
+}
+
+/* ===== Legal links & modal ===== */
+.footerLegal {
+  margin-top: 28px; display: flex; gap: 28px; justify-content: center; align-items: center; flex-wrap: wrap;
+}
+.legalBtn {
+  background: transparent; border: 0; color: #cbd5e0; font-size: 14px; cursor: pointer;
+  padding: 6px 8px; transition: color .2s ease, transform .2s ease;
+  text-decoration: underline; text-underline-offset: 3px;
+  &:hover { color: #fff; transform: translateY(-1px); }
+}
+
+.legalModal :global(.ant-modal-mask) { background: rgba(0,0,0,.55); }
+.legalModal :global(.ant-modal-content) {
+  border-radius: 12px; padding: 0; box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+.legalModal :global(.ant-modal-close) { top: 14px; right: 16px; }
+
+.modalHeader {
+  padding: 22px 26px 10px; background: #fff; border-bottom: 1px solid #eef2f7;
+  h2 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -.01em; color: #0f172a; }
+}
+.modalBody {
+  background: #fff; padding: 18px 26px 24px; max-height: min(76vh, 860px); overflow: auto;
+  h3 { margin: 14px 0 8px; font-size: 18px; font-weight: 800; color: #0f172a; }
+  p, li { color: #1f2937; font-size: 15px; line-height: 1.65; }
+  ul { padding-left: 18px; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .footerOverlay { padding: 40px 0 0; }
+  .footerContent { padding: 0 16px; }
+  .brandName { font-size: 24px !important; }
+  .socialIcons { justify-content: center; }
+  .footerSection { text-align: center; }
+  .sectionTitle { font-size: 18px !important; }
+  .footerLinks { align-items: center; }
+  .contactInfo { align-items: center; text-align: center; }
+  .awardsBlock { text-align: center; }
+  .footerLegal { gap: 16px; }
+  .modalHeader { padding: 18px 18px 8px; }
+  .modalBody { padding: 14px 18px 18px; }
+}
+
+@media (max-width: 576px) {
+  .hexagon { width: 35px; height: 35px; font-size: 16px; }
+  .brandName { font-size: 22px !important; }
+  .footerLink { justify-content: center; }
+}
