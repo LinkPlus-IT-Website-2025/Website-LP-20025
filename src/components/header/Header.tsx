@@ -390,7 +390,7 @@ const UtilityBar = () => (
             <Space size={6} style={{ color: "#fff" }}>
               <EnvironmentOutlined style={{ fontSize: 12 }} />
               <Text style={TOPBAR_TEXT}>
-                Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
+                Str.Tirana, Icon Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
               </Text>
             </Space>
           </Space>
