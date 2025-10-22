@@ -3,16 +3,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Services.module.scss";
 import ServiceFeatureCard from "../../components/servicecard/ServiceFeatureCard";
-import icTechnologies from "../../assets/icons/technologies.png";
-import icDatabases from "../../assets/icons/databases.png";
-import icMobile from "../../assets/icons/mobile.png";
-import icQA from "../../assets/icons/quality testing.png";
-import icBI from "../../assets/icons/business intelligence.png";
-import icPM from "../../assets/icons/project management.png";
+import icTechnologies from "../../assets/icons/technologies.svg";
+import icDatabases from "../../assets/icons/databases.svg";
+import icMobile from "../../assets/icons/mobile.svg";
+import icQA from "../../assets/icons/quality testing.svg";
+import icBI from "../../assets/icons/business intelligence.svg";
+import icPM from "../../assets/icons/project management.svg";
 import serviceHero from "../../assets/images/service.jpg";
 import highendservice from "../../assets/images/highendservice.jpg";
 import dedicatedTeam from "../../assets/images/deticaatedteam.jpg";
-import itservice from "../../assets/images/itservice.jpg";
+import itservice from "../../assets/images/pic4.jpg";
 
 const pics = {
   one: highendservice,

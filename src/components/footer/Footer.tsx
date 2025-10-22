@@ -136,11 +136,13 @@ const Footer: React.FC = () => {
                       Quick Links
                     </Title>
                     <div className={styles.footerLinks}>
+                       <FooterLink href="/aboutus">About Us</FooterLink>
                       <FooterLink href="/services">Services</FooterLink>
+                      <FooterLink href="/career">Career</FooterLink>
                       <FooterLink href="/team">Team</FooterLink>
                       <FooterLink href="/contactus">Contact</FooterLink>
-                      <FooterLink href="/aboutus">About Company</FooterLink>
-                      <FooterLink href="/career">Careers</FooterLink>
+                    
+                     
                     </div>
                   </div>
                 </Col>
