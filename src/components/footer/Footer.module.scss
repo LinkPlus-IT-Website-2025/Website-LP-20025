@@ -63,11 +63,11 @@
 
 /* Footer brand logo image */
 .brandLogo {
-  height: 256px;  /* bigger default */
-  width: auto;
-  display: block;
-  flex: 0 0 auto;
-  margin-top: -110px;
+  height: 36px;  /* bigger default */
+  // width: auto;
+  // display: block;
+  // flex: 0 0 auto;
+  // margin-top: -110px;
 }
 @media (max-width: 1145px) { .brandLogo { height: 48px; } }
 @media (max-width: 640px)  { .brandLogo { height: 36px; } }
@@ -85,8 +85,8 @@
 .brandName {
   color: #fff !important;
   margin: 0 !important;
-  font-size: 28px !important;
-  font-weight: 600 !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
 }
 
 .brandDescription {
@@ -95,7 +95,7 @@
   font-size: 14px;
   text-align: left;
   margin-left: 17px;
-  margin-top: -110px;
+  // margin-top: -110px;
 }
 
 /* socials */
