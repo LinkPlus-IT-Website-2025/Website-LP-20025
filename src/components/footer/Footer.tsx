@@ -72,9 +72,9 @@ const Footer: React.FC = () => {
                   <div className={styles.footerBrand}>
                     <div className={styles.logoContainer}>
                       <img src={lpLogo} alt="" className={styles.brandLogo} />
-                      {/* <Title level={3} className={styles.brandName}>
+                      <Title level={3} className={styles.brandName}>
                         LINKPLUS IT
-                      </Title> */}
+                      </Title>
                     </div>
 
                     <Text className={styles.brandDescription}>

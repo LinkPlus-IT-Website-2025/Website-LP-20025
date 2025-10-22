@@ -1,6 +1,4 @@
-// src/pages/portofolio/portfolioItems.ts  (or portfolioData.ts if that's your path)
-
-// —— Projects that have separate Portrait/Landscape pairs —— //
+// src/pages/portofolio/portfolioItems.ts
 import smartbluetooth from "../../assets/images/smart-bluetooth-control-device-app-portrait.png";
 import smartbluetoothL from "../../assets/images/smart-bluetooth-control-device-app-landscape.png";
 import SDKP from "../../assets/images/sdk-for-automotive-portrait.png";
@@ -14,20 +12,22 @@ import EMPL from "../../assets/images/event-management-solution-landscape.png";
 import CPSP from "../../assets/images/copyright-solution-portrait.png";
 import CPSL from "../../assets/images/copyright-solution-landscape.png";
 
-
-// —— Projects that use a single image for both card & detail —— //
 import imgFlotilla from "../../assets/images/flotilla.png";
+import imgFlotillaP from "../../assets/images/flotillaP.png";
 import imgLinkOne from "../../assets/images/link-one.png";
+import imgLinkOneP from "../../assets/images/LinkOne-Portrait.png";
 import imgSwissProtect from "../../assets/images/swiss-protect.png";
+import imgSwissProtectP from "../../assets/images/swiss-protectP.png";
 import imgLHIndustry from "../../assets/images/lufthansa-industry-solutions.png";
+import imgLHIndustryP from "../../assets/images/lufthansa-industry-solutionsP.png";
 
 export type PortfolioItem = {
   id: string;
   title: string;
   excerpt: string;
-  cardImg: string;        // grid thumbnail
-  heroImg: string;        // details header (top band)
-  detailMainImg?: string; // big image under header (fallback to heroImg)
+  cardImg: string;
+  heroImg: string;
+  detailMainImg?: string;
   gallery: string[];
   info: {
     completionDate: string;
@@ -39,6 +39,7 @@ export type PortfolioItem = {
     techstack: string;
   };
   body: string;
+  detailBody?: string;
 };
 
 const pics = {
@@ -55,7 +56,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     id: "tailoring-software-solutions",
     title: "Lufthansa Industry Solutions, Germany",
     excerpt: "Integration and implementation of Camunda...",
-    cardImg: imgLHIndustry,
+    cardImg: imgLHIndustryP,
     heroImg: imgLHIndustry,
     detailMainImg: imgLHIndustry,
     gallery: [pics.two, pics.three, pics.four],
@@ -69,10 +70,11 @@ export const PORTFOLIO: PortfolioItem[] = [
       techstack: "Java • 7 Engineers",
     },
     body:
-      "Integration and implementation of Camunda as an open platform for regulating various work processes and automating decision-making through data.\n\nThe whole project has been divided into 7 modules / processes, thus creating more accurate business processes for Lufthansa.",
+      "Integration and implementation of Camunda as an open platform for regulating various work processes and automating decision-making through data.",
+    detailBody:
+      "Integration and implementation of Camunda as an open platform for regulating various work processes and automating decision-making through data. The project was divided into seven modules/processes to standardize and streamline core workflows, improving accuracy, transparency, and SLA adherence across teams. The solution integrates cleanly with Java systems and reduces manual effort through modeled BPMN/DMN flows and data-driven automation.",
   },
 
-  // Copyright: Portrait on card, Landscape in details
   {
     id: "copyright-management",
     title: "Copy Right Management Solutions, Germany",
@@ -92,10 +94,11 @@ export const PORTFOLIO: PortfolioItem[] = [
         "Java, Quarkus, AngularJS, ReactJS, Python, Google Cloud Platform, Terraform, DataBricks",
     },
     body:
-      "Developing and maintaining software solutions including licensing platforms, royalty distribution systems, data processing tools, and digital tracking solutions to ensure that artists and rights holders receive fair compensation for their work...",
+      "Developing and maintaining software solutions including licensing platforms, royalty distribution systems, data processing tools, and digital tracking solutions.",
+    detailBody:
+      "Developing and maintaining software solutions including licensing platforms, royalty distribution systems, data processing tools, and digital tracking solutions to ensure artists and rights holders receive fair compensation. The platform emphasizes automation, AI-driven analytics, and secure, scalable data stores to handle large volumes of copyright and royalty information efficiently while preserving accuracy and auditability.",
   },
 
-  // Automotive SDK: Portrait on card, Landscape in details
   {
     id: "automotive-sdk",
     title: "Automotive SDK Development, Germany",
@@ -115,9 +118,10 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "The project focused on building a cross-platform SDK for the automotive industry...",
+    detailBody:
+      "The project focused on building a cross-platform SDK for the automotive industry, integrating with BLE-enabled devices, navigation systems, and cloud services. The team delivered iOS (Swift, Objective-C, SwiftUI) and Android (Kotlin, Java, Jetpack Compose) implementations using clean architecture, modularization, and reactive patterns. Key capabilities include Bluetooth communication for custom automotive devices, real-time data sync, Google Maps/TomTom integration, and multi-device cloud consistency. With feature flags, TDD, and CI/CD, the SDK is robust, scalable, and ready for rapid iteration.",
   },
 
-  // Smart Bluetooth App: Portrait on card, Landscape in details
   {
     id: "bluetooth-control-app",
     title: "Smart Bluetooth Device Control App, Holland",
@@ -137,14 +141,15 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "Maintaining & Development of an online application designed to connect with a single amplifier device via Bluetooth...",
+    detailBody:
+      "Maintaining and developing a React Native application that connects to a single amplifier device via Bluetooth. The app discovers nearby devices, pairs securely, streams real-time data, and sends control commands for configuration and operation. Focus areas include stable communication, responsive UI, and efficient device management to deliver a smooth user experience and reliable performance.",
   },
 
-  // Swiss Protect (single image)
   {
     id: "swiss-protect",
     title: "Swiss Protect, Switzerland",
     excerpt: "Access Control Solution - Implementation of a web platform...",
-    cardImg: imgSwissProtect,
+    cardImg: imgSwissProtectP,
     heroImg: imgSwissProtect,
     detailMainImg: imgSwissProtect,
     gallery: [pics.six, pics.two, pics.three],
@@ -159,14 +164,15 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "Access Control Solution - Implementation of a web platform...",
+    detailBody:
+      "Implementation of a web platform that enables employees to register all workplace entries and exits. The system generates reports and graphs tailored to client needs and automates hour calculations per employee. Built with a .NET backend and a React frontend, the solution streamlines attendance tracking, improves data quality, and simplifies administrative oversight.",
   },
 
-  // LinkOne (single image)
   {
     id: "linkone",
     title: "LinkOne",
     excerpt: "Location Tracking/Geofencing App - The application relies...",
-    cardImg: imgLinkOne,
+    cardImg: imgLinkOneP,
     heroImg: imgLinkOne,
     detailMainImg: imgLinkOne,
     gallery: [pics.one, pics.five, pics.four],
@@ -181,14 +187,15 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "Location Tracking/Geofencing App...",
+    detailBody:
+      "A location tracking and geofencing application with heavy use of device location services. We optimized runtime performance and battery usage, added user preference controls with activity previews, and integrated Intercom and Firebase to provide real-time data flows and richer user insights. The system scales reliably across devices and usage patterns.",
   },
 
-  // Flotilla (single image)
   {
     id: "flotilla-airport-transfer",
     title: "Flotilla Airport Transfer Application",
     excerpt: "Flotilla Taxi & Limousinen offers you a wide range of...",
-    cardImg: imgFlotilla,
+    cardImg: imgFlotillaP,
     heroImg: imgFlotilla,
     detailMainImg: imgFlotilla,
     gallery: [pics.one, pics.five, pics.four],
@@ -203,9 +210,10 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "Flotilla Taxi & Limousinen offers you a wide range of services...",
+    detailBody:
+      "Flotilla Taxi & Limousinen provides business and private passenger transport. With the new app integrated into a CMS, users can reserve trips with one click and pay directly in-app. A web portal exposes trip history, invoicing, reporting, content publishing, pricing management, and other operational tools. The implemented solution is built to serve thousands of user requests per day while remaining maintainable and scalable.",
   },
 
-  // Event Management: Portrait on card, Landscape in details
   {
     id: "event-management-austria",
     title: "Event management Web and Mobile applications, Austria",
@@ -226,9 +234,10 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "Jolioo - Platforms have been created for some cities of Austria...",
+    detailBody:
+      "City platforms for managing events and informing citizens across multiple Austrian municipalities. Administrators publish events and announcements; residents receive timely updates through the mobile and web apps. The system centralizes content, improves communication efficiency, and scales to support growing audiences and editorial workflows.",
   },
 
-  // Insurance: Portrait on card, Landscape in details
   {
     id: "insurance-management-switzerland",
     title: "Insurance management Web and mobile applications, Switzerland",
@@ -249,9 +258,10 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "EnBag - Applications are developed on the web and mobile...",
+    detailBody:
+      "Web and mobile applications to facilitate insurance management between agents, clients, and administrators. The platform streamlines workflows, synchronizes data in real time, and improves day-to-day operations. With accessible UX across devices, stakeholders can manage policies, claims, documents, and communications more efficiently.",
   },
 
-  // LMS: Portrait on card, Landscape in details
   {
     id: "lms-norway",
     title: "Learning Management System, Norway",
@@ -271,5 +281,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     },
     body:
       "Developing a fully integrated Learning Management System (LMS)...",
+    detailBody:
+      "A fully integrated Learning Management System that supports online learning, communication, automation, and growth. The platform enables course delivery, user engagement, and streamlined administration with tools for interaction, content distribution, assessment, and reporting. Designed for scalability and device breadth, it adapts to diverse learning and business needs.",
   },
 ];
