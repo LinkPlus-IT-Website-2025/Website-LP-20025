@@ -26,43 +26,43 @@ const members: Member[] = [
     photo: ermalSadiku,
     name: "Ermal Sadiku",
     role: "Managing Partner",
-    social: { linkedin: "https://www.linkedin.com/" },
+    social: { linkedin: "https://www.linkedin.com/in/ermal-sadiku" },
   },
     {
     photo: "", // leave empty to trigger the red placeholder
        name: "Lulzim Ibrahimi",
     role: "Managing partner",
-     social: { linkedin: "https://www.linkedin.com/" },
+     social: { linkedin: "https://al.linkedin.com/in/lulzim-ibrahimi-679b1310a?trk=people-guest_people_search-card" },
   },
   {
     photo: ilirianaIbraj,
     name: "Iliriana Ibraj",
     role: "Chief Business Development Officer",
-    social: { linkedin: "https://www.linkedin.com/" },
+    social: { linkedin: "https://www.linkedin.com/in/iliriana-ibraj" },
   },
   {
     photo: aleksandarIlioski,
     name: "Aleksandar Ilioski",
     role: "Country Manager",
-    social: { linkedin: "https://www.linkedin.com/" },
+    social: { linkedin: "https://www.linkedin.com/in/aleksandar-ilioski-657a1037?trk=universal-search-cluster" },
   },
   {
     photo: leonaTahiri,
     name: "Leona Tahiri",
     role: "Business Development Representative",
-    social: { linkedin: "https://www.linkedin.com/" },
+    social: { linkedin: "https://www.linkedin.com/in/leonatahiri" },
   },
   {
     photo: deboraMeta,
     name: "Debora Meta",
     role: "Human Resources Manager",
-    social: { linkedin: "https://www.linkedin.com/" },
+    social: { linkedin: "https://www.linkedin.com/in/deborameta" },
   },
   {
     photo: zimrieIdrizi,
     name: "Zimrie Idrizi",
     role: "IT Recruiter & Product Lead",
-    social: { linkedin: "https://www.linkedin.com/" },
+    social: { linkedin: "https://www.linkedin.com/in/zimrie-idrizi-0400b01b7?trk=blended-typeahead" },
   },
 
   // ➕ EXTRA CARD WITHOUT PHOTO (renders as solid red block)

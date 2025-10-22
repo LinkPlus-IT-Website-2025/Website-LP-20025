@@ -178,42 +178,42 @@ const FORCE_CSS = `
   .lp-topbar .lp-ut-group > *:nth-child(2) { display: none !important; } /* hide email too */
   .lp-brand__img{ height:24px; }
   .lp-brand__text{ font-size:16px; }
-}
-  /* === BIGGER LOGO (desktop) === */
-.lp-header-compact{ height:110px !important; }   /* give room */
-.lp-brand{
-  display:inline-flex;
-  align-items:center;
-  height:84px;                                    /* taller logo row */
-  overflow:visible;
-  gap:10px;
-  text-decoration:none !important;
-}
-.lp-brand__img{
-  height:100px !important;                         /* fill the 84px row */
-  width:auto !important;
-  margin:0 !important;
-  padding-top:10px;
-  display:block;
+// }
+//   /* === BIGGER LOGO (desktop) === */
+// .lp-header-compact{ height:110px !important; }   /* give room */
+// .lp-brand{
+//   display:inline-flex;
+//   align-items:center;
+//   height:84px;                                    /* taller logo row */
+//   overflow:visible;
+//   gap:10px;
+//   text-decoration:none !important;
+// }
+// .lp-brand__img{
+//   height:100px !important;                         /* fill the 84px row */
+//   width:auto !important;
+//   margin:0 !important;
+//   padding-top:10px;
+//   display:block;
 
-  /* if PNG has transparent padding, zoom it */
-  transform: scale(2.35);                         /* ← MUCH bigger */
-  transform-origin: left center;
-}
+//   /* if PNG has transparent padding, zoom it */
+//   transform: scale(2.35);                         /* ← MUCH bigger */
+//   transform-origin: left center;
+// }
 
-/* Laptop / tablet */
-@media (max-width:1145px){
-  .lp-header-compact{ height:96px !important; }
-  .lp-brand{ height:70px; }
-  .lp-brand__img{ transform: scale(2.0); }
-}
+// /* Laptop / tablet */
+// @media (max-width:1145px){
+//   .lp-header-compact{ height:96px !important; }
+//   .lp-brand{ height:70px; }
+//   .lp-brand__img{ transform: scale(2.0); }
+// }
 
 /* Phones */
-@media (max-width:640px){
-  .lp-header-compact{ height:86px !important; }
-  .lp-brand{ height:58px; }
-  .lp-brand__img{ transform: scale(1.7); }
-}
+// @media (max-width:640px){
+//   .lp-header-compact{ height:86px !important; }
+//   .lp-brand{ height:58px; }
+//   .lp-brand__img{ transform: scale(1.7); }
+// }
 
 `;
 
@@ -304,7 +304,7 @@ type Props = {
 const Logo: React.FC = () => (
   <Link to="/" className="lp-brand" aria-label="LinkPlus IT — Home">
     <img src={lpLogo} alt="" className="lp-brand__img" />
-    {/* <span className="lp-brand__text">LINKPLUSss</span> */}
+    <span className="lp-brand__text">LINKPLUS IT</span>
   </Link>
 );
 
@@ -477,7 +477,7 @@ export const SiteHeader: React.FC<Props> = ({
            {/* Nav */}
 <Col
   flex="auto"
-  style={{ display: "flex", justifyContent: "flex-start", minWidth: 0, marginLeft:100 }}
+  style={{ display: "flex", justifyContent: "flex-start", minWidth: 0,}}
 >
   {isDesktop ? (
     <Menu

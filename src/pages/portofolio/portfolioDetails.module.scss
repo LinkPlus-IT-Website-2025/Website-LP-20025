@@ -24,9 +24,7 @@
 }
 .heroDecor{
   position:absolute; right:-120px; top:-120px; width:420px; height:420px;
-  background: radial-gradient(ellipse at 60% 40%, rgba(111,66,255,.35), rgba(111,66,255,0) 60%),
-              radial-gradient(ellipse at 40% 60%, rgba(0,170,255,.3), rgba(0,170,255,0) 60%);
-  filter: blur(10px);
+    filter: blur(10px);
   pointer-events:none;
 }
 .heroContainer{
@@ -200,4 +198,23 @@
     margin-right: 16px !important;
     margin-left: 16px !important;
   }
+}
+/* Hero container */
+
+
+/* Background image */
+.heroBg {
+
+  z-index: 0;
+}
+
+/* The red overlay (0.5 opacity) */
+.heroShade {
+
+  background: linear-gradient(
+    rgba(183, 28, 28, 0.5),
+    rgba(183, 28, 28, 0.5)
+  );
+  z-index: 1;
+ 
 }
