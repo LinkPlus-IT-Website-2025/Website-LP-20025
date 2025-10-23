@@ -193,6 +193,9 @@ html, body {
 .hero{
   position:relative; min-height:520px; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
+  padding: clamp(96px, 16vw, 180px) var(--gutter) clamp(80px, 10vw, 120px);
+  color: #fff;
+  
 }
 .heroBackground{
   position:absolute; top:-20%; left:0; width:100%; height:120%;
@@ -506,10 +509,38 @@ html, body {
   .statsLeft{ clip-path:none; }
 }
 
-.statsBadge{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; opacity:.95; }
+.statsBadge{ display:inline-flex; align-items:left !important; gap:8px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; opacity:.95; }
 .statsDot{ width:8px; height:8px; background:#fff; border-radius:2px; }
 .statsTitle{ margin:14px 0 0; font-weight:500; line-height:1.1; letter-spacing:-.01em; font-size:clamp(22px,2.6vw,32px); text-align:left; }
 .statsShape{ position:absolute; right:8%; bottom:10%; width:clamp(120px,22vw,240px); height:clamp(70px,12vw,140px); border-radius:28px; background:rgba(255,255,255,.16); transform:rotate(-18deg); pointer-events:none; }
+/* keep your working left-align version */
+.statsBadge {
+  display: block;
+  width: max-content;
+  margin: 0 auto 0 0 !important;
+  text-align: left;
+  align-self: flex-start !important;
+  justify-self: start !important;
+
+  /* visual styles */
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: .95;
+  line-height: 1;              /* helps vertical centering with the dot */
+}
+
+/* make the dot actually take size + add spacing (since gap no longer applies) */
+.statsDot{
+  display: inline-block;       /* <-- important */
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 2px;
+  vertical-align: middle;
+  margin-right: 8px;           /* replaces the old gap */
+}
 
 .statsRight{ position:relative; background:#f2f5fb; padding:clamp(22px,3.2vw,36px); display:grid; place-items:center; }
 @media (min-width:1025px){
@@ -611,11 +642,50 @@ html, body {
 /* =========================================================
    TESTIMONIALS
    ========================================================= */
-.testimonialSection{
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  padding:40px 0; background:#fff; position:relative;
-  background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
-  background-size:30px 30px;margin-top: 90px;
+// .testimonialSection{
+//   display:flex; flex-direction:column; justify-content:center; align-items:center;
+//   padding:40px 0; background:#fff; position:relative;
+//   background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
+//   background-size:30px 30px;margin-top: 90px;
+// }
+.testimonialSection {
+  /* make the background go edge-to-edge like your homepage */
+  margin-top: 90px;
+  max-width: none !important;
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+
+  /* background look */
+  background-color: #f3f4f6 !important; /* light grey */
+  background-image:
+    linear-gradient(180deg, transparent, transparent), /* no extra wash */
+    repeating-linear-gradient(90deg, rgba(255,255,255,.86) 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.86) 0 1px, transparent 1px 20px) !important;
+  background-size: auto, 20px 20px, 20px 20px !important; /* cell size */
+  background-repeat: no-repeat, repeat, repeat !important;
+
+  /* remove container padding so the bg hits the edges */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* keep the inner content nicely centered & padded */
+.tWrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+/* Mobile: smaller cells, same white lines */
+@media (max-width: 862px) {
+  .testimonialSection {
+    background-image:
+      linear-gradient(180deg, transparent, transparent),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.9) 0 1px, transparent 1px 16px),
+      repeating-linear-gradient(0deg,  rgba(255,255,255,.9) 0 1px, transparent 1px 16px) !important;
+    background-size: auto, 16px 16px, 16px 16px !important;
+  }
 }
 .testimonialContent{ text-align:center; display:grid; justify-items:center; max-width:720px; }
 .testimonialLabel{ font-size:12px; color:var(--brand); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; font-weight:700; }
@@ -756,16 +826,16 @@ html, body {
 }
 
 /* ===== Testimonial (tight + static dots) ===== */
-.testimonialSection {
-  padding: 36px 0 48px;
-   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 40px 0; background: #fff; position: relative;
+// .testimonialSection {
+//   padding: 36px 0 48px;
+//    display: flex; flex-direction: column; align-items: center; justify-content: center;
+//   padding: 40px 0; background: #fff; position: relative;
 
-  /* square + circle pattern */
-  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
-  background-size: 30px 30px;
-  background-repeat: repeat;
-}
+//   /* square + circle pattern */
+//   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
+//   background-size: 30px 30px;
+//   background-repeat: repeat;
+// }
 
 .tWrap {
   max-width: 1200px;
@@ -906,11 +976,11 @@ html, body {
 }
 
 /* ===== HERO ===== */
-.hero {
-  position: relative;
-  padding: clamp(96px, 16vw, 180px) var(--gutter) clamp(80px, 10vw, 120px);
-  color: #fff;
-}
+// .hero {
+//   position: relative;
+//   padding: clamp(96px, 16vw, 180px) var(--gutter) clamp(80px, 10vw, 120px);
+//   color: #fff;
+// }
 
 .heroInner {
   width: min(var(--wrap), 92vw);
@@ -954,3 +1024,5 @@ html, body {
   margin-inline: auto;
   padding: 32px var(--gutter) 64px;
 }
+/* Testimonials — homepage-style light grey + white square grid (smaller cells) */
+

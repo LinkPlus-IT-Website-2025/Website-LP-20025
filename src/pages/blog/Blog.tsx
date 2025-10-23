@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Blog.module.scss";
 
-/* ── Small inline SVG icons ── */
 const CalendarIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
     <rect x="3" y="4" width="18" height="17" rx="2" stroke="currentColor" strokeWidth="1.5"/>
@@ -22,7 +21,6 @@ const ArrowIcon = () => (
   </svg>
 );
 
-/* ── Demo data ── */
 interface Post {
   id: string;
   img: string;
@@ -83,7 +81,6 @@ const posts: Post[] = [
   },
 ];
 
-/* ── Page ── */
 const Blog: React.FC = () => {
   return (
     <div className={styles.blog}>
@@ -106,7 +103,6 @@ const Blog: React.FC = () => {
         </div>
       </section>
 
-      {/* GRID */}
       <main className={styles.wrap}>
         <div className={styles.grid}>
           {posts.map((p) => (

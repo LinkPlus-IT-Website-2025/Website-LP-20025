@@ -1,4 +1,4 @@
-// src/pages/aboutus/AboutUs.tsx
+
 import React, { useState, useEffect, useRef } from "react";
 import { Check, ArrowUp } from "lucide-react";
 import styles from "./AboutUs.module.scss";
@@ -9,11 +9,13 @@ import ilirianaIbraj from "../../assets/images/iliriana-ibraj.png";
 import leonaTahiri from "../../assets/images/leona-tahiri.jpg";
 import zimrieIdrizi from "../../assets/images/zimrie-idrizi.jpg";
 import aleksandarIlioski from "../../assets/images/aleksandar-ilioski.jpg";
-import icExperience from "../../assets/icons/experience.png";
-import icProfessionals from "../../assets/icons/proffessionals.png";
-import icProjects from "../../assets/icons/projects.png";
-import icIndustries from "../../assets/icons/projects (1).png";
-import icClients from "../../assets/icons/clients.png";
+import icExperience from "../../assets/icons/experience.svg";
+import icProfessionals from "../../assets/icons/proffessionals.svg";
+import icProjects from "../../assets/icons/projects.svg";
+import icIndustries from "../../assets/icons/projects (1).svg";
+import icIndustries1 from "../../assets/icons/client satisfaction.svg";
+
+import icClients from "../../assets/icons/clients.svg";
 import bdoLogo from "../../assets/images/BDO.png";
 import conplementLogo from "../../assets/images/conplement.png";
 import whatdigitalLogo from "../../assets/images/whatdigital.png";
@@ -282,7 +284,7 @@ const AboutUs: React.FC = () => {
                 </article>
 
                 <article className={styles.kpi}>
-                  <img src={icIndustries} alt="Industries" className={styles.kpiIconImg} />
+                  <img src={icIndustries1} alt="Industries" className={styles.kpiIconImg} />
                   <div>
                     <div className={styles.kpiNumber}>98%</div>
                     <div className={styles.kpiLabel}>Client Satisfaction</div>

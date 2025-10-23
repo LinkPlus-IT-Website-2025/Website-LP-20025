@@ -1,8 +1,5 @@
-// src/pages/career/Career.tsx
 import React from "react";
 import styles from "./Career.module.scss";
-
-/* ✅ local hero image */
 import careerHero from "../../assets/images/career.jpg";
 
 const perks = [
@@ -31,7 +28,6 @@ const perks = [
 const Career: React.FC = () => {
   return (
     <div className={styles.page}>
-      {/* ===== FULL-WIDTH HERO ===== */}
       <section className={styles.hero} aria-label="Careers hero">
         <div
           className={styles.heroBg}
@@ -54,19 +50,16 @@ const Career: React.FC = () => {
         </div>
       </section>
 
-      {/* ===== CONTENT ===== */}
       <main className={styles.container}>
-        {/* Intro block */}
         <section className={styles.intro}>
-          <h2 className={styles.h1}>Working at Link Plus I.T.</h2>
+          <h2 className={styles.h1}>Working at Link Plus IT</h2>
           <p className={styles.lead}>
-            We want people to thrive at Link Plus; we believe you do your best
+            We want people to thrive at Link Plus IT we believe you do your best
             work when you feel your best. Here are just a few of the benefits
             we’re proud to provide our team.
           </p>
         </section>
 
-        {/* Perks 2-column grid */}
         <section className={styles.grid} aria-label="Benefits and perks">
           {perks.map((perk, i) => (
             <article className={styles.card} key={i}>
@@ -82,7 +75,6 @@ const Career: React.FC = () => {
           ))}
         </section>
 
-        {/* Opportunities big center block */}
         <section className={styles.opps} aria-label="Career opportunities">
           <h2 className={styles.h2}>
             Current Career
