@@ -52,9 +52,9 @@ const Career: React.FC = () => {
 
       <main className={styles.container}>
         <section className={styles.intro}>
-          <h2 className={styles.h1}>Working at Link Plus IT</h2>
+          <h2 className={styles.h1}>Working at LinkPlus IT</h2>
           <p className={styles.lead}>
-            We want people to thrive at Link Plus IT we believe you do your best
+            We want people to thrive at LINKPLUS IT we believe you do your best
             work when you feel your best. Here are just a few of the benefits
             we’re proud to provide our team.
           </p>

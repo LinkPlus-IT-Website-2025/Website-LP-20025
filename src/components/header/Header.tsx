@@ -9,6 +9,7 @@ import {
   Menu,
   Button,
   Drawer,
+  Tooltip,
 } from "antd";
 import {
   ClockCircleOutlined,
@@ -19,6 +20,7 @@ import {
   LinkedinOutlined,
   MenuOutlined,
   ExportOutlined,
+  TrophyOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -27,6 +29,13 @@ import lpLogo from "../../assets/images/lp-logo.png";
 
 const { Header } = Layout;
 const { Text } = Typography;
+
+type Props = {
+  isAuthenticated?: boolean | undefined;
+  isCompanyUser?: boolean | undefined;
+  isEmployeeUser?: boolean | undefined;
+  t?: (k: string) => string | undefined;
+};
 
 /* ---------- CSS overrides (with responsive bits) ---------- */
 const FORCE_CSS = `
@@ -63,7 +72,7 @@ const FORCE_CSS = `
   color: #fff !important;
 }
 
-/* Ensure dropdown text is dark on white popup (defensive for portal popup) */
+/* Ensure dropdown text is dark on white popup */
 :where(.ant-menu-submenu-popup) :where(.ant-menu-item) a,
 .lp-header-compact :where(.ant-menu-submenu) :where(.ant-menu-item) a {
   color: #111827 !important;
@@ -80,7 +89,7 @@ const FORCE_CSS = `
 .lp-topbar :where(.ant-typography),
 .lp-header-compact :where(.ant-typography) { line-height: 1.2 !important; }
 
-/* Drawer (sidebar) styling */
+/* Drawer (sidebar) styling) */
 .lp-drawer .ant-drawer-header { border-bottom: 0 !important; }
 .lp-drawer .ant-drawer-title { font-weight: 800; letter-spacing: .02em; }
 .lp-drawer .ant-drawer-body { padding: 8px 0 !important; }
@@ -97,12 +106,14 @@ const FORCE_CSS = `
   align-items:center;
   gap:10px;
   text-decoration:none !important;
+  white-space:nowrap;              /* keep logo row on one line */
 }
 .lp-brand__img{
   margin-top:15px;
   height:28px;
   width:auto;
   display:block;
+  flex-shrink:0;
 }
 .lp-brand__text{
   margin-top:15px;
@@ -111,6 +122,8 @@ const FORCE_CSS = `
   letter-spacing:.02em;
   color:#fff;
   line-height:1;
+  white-space:nowrap;              /* never wrap LINKPLUS IT */
+  word-break:keep-all;
 }
 
 /* ===== Nav link hover color ===== */
@@ -118,27 +131,17 @@ const FORCE_CSS = `
 .lp-header-compact :where(.ant-menu-submenu-title) {
   transition: color .2s ease;
 }
-/* top-level items (desktop) */
 .lp-header-compact :where(.ant-menu-horizontal) > :where(.ant-menu-item):hover a {
   color: #99171C !important;
 }
-/* "Other" submenu title (desktop) */
 .lp-header-compact :where(.ant-menu-horizontal)
   > :where(.ant-menu-submenu):hover
   > :where(.ant-menu-submenu-title) {
   color: #99171C !important;
 }
-/* dropdown items (popup menu) */
 :where(.ant-menu-submenu-popup) :where(.ant-menu-item):hover a {
   color: #99171C !important;
 }
-/* also change caret/arrow on hover for submenu */
-.lp-header-compact :where(.ant-menu-horizontal)
-  > :where(.ant-menu-submenu):hover
-  :where(.ant-menu-submenu-expand-icon, .ant-menu-submenu-arrow) {
-  color: #99171C !important;
-}
-/* mobile drawer links */
 .lp-drawer .ant-menu-item:hover a,
 .lp-drawer .ant-menu-submenu-title:hover {
   color: #99171C !important;
@@ -159,6 +162,35 @@ const FORCE_CSS = `
   }
 }
 
+/* ===== Minimal inline ISO (no bg, no border) ===== */
+.lp-iso-inline{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.02em;
+  color:#fff;
+  white-space:nowrap;
+  opacity:.95;
+}
+.lp-iso-inline__icon{ font-size:13px; }
+/* 🔻 562px & below: hide ISO label, show only the icon */
+@media (max-width: 562px) {
+  .lp-iso-inline__label { display:none !important; }
+  .lp-iso-inline { gap:4px; }
+}
+
+/* ---------------------------------------------
+   ✅ Spacing under header on small displays
+   (wrapper is absolute; push using inner container)
+---------------------------------------------- */
+@media (max-width: 1145px) {
+  .lp-header-compact .lp-container {
+    margin-bottom: 17px !important; /* +5px aesthetic bump */
+  }
+}
+
 /* Responsive rules */
 @media (max-width: 1280px) {
   .lp-container { padding-left: 32px !important; padding-right: 32px !important; }
@@ -166,55 +198,23 @@ const FORCE_CSS = `
 
 @media (max-width: 1145px) {
   .lp-container { padding-left: 16px !important; padding-right: 16px !important; }
-  .lp-header-compact { height: 22px !important; }
+  .lp-header-compact { height: 80px !important; }
   .lp-brand__img{ height:26px; }
   .lp-brand__text{ font-size:17px; }
-  /* hide the long address line in the topbar to avoid overflow */
-  .lp-topbar .lp-ut-group > *:nth-child(3) { display: none !important; }
 }
 
-/* tiny screens */
+/* ≤ 645px: keep LINKPLUS IT on one line and slightly shrink */
+@media (max-width: 645px) {
+  .lp-brand__text { font-size:16px; white-space:nowrap; }
+}
+
+/* 📱 Phones: hide BOTH location items; keep hours + email */
 @media (max-width: 640px) {
-  .lp-topbar .lp-ut-group > *:nth-child(2) { display: none !important; } /* hide email too */
-  .lp-brand__img{ height:24px; }
-  .lp-brand__text{ font-size:16px; }
-// }
-//   /* === BIGGER LOGO (desktop) === */
-// .lp-header-compact{ height:110px !important; }   /* give room */
-// .lp-brand{
-//   display:inline-flex;
-//   align-items:center;
-//   height:84px;                                    /* taller logo row */
-//   overflow:visible;
-//   gap:10px;
-//   text-decoration:none !important;
-// }
-// .lp-brand__img{
-//   height:100px !important;                         /* fill the 84px row */
-//   width:auto !important;
-//   margin:0 !important;
-//   padding-top:10px;
-//   display:block;
-
-//   /* if PNG has transparent padding, zoom it */
-//   transform: scale(2.35);                         /* ← MUCH bigger */
-//   transform-origin: left center;
-// }
-
-// /* Laptop / tablet */
-// @media (max-width:1145px){
-//   .lp-header-compact{ height:96px !important; }
-//   .lp-brand{ height:70px; }
-//   .lp-brand__img{ transform: scale(2.0); }
-// }
-
-/* Phones */
-// @media (max-width:640px){
-//   .lp-header-compact{ height:86px !important; }
-//   .lp-brand{ height:58px; }
-//   .lp-brand__img{ transform: scale(1.7); }
-// }
-
+  .lp-topbar .lp-ut-group > *:nth-child(3),
+  .lp-topbar .lp-ut-group > *:nth-child(4) {
+    display: none !important; /* hides Prishtina + Skopje blocks */
+  }
+}
 `;
 
 /* ---------- inline styles ---------- */
@@ -279,7 +279,7 @@ const SOCIAL_ICON_LINK: CSSProperties = {
   alignItems: "center",
 };
 
-/* ---------- custom width hook to use 1145px cutoff ---------- */
+/* ---------- custom width hook ---------- */
 const MOBILE_CUTOFF = 1145;
 function useIsDesktop(cutoff = MOBILE_CUTOFF) {
   const [w, setW] = useState<number>(() =>
@@ -293,31 +293,39 @@ function useIsDesktop(cutoff = MOBILE_CUTOFF) {
   return w > cutoff;
 }
 
-type Props = {
-  isAuthenticated?: boolean;
-  isCompanyUser?: boolean;
-  isEmployeeUser?: boolean;
-  t?: (k: string) => string;
-};
-
-/* ---------- Logo component (logo image + LINKPLUS text) ---------- */
+/* ---------- Logo ---------- */
 const Logo: React.FC = () => (
   <Link to="/" className="lp-brand" aria-label="LinkPlus IT — Home">
     <img src={lpLogo} alt="" className="lp-brand__img" />
-    <span className="lp-brand__text">LINKPLUS IT</span>
+    {/* non-breaking space prevents wrap between the two words */}
+    <span className="lp-brand__text">LINKPLUS&nbsp;IT</span>
   </Link>
 );
 
-/* ---------- menu items (desktop vs mobile link colors) ---------- */
+/* ---------- Minimal ISO (inline, no bg/border) ---------- */
+const IsoInline: React.FC = () => (
+  <Tooltip
+    title="ISO 9001:2015 Quality Management & ISO/IEC 27001 Information Security"
+    placement="bottomRight"
+  >
+    <span className="lp-iso-inline" aria-label="ISO certifications">
+      <TrophyOutlined className="lp-iso-inline__icon" />
+      {/* this span gets hidden ≤ 562px via CSS */}
+      <span className="lp-iso-inline__label">ISO 9001:2015 & 27001 CERTIFIED</span>
+    </span>
+  </Tooltip>
+);
+
+/* ---------- menu items ---------- */
 function useMenuItems(opts: {
   isAuthenticated?: boolean;
   isCompanyUser?: boolean;
   isEmployeeUser?: boolean;
   onLinkClick?: () => void;
-  t?: (k: string) => string;
+  t?: (k: string) => string | undefined;
 }) {
   const { isAuthenticated, isCompanyUser, isEmployeeUser, onLinkClick, t } = opts;
-  const tr = (k: string, def: string) => (t ? t(k) : def);
+  const tr = (k: string, def: string) => (t ? t(k) ?? def : def);
 
   const makeItems = (linkStyle: CSSProperties, childStyle: CSSProperties) => {
     const authDashboard =
@@ -360,7 +368,6 @@ function useMenuItems(opts: {
     );
   };
 
-  // Desktop: white top row, dark dropdown. Mobile drawer: all dark.
   const desktop = makeItems(NAV_LINK_DESKTOP, DROPDOWN_LINK_DESKTOP);
   const mobile  = makeItems(NAV_LINK_MOBILE,  NAV_LINK_MOBILE);
 
@@ -368,7 +375,7 @@ function useMenuItems(opts: {
 }
 
 /* ---------- top utility bar ---------- */
-const UtilityBar = () => (
+const UtilityBar: React.FC = () => (
   <div className="lp-topbar" style={TOPBAR}>
     <div className="lp-container">
       <Row align="middle" gutter={[12, 4]}>
@@ -379,18 +386,31 @@ const UtilityBar = () => (
             className="lp-ut-group"
             style={{ width: "100%", justifyContent: "flex-start", textAlign: "left" }}
           >
+            {/* Hours */}
             <Space size={6} style={{ color: "#fff" }}>
               <ClockCircleOutlined style={{ fontSize: 12 }} />
               <Text style={TOPBAR_TEXT}>Mon - Fri : 9:00 - 17:00</Text>
             </Space>
+
+            {/* Email */}
             <Space size={6} style={{ color: "#fff" }}>
               <MailOutlined style={{ fontSize: 12 }} />
               <Text style={TOPBAR_TEXT}>info@linkplus.com</Text>
             </Space>
+
+            {/* Address: Prishtina */}
             <Space size={6} style={{ color: "#fff" }}>
               <EnvironmentOutlined style={{ fontSize: 12 }} />
               <Text style={TOPBAR_TEXT}>
-                Str.Tirana, Icon Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
+                Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo
+              </Text>
+            </Space>
+
+            {/* Address: Skopje, North Macedonia */}
+            <Space size={6} style={{ color: "#fff" }}>
+              <EnvironmentOutlined style={{ fontSize: 12 }} />
+              <Text style={TOPBAR_TEXT}>
+                Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia
               </Text>
             </Space>
           </Space>
@@ -459,48 +479,45 @@ export const SiteHeader: React.FC<Props> = ({
 
   return (
     <div style={WRAP}>
-      {/* inject global overrides */}
       <style>{FORCE_CSS}</style>
 
       <UtilityBar />
 
       <Header className="lp-header-compact" style={MAINBAR}>
         <div className="lp-container">
-          {/* 🚫 No wrapping so the button never drops */}
           <Row align="middle" gutter={12} wrap={false}>
             {/* Logo */}
             <Col>
               <Logo />
             </Col>
 
-            {/* Nav */}
-           {/* Nav */}
-<Col
-  flex="auto"
-  style={{ display: "flex", justifyContent: "flex-start", minWidth: 0,}}
->
-  {isDesktop ? (
-    <Menu
-      mode="horizontal"
-      selectable={false}
-      items={desktop}
-      style={{ border: "none", background: "transparent" }} // ← remove left margin
-    />
-  ) : (
-    <Button
-      type="text"
-      icon={<MenuOutlined />}
-      onClick={() => setOpen(true)}
-      style={{ color: "#fff", fontSize: 18 }}
-      aria-label="Open menu"
-    />
-  )}
-</Col>
+            {/* Nav (left) */}
+            <Col
+              flex="auto"
+              style={{ display: "flex", justifyContent: "flex-start", minWidth: 0 }}
+            >
+              {isDesktop ? (
+                <Menu
+                  mode="horizontal"
+                  selectable={false}
+                  items={desktop}
+                  style={{ border: "none", background: "transparent" }}
+                />
+              ) : (
+                <Button
+                  type="text"
+                  icon={<MenuOutlined />}
+                  onClick={() => setOpen(true)}
+                  style={{ color: "#fff", fontSize: 18 }}
+                  aria-label="Open menu"
+                />
+              )}
+            </Col>
 
-
-            {/* Right side actions — ALWAYS show Contact Us */}
+            {/* Right side: ISO (inline) + Contact (Contact is LAST) */}
             <Col flex="none" style={{ whiteSpace: "nowrap" }}>
-              <Space size={12} align="center" style={{ color: "#fff", padding: "15px" }}>
+              <Space size={16} align="center" style={{ color: "#fff", padding: "15px" }}>
+                <IsoInline />
                 <Link to="/contactus">
                   <Button className="lp-contact-btn" style={{ ...GRADIENT_BTN, whiteSpace: "nowrap" }}>
                     CONTACT US <ExportOutlined style={{ marginLeft: 6, fontSize: 12 }} />

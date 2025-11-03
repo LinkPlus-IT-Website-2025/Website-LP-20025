@@ -41,7 +41,7 @@
   gap: 20px;
 }
 
-/* Row with logo + “LinkPlus IT” wordmark (keeps them centered vertically) */
+/* Row with logo + wordmark */
 .logoContainer {
   display: flex;
   align-items: center;
@@ -50,25 +50,16 @@
   margin-bottom: 8px;
 }
 
-/* If you want logo + paragraph on ONE ROW, wrap them in .footerAbout */
 .footerAbout {
   display: flex;
-  align-items: center;   /* text vertically centered next to logo */
+  align-items: center;
   gap: 14px;
-  flex-wrap: nowrap;     /* don’t wrap on wide screens */
+  flex-wrap: nowrap;
 }
-@media (max-width: 576px) {
-  .footerAbout { flex-wrap: wrap; } /* stack on phones */
-}
+@media (max-width: 576px) { .footerAbout { flex-wrap: wrap; } }
 
 /* Footer brand logo image */
-.brandLogo {
-  height: 36px;  /* bigger default */
-  // width: auto;
-  // display: block;
-  // flex: 0 0 auto;
-  // margin-top: -110px;
-}
+.brandLogo { height: 36px; }
 @media (max-width: 1145px) { .brandLogo { height: 48px; } }
 @media (max-width: 640px)  { .brandLogo { height: 36px; } }
 
@@ -95,7 +86,6 @@
   font-size: 14px;
   text-align: left;
   margin-left: 17px;
-  // margin-top: -110px;
 }
 
 /* socials */
@@ -117,8 +107,13 @@
 
 /* links */
 .footerLinks {
-  display: flex; flex-direction: column; gap: 4px; align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  margin-left: 55px; /* was 40px */
 }
+
 .footerLinkWrapper { position: relative; margin-bottom: 8px; }
 .footerLink {
   display: flex; align-items: center; gap: 8px;
@@ -156,22 +151,55 @@
 .copyrightText { color: #cbd5e0 !important; font-size: 14px; }
 .brandHighlight { color: #6366f1; font-weight: 600; }
 
-/* ===== Awards / badges (de-duplicated) ===== */
-.awardsBlock { display: grid; gap: 10px; margin-top: 6px; }
-.awardLine { color: #f3f4f6; font-size: 13px; line-height: 1.5; }
-.badgesRow { display: flex; flex-wrap: wrap; gap: 8px; }
-.badge {
-  display: inline-flex; align-items: center; padding: 6px 10px;
-  color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .02em;
+/* ===== Awards / badges ===== */
+.footerLinkss {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  margin-left: 40px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  gap: 10px;
 }
 
-/* Optional single-line award text block */
-.awardItem { display: block; color: #e5e7eb; line-height: 1.5; margin-bottom: 8px; }
+.awardLine {
+  margin: 0;
+  line-height: 1.45;
+  width: 100%;
+  color: #f3f4f6;
+  font-size: 13px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
 
-/* certificate logos row (if you have it) */
-.certRow {
-  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center;
-  width: 100%; margin-top: 6px;
+.awardIcon {
+  font-size: 14px;
+  line-height: 1;
+  margin-top: 2px;
+  color: #f3f4f6;
+  opacity: 0.9;
+}
+
+.awardBtn { 
+  all: unset; 
+  cursor: pointer; 
+  display: inline; 
+  overflow-wrap: anywhere; 
+}
+.awardText { display: inline; overflow-wrap: anywhere; }
+
+/* ISO as plain text (no background/pill) */
+.badge {
+  display: inline;
+  font-weight: 700;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: #fff;
 }
 
 /* ===== Legal links & modal ===== */
@@ -202,6 +230,22 @@
   ul { padding-left: 18px; }
 }
 
+/* ===== Award modal (smaller pics) ===== */
+.awardModal :global(.ant-modal-content) { border-radius: 12px; padding: 0; }
+.awardModal .modalHeader { padding: 16px 20px 8px; }
+.awardModal .modalBody   { padding: 12px 20px 20px; }
+
+.modalImg {
+  display: block;
+  width: auto;
+  max-width: min(80vw, 560px);
+  max-height: 56vh;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.modalCaption { margin-top: 8px; font-size: 14px; line-height: 1.4; color: #111; text-align: center; }
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
   .footerOverlay { padding: 40px 0 0; }
@@ -210,16 +254,37 @@
   .socialIcons { justify-content: center; }
   .footerSection { text-align: center; }
   .sectionTitle { font-size: 18px !important; }
-  .footerLinks { align-items: center; }
+  .footerLinks { align-items: center; margin-left: 0; }
   .contactInfo { align-items: center; text-align: center; }
-  .awardsBlock { text-align: center; }
+  .footerLinkss { margin-left: 0; align-items: flex-start; }
   .footerLegal { gap: 16px; }
   .modalHeader { padding: 18px 18px 8px; }
   .modalBody { padding: 14px 18px 18px; }
+  .modalImg { max-width: 90vw; max-height: 52vh; }
 }
 
 @media (max-width: 576px) {
   .hexagon { width: 35px; height: 35px; font-size: 16px; }
   .brandName { font-size: 22px !important; }
   .footerLink { justify-content: center; }
+}
+
+/* Contact: title centered; details left with margin */
+.contactSection .sectionTitle {
+  text-align: center;     /* keep the "Contact" title centered */
+  width: 100%;
+}
+
+.contactSection .contactInfo {
+  align-items: flex-start; /* left-align the two lines */
+  text-align: left;
+  margin-left: 40px;       /* requested left margin */
+}
+
+/* tighten margin on small screens so it doesn’t look cramped */
+@media (max-width: 768px) {
+  .contactSection .contactInfo { margin-left: 20px; }
+}
+@media (max-width: 480px) {
+  .contactSection .contactInfo { margin-left: 12px; }
 }
