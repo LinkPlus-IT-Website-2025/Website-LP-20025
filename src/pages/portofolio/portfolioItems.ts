@@ -36,9 +36,12 @@ import imgLHIndustry from "../../assets/images/lufthansa-industry-solutions.png"
 import imgLHIndustryP from "../../assets/images/lufthansa-industry-solutionsP.png";
 import imgLHIndustry1 from "../../assets/images/lufthansa-industry-solutions-pic1.png";
 import imgLHIndustry2 from "../../assets/images/lufthansa-industry-solutions-pic2.png";
-
-
-
+import IMWM1 from "../../assets/images/online-insurance.jpg";
+import IMWM2 from "../../assets/images/online-insurance2.jpg";
+import DBLAI1 from "../../assets/images/digital-business-list-app-interface.jpg";
+import DBLAI2 from "../../assets/images/entrepreneurs-exchange-ideas-work.jpg";
+import LMS1 from "../../assets/images/LMS1.png";
+import LMS2 from "../../assets/images/LMS2.png";
 
 export type PortfolioItem = {
   id: string;
@@ -71,6 +74,9 @@ const pics = {
 };
 
 const GALLERY_AUTOMOTIVE = [SDK1, SDK2];
+const IMWM = [IMWM2, IMWM1];
+const DBLAI = [DBLAI1, DBLAI2];
+const LMS = [LMS1, LMS2];
 
 // ✅ smart bluetooth app
 const GALLERY_SMART_BT = [smartbluetooth1, smartbluetooth2];
@@ -246,7 +252,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: EMPP,
     heroImg: EMPL,
     detailMainImg: EMPL,
-    gallery: [pics.one, pics.five, pics.four],
+    gallery:DBLAI,
     info: {
       completionDate: "• Centralized event management",
       completionDatee: "• Real-time citizen notifications",
@@ -269,7 +275,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: ISP,
     heroImg: ISL,
     detailMainImg: ISL,
-    gallery: [pics.one, pics.five, pics.four],
+    gallery: IMWM,
     info: {
       completionDate: "• Streamlined insurance management workflow",
       completionDatee: "• Web and mobile access for agents, clients, and admins",
@@ -292,7 +298,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: LMSSP,
     heroImg: LMSSL,
     detailMainImg: LMSSL,
-    gallery: [pics.one, pics.five, pics.four],
+    gallery: LMS,
     info: {
       completionDate: "• Fully integrated LMS for online learning and management",
       completionDatee: "• Streamlined course delivery and user engagement",

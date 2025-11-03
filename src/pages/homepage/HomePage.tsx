@@ -86,9 +86,9 @@ const testimonialsLogos = [
   },
   {
     logo: whatdigitalLogo,
-    quote: 'LinkPlus raised our engineering bar—clear comms, reliable delivery, and measurable impact across multiple teams.',
+    quote: 'We are happy to say  that we are still in partnership with LinkPlus IT,we are greatly appreciate their dedication and professionalism.',
     company: 'WhatDigital',
-    country: 'UK',
+    country: 'Switzerland',
   },
 ];
 
@@ -443,6 +443,8 @@ const HomePage: React.FC = () => {
                 <div className={styles.cTexts}>
                   <p className={styles.cLabel}>Location</p>
                   <p className={styles.cValue}>Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo</p>
+                  <p className={styles.cValue}>Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia</p>
+
                 </div>
               </li>
               <li className={styles.cRow}>

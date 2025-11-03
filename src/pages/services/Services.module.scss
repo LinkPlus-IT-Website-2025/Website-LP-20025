@@ -365,7 +365,7 @@ margin-top: 80px !important;}
 /* WHAT WE USE SECTION */
 .stackSection {
   text-align: center;
-  margin-top: 100px;
+  margin-top: 30px;
   width: 100%;
 }
 
@@ -618,4 +618,67 @@ margin-top: 80px !important;}
 /* optional: a little extra on hover */
 .grid > a:nth-child(2):hover .thumb img {
   transform: scale(1.16) !important;
+}
+/* Grid for the 6 scroller cards: 3 columns, 20px gap */
+.scrollerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  justify-content: center;
+  gap: 20px; /* exactly 20px between cards */
+}
+
+@media (max-width: 1140px) {
+  .scrollerGrid { grid-template-columns: repeat(2, 350px); }
+}
+@media (max-width: 760px) {
+  .scrollerGrid { grid-template-columns: 350px; }
+}
+/* existing styles ... */
+/* Tighten ONLY the intro block above the 6 cards */
+.stackIntroTight {
+  margin: 12px 0 8px !important;   /* was ~100px top/bottom */
+  padding: 30px !important;
+}
+
+.stackIntroTight .stackTitle {
+  margin: 0 0 6px !important;      /* reduce title–paragraph gap */
+}
+
+.stackIntroTight .stackText {
+  margin: 0 !important;    /* kill paragraph bottom margin */
+}
+
+/* Reduce the gap before the 6-card grid too */
+.afterIntroTight {
+  margin-top: 12px !important;     /* was big; make it small */
+}
+
+/* If your global .wrap added extra spacing, neutralize it here */
+// .wrap {
+  /* leave your horizontal padding if you need it */
+  /* padding: 0 24px; */
+// }
+
+/* Center the intro paragraph */
+.stackIntroTight {
+  text-align: center;                 /* center contents */
+}
+
+.stackIntroTight .stackText {
+  text-align: center !important;      /* override any inherited left align */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 900px;                   /* optional: nicer line length */
+}
+/* Move the whole arrow+logo row down */
+.logoRow {
+  padding-top: 15px !important;   /* shifts arrows + logo by 5px */
+}
+
+/* If you want ONLY the logo 5px lower (leave arrows as-is), use this instead: */
+/* .logoHolder { transform: translateY(5px) !important; } */
+
+/* If you also want to force arrows down explicitly (AntD can fight margins), add: */
+.chevBtn {
+  transform: translateY(15px) !important;
 }
