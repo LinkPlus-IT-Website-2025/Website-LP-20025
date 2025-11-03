@@ -11,6 +11,9 @@ const TO_EMAIL = "info@linkplus.com";
 /* === Address & exact coordinates (street-level zoom) === */
 const ADDRESS =
   "Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo";
+const ADDRESS1 =
+  "Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia";
+
 const MAP_LAT = 42.655479;
 const MAP_LNG = 21.1516511;
 const ZOOM = 18;
@@ -125,6 +128,8 @@ const ContactUs: React.FC = () => {
                   <div className={styles.texts}>
                     <p className={styles.label}>Location</p>
                     <p className={styles.value}>{ADDRESS}</p>
+                    <p className={styles.value}>{ADDRESS1}</p>
+
                   </div>
                 </li>
 

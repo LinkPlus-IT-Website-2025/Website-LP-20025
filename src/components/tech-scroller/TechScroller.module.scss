@@ -1,0 +1,70 @@
+/* Shell */
+.wrapSingle { display: grid; justify-items: center; }
+
+/* Card */
+.card {
+  width: 350px;
+  height: 260px;
+  border-radius: 16px;
+  border-color: #8b1d1d;
+  background: #fafafa;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.cardInner { height: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+/* Header */
+.headerRow { display: flex; justify-content: center; margin-top: 6px; }
+.headerCenter { display: inline-flex; align-items: center; gap: 8px; }
+
+/* === Title: EXACT 25px, 500 weight === */
+.titleText {
+  font-size: 25px !important;
+  font-weight: 500 !important;
+  line-height: 1.1;
+  color: #8b1d1d !important;   /* keep your red */
+  letter-spacing: 0.2px;
+  text-transform: none;
+}
+
+/* Title icon tint (your /icons svgs) */
+.techIconImg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  // filter: invert(13%) sepia(74%) saturate(1673%) hue-rotate(338deg) brightness(85%) contrast(94%);
+}
+
+/* ---- Default variant (with arrows) ---- */
+.logoRow {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 14px;
+}
+.chevBtn { justify-self: center; color: #7a1a1a; font-size: 20px; line-height: 1; padding: 0; height: auto; }
+:global(.ant-btn-text).chevBtn { background: transparent !important; }
+.chevBtn:hover { color: #5f1212; }
+.chevLeft { grid-column: 1; } .chevRight { grid-column: 3; }
+
+.logoArea { grid-column: 2; display: grid; place-items: center; gap: 8px; }
+.logoHolder { display: grid; place-items: center; width: clamp(100px, 22vw, 150px); height: clamp(60px, 10vw, 110px); }
+.logo { max-width: 100%; max-height: 100%; object-fit: contain; }
+.caption { font-size: 12px; font-weight: 600; color: #8b1919; }
+
+/* ---- Solo variant (only if you used it for the 6th card) ---- */
+.isSolo {
+  .headerRow { margin-top: 6px; justify-content: center; }
+  .soloCenter { flex: 1; display: grid; place-items: center; height: 100%; padding: 4px 8px 12px; }
+  .soloHolder { width: 200px; height: 120px; display: grid; place-items: center; }
+  .logo { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .caption, .logoRow, .chevBtn, .chevLeft, .chevRight { display: none !important; }
+}
+
+/* Optional small-screen tweak */
+@media (max-width: 400px) {
+  .card { width: 320px; height: 240px; }
+  .logoRow { grid-template-columns: 32px 1fr 32px; }
+  .chevBtn { font-size: 18px; }
+}
