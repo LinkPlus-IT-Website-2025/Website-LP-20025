@@ -133,7 +133,7 @@ body {
 
   /* read from inline style: style={{["--card-bg"]: `url(...)`}} */
   background-image:
-    linear-gradient(135deg, rgba(13,18,28,.45), rgba(13,18,28,.18) 55%, rgba(13,18,28,.45)),
+    linear-gradient(135deg, #80131775, #8013177d 55%, #99171b74),
     var(--card-bg);
   background-size: cover, cover;
   background-position: center, center;

@@ -19,6 +19,9 @@
   --svc-badge: 20px;
   --svc-icon: 18px;
 
+  /* fixed panel height (default) */
+  --svc-panel-h: 150px;
+
   position: relative;
   width: var(--card-w);
   max-width: 100%;
@@ -29,37 +32,42 @@
   & * { box-sizing: border-box; }
 }
 
-/* 🔺 Larger presets */
+/* 🔺 Larger preset */
 .lg{
-  --card-w: 420px;
+  --card-w: 440px;          /* slightly bigger card */
   --svc-img-ar-h: 10;
   --svc-panel-w: 86%;
   --svc-panel-bottom: -16px;
-  --svc-panel-pad: 16px 18px 18px;
-  --svc-title: 20px;
-  --svc-excerpt: 14px;
-  --svc-badge: 22px;
-  --svc-icon: 20px;
+  --svc-panel-pad: 18px 20px 20px;
+  --svc-title: 21px;
+  --svc-excerpt: 14.2px;
+  --svc-badge: 23px;
+  --svc-icon: 21px;
+
+  /* exact white panel height for alignment */
+  --svc-panel-h: 150px;
 }
 
 /* 🔺🔺 Extra large */
 .xl{
-  --card-w: 500px;
-  /* If you prefer a fixed image height instead of aspect ratio, set it here */
+  --card-w: 480px;
   --svc-img-h: 320px;
-  --svc-img-ar-h: 9;       /* still used if --svc-img-h is 'auto' */
+  --svc-img-ar-h: 9;
   --svc-panel-w: 88%;
   --svc-panel-bottom: -18px;
-  --svc-panel-pad: 18px 20px 20px;
+  --svc-panel-pad: 20px 22px 22px;
   --svc-title: 22px;
   --svc-excerpt: 15px;
   --svc-badge: 24px;
   --svc-icon: 22px;
+
+  /* keep same panel height so rows align */
+  --svc-panel-h: 150px;
 }
 
 .svcImage{
   width: 100%;
-  /* Use a fixed height if --svc-img-h is set; otherwise fall back to aspect-ratio */
+  /* If --svc-img-h is set, it wins; else aspect-ratio is used */
   height: var(--svc-img-h);
   aspect-ratio: var(--svc-img-ar-w) / var(--svc-img-ar-h);
   object-fit: cover;
@@ -81,6 +89,12 @@
   box-shadow: 0 8px 24px rgba(0,0,0,0.10);
   border: 1px solid rgba(2,6,23,.06);
   z-index: 2;
+
+  /* ⬇ exact height so every white box is identical */
+  height: var(--svc-panel-h);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .svcHeader{ display:flex; align-items:center; gap:10px; margin-bottom:6px; }
@@ -89,18 +103,35 @@
 
 .svcHeading{ min-width:0; }
 .svcCategory{ margin:0 0 2px; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:#6b7280; }
-.svcTitle{ margin:0; color:#0f172a; font-weight:800; letter-spacing:-.01em; line-height:1.25; font-size:var(--svc-title); }
 
+/* clamp title to 2 lines */
+.svcTitle{
+  margin:0;
+  color:#0f172a;
+  font-weight:800;
+  letter-spacing:-.01em;
+  line-height:1.25;
+  font-size:var(--svc-title);
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  // -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* clamp description and fill remaining space */
 .svcExcerpt{
   margin:6px 0 0;
   color:#6b7280;
   font-size:var(--svc-excerpt);
-  line-height:1.65;
+  line-height:1.6;
+
   display:-webkit-box;
-  -webkit-line-clamp: 2; /* show a bit more text on bigger cards */
   -webkit-box-orient: vertical;
+  // -webkit-line-clamp: 2;   /* 2 lines so it fits the fixed panel */
   overflow:hidden;
-  text-overflow:ellipsis;
+
+  flex: 1 1 auto;
 }
 
 /* Mobile */
@@ -109,5 +140,6 @@
   .lg, .xl{
     --svc-panel-w: 92%;
     --svc-panel-bottom: -14px;
+    --svc-panel-h: 144px;  /* a bit tighter on phones */
   }
 }

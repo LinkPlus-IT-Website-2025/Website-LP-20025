@@ -5,7 +5,7 @@ import styles from "./ContactUs.module.scss";
 /* ✅ hero image */
 import heroImg from "../../assets/images/pic4.jpg";
 
-/* === Recipient email === */
+/* === Recipient email (display-only) === */
 const TO_EMAIL = "info@linkplus.com";
 
 /* === Address & exact coordinates (street-level zoom) === */
@@ -33,7 +33,7 @@ const MailIcon = () => (
   </svg>
 );
 
-/* Form state */
+/* Form state (kept so your inputs stay controlled) */
 type FormState = {
   firstName: string;
   lastName: string;
@@ -43,25 +43,8 @@ type FormState = {
 };
 const initial: FormState = { firstName: "", lastName: "", email: "", phone: "", message: "" };
 
-function buildMailtoHref(d: FormState) {
-  const subject = `New contact form: ${d.firstName} ${d.lastName}`;
-  const safeMsg = (d.message || "").slice(0, 1600);
-  const body = encodeURIComponent(
-    [
-      `Name: ${d.firstName} ${d.lastName}`,
-      `Email: ${d.email}`,
-      `Phone: ${d.phone}`,
-      "",
-      "Message:",
-      safeMsg || "(no message)",
-    ].join("\n")
-  );
-  return `mailto:${encodeURIComponent(TO_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${body}`;
-}
-
 const ContactUs: React.FC = () => {
   const [data, setData] = useState<FormState>(initial);
-  const [showMailHint, setShowMailHint] = useState(false);
 
   const onChange =
     (k: keyof FormState) =>
@@ -72,15 +55,6 @@ const ContactUs: React.FC = () => {
     if (!data.firstName || !data.lastName || !data.email || !data.phone) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
   }, [data]);
-
-  const mailtoHref = useMemo(() => buildMailtoHref(data), [data]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isValid) return;
-    window.location.href = mailtoHref;
-    setTimeout(() => setShowMailHint(true), 1200);
-  };
 
   return (
     <div className={styles.page}>
@@ -129,7 +103,6 @@ const ContactUs: React.FC = () => {
                     <p className={styles.label}>Location</p>
                     <p className={styles.value}>{ADDRESS}</p>
                     <p className={styles.value}>{ADDRESS1}</p>
-
                   </div>
                 </li>
 
@@ -152,42 +125,75 @@ const ContactUs: React.FC = () => {
                 Your email address will not be published. Required fields are marked <strong>*</strong>
               </p>
 
-              <form className={styles.form} onSubmit={handleSubmit}>
+              <form name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact" />
+                <p style={{ display: "none" }}>
+                  <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                </p>
+
                 <div className={styles.grid2}>
-                  <input className={styles.input} placeholder="First Name*" value={data.firstName} onChange={onChange("firstName")} required />
-                  <input className={styles.input} placeholder="Last Name*"  value={data.lastName}  onChange={onChange("lastName")}  required />
+                  <input
+                    className={styles.input}
+                    placeholder="First Name*"
+                    name="firstName"
+                    value={data.firstName}
+                    onChange={onChange("firstName")}
+                    required
+                  />
+                  <input
+                    className={styles.input}
+                    placeholder="Last Name*"
+                    name="lastName"
+                    value={data.lastName}
+                    onChange={onChange("lastName")}
+                    required
+                  />
                 </div>
 
                 <div className={styles.grid2}>
-                  <input className={styles.input} placeholder="Phone Number*" type="tel"  value={data.phone} onChange={onChange("phone")} required />
-                  <input className={styles.input} placeholder="Your email*"    type="email" value={data.email} onChange={onChange("email")} required />
+                  <input
+                    className={styles.input}
+                    placeholder="Phone Number*"
+                    type="tel"
+                    name="phone"
+                    value={data.phone}
+                    onChange={onChange("phone")}
+                    required
+                  />
+                  <input
+                    className={styles.input}
+                    placeholder="Your email*"
+                    type="email"
+                    name="email"
+                    value={data.email}
+                    onChange={onChange("email")}
+                    required
+                  />
                 </div>
 
-                <textarea className={`${styles.input} ${styles.textarea}`} placeholder="How Can We Assist Your Aesthetic Needs..." rows={5} value={data.message} onChange={onChange("message")} />
+                <textarea
+                  className={`${styles.input} ${styles.textarea}`}
+                  placeholder="How Can We Assist Your Aesthetic Needs..."
+                  rows={5}
+                  name="message"
+                  value={data.message}
+                  onChange={onChange("message")}
+                />
 
-                {!isValid && <div className={styles.error}>Please fill all required fields with a valid email.</div>}
-
-                <button type="submit" className={`${styles.submit} ${!isValid ? styles.disabled : ""}`} disabled={!isValid}>
-                  <span>SEND VIA EMAIL</span>
-                  <span className={styles.submitArrow} aria-hidden>↗</span>
-                </button>
-
-                {showMailHint && (
-                  <div className={styles.hint} style={{ marginTop: 8 }}>
-                    If no email window opened, set a default mail app:
-                    <ul>
-                      <li>Chrome → open <strong>mail.google.com</strong> → allow “Open email links”.</li>
-                      <li>macOS → Mail ▸ Settings ▸ General ▸ Default email reader.</li>
-                      <li>Windows → Settings ▸ Apps ▸ Default apps ▸ Choose default by protocol ▸ <code>MAILTO</code>.</li>
-                    </ul>
+                {!isValid && (
+                  <div className={styles.error}>
+                    Please fill all required fields with a valid email.
                   </div>
                 )}
 
-                <noscript>
-                  <p style={{ marginTop: 8 }}>
-                    JavaScript disabled. Email <a href={`mailto:${TO_EMAIL}`}>{TO_EMAIL}</a>.
-                  </p>
-                </noscript>
+                <button
+                  type="submit"
+                  className={`${styles.submit} ${!isValid ? styles.disabled : ""}`}
+                  disabled={!isValid}
+                >
+                  <span>Send VIA EMAIL</span>
+                  <span className={styles.submitArrow} aria-hidden>↗</span>
+                </button>
               </form>
             </div>
           </div>
