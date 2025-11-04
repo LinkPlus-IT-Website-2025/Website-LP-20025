@@ -106,12 +106,38 @@
 }
 
 /* links */
+/* Footer.module.scss */
 .footerLinks {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;            /* small, even spacing */
   align-items: flex-start;
-  margin-left: 55px; /* was 40px */
+  margin-left: 55px;      /* ⬅️ remove the big offset */
+  padding: 0 !important;
+}
+
+.footerLinkWrapper {
+  margin: 0;           /* ensure no extra spacing around rows */
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1.3;    /* tighter line height */
+  text-decoration: none;
+}
+
+.footerLinkBullet {
+  font-size: 10px;
+  margin: 0;           /* avoid extra indent */
+  opacity: .8;
+}
+
+.sectionTitle {
+  margin-bottom: 10px; /* reduce gap above the list */
 }
 
 .footerLinkWrapper { position: relative; margin-bottom: 8px; }
@@ -162,6 +188,8 @@
   overflow-wrap: anywhere;
   word-break: normal;
   gap: 10px;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
 }
 
 .awardLine {
