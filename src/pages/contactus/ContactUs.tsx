@@ -191,7 +191,7 @@ const ContactUs: React.FC = () => {
                   className={`${styles.submit} ${!isValid ? styles.disabled : ""}`}
                   disabled={!isValid}
                 >
-                  <span>Send VIA EMAIL</span>
+                  <span>Send VIA EMAILL</span>
                   <span className={styles.submitArrow} aria-hidden>↗</span>
                 </button>
               </form>
