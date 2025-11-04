@@ -70,11 +70,26 @@
 .formTitle{ font-size:20px; margin:2px 0 10px; font-weight:600; text-align: left; }
 .formNote{ color:var(--muted); font-size:12px; margin-bottom:14px; padding-bottom: 16px; border-bottom: 1px solid #eef2f7; text-align:left; }
 
-.form{ display:grid; gap:12px; }
-.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+/* ===== form layout (fixed spacing) ===== */
+.form{
+  display:grid;
+  gap:20px !important;                 /* vertical spacing between rows */
+  grid-auto-rows:min-content;
+}
+
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px !important;                 /* horizontal spacing between two inputs */
+  row-gap:20px !important;
+  column-gap:20px !important;
+  margin-bottom: 10px;
+}
 
 .input{
-  width:100%; border:1px solid #e8ecf1; background:#fff; border-radius:12px;
+  width:100%;
+  min-height:46px;                     /* consistent input height */
+  border:1px solid #e8ecf1; background:#fff; border-radius:12px;
   padding:10px 12px; font-size:13px; color:var(--text); outline:none; transition:border-color .2s, box-shadow .2s;
 }
 .input::placeholder{ color:#9aa3b4; }
@@ -83,12 +98,18 @@
 
 .error { color: #c1121f; font-size: 12px; margin-top: 2px; }
 
+/* left-align button inside grid */
 .submit{
-  display:inline-flex; align-items:center; gap:6px; border:none; cursor:pointer; color:#fff; font-weight:700;
+  display:flex; align-items:start; gap:6px; border:none; cursor:pointer; color:#fff; font-weight:700;
   border-radius:12px; padding:12px 18px; letter-spacing:.02em; width:max-content;
   background:linear-gradient(135deg,var(--brand),var(--brandDeep));
   box-shadow:0 10px 24px rgba(59,87,255,.18); font-size:12px; margin-top: 8px;
   transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+
+  justify-self:start !important;       /* ← key: left align in grid */
+  align-self:start !important;
+  margin-left:0 !important;
+  margin-right:0 !important;
 }
 .submit:hover { filter: brightness(1.03); transform: translateY(-1px); }
 .submitArrow{ display:inline-grid; place-items:center; width:22px; height:22px; border-radius:7px; background:#ffffff1a; font-size:12px; }
@@ -124,7 +145,8 @@
   .heroTitle{ font-size: clamp(32px, 7vw, 48px); margin-bottom: 22px; }
 
   .formCard{ padding: 28px; border-radius: 16px; }
-  .grid2{ grid-template-columns: 1fr; } /* stack inputs */
+  .grid2{ grid-template-columns: 1fr; gap:14px !important; } /* stack inputs with breathing room */
+  .form{ gap:16px !important; }
   .input{ padding: 9px 11px; font-size: 13px; }
   .textarea{ min-height: 100px; }
 }
