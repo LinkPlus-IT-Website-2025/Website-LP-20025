@@ -1,0 +1,21 @@
+<!-- public/netlify-form.html -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Netlify Form Bootstrap</title>
+    <style>body{display:none}</style>
+  </head>
+  <body>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="firstName" />
+      <input name="lastName" />
+      <input name="email" type="email" />
+      <input name="phone" type="tel" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" type="text" />
+    </form>
+  </body>
+</html>
