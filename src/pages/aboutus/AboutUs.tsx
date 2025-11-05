@@ -1,8 +1,8 @@
-
+// src/pages/aboutus/AboutUs.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { Check, ArrowUp } from "lucide-react";
 import styles from "./AboutUs.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import deboraMeta from "../../assets/images/debora-meta.jpeg";
 import ermalSadiku from "../../assets/images/ermal-sadiku.png";
 import ilirianaIbraj from "../../assets/images/iliriana-ibraj.png";
@@ -14,7 +14,6 @@ import icProfessionals from "../../assets/icons/proffessionals.svg";
 import icProjects from "../../assets/icons/projects.svg";
 import icIndustries from "../../assets/icons/projects (1).svg";
 import icIndustries1 from "../../assets/icons/client satisfaction.svg";
-
 import icClients from "../../assets/icons/clients.svg";
 import bdoLogo from "../../assets/images/BDO.png";
 import conplementLogo from "../../assets/images/conplement.png";
@@ -67,6 +66,13 @@ const MailIcon = () => (
 );
 
 const AboutUs: React.FC = () => {
+  // --------- force page to open at top on route change ----------
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [location.pathname]);
+
+  // --------- back-to-top button ----------
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   useEffect(() => {
@@ -80,6 +86,7 @@ const AboutUs: React.FC = () => {
   }, []);
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
+  // --------- progress meters trigger ----------
   const [progressAnimated, setProgressAnimated] = useState(false);
   const progressSectionRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -98,8 +105,10 @@ const AboutUs: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
+  // --------- testimonials index ----------
   const [tIdx, setTIdx] = useState(0);
 
+  // --------- contact form (Netlify-ready) ----------
   type ContactForm = {
     firstName: string;
     lastName: string;
@@ -130,22 +139,45 @@ const AboutUs: React.FC = () => {
     contactData.phone &&
     contactData.service;
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState<null | { type: "ok" | "err"; text: string }>(null);
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isContactValid) return;
-    const subject = `New contact form: ${contactData.firstName} ${contactData.lastName}`;
-    const body = encodeURIComponent(
-      [
-        `Name: ${contactData.firstName} ${contactData.lastName}`,
-        `Email: ${contactData.email}`,
-        `Phone: ${contactData.phone}`,
-        `Service: ${contactData.service}`,
-        "",
-        "Message:",
-        contactData.message || "(no message)",
-      ].join("\n")
-    );
-    window.location.href = `mailto:info@linkplus.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    if (!isContactValid || submitting) return;
+
+    setSubmitting(true);
+    setToast(null);
+
+    try {
+      const isLocal =
+        typeof window !== "undefined" &&
+        (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      formData.set("form-name", "aboutus-contact");
+
+      if (isLocal) {
+        // simulate ok submit in dev so Vite doesn't 404 on "/"
+        await new Promise((r) => setTimeout(r, 350));
+      } else {
+        await fetch("/", { method: "POST", body: formData });
+      }
+
+      // reset form
+      setContactData({ firstName: "", lastName: "", email: "", phone: "", service: "", message: "" });
+      form.reset();
+      setToast({
+        type: "ok",
+        text: isLocal ? "Thanks! (dev mode) We received your message." : "Thanks! We received your message.",
+      });
+    } catch {
+      setToast({ type: "err", text: "Something went wrong. Please try again." });
+    } finally {
+      setSubmitting(false);
+      setTimeout(() => setToast(null), 4000);
+    }
   };
 
   return (
@@ -166,7 +198,7 @@ const AboutUs: React.FC = () => {
         <div className={styles.heroContent}>
           <div className={styles.heroContainer}>
             <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</Link>
               <span className={styles.bcSep}>/</span>
               <span>About Us</span>
             </nav>
@@ -201,7 +233,13 @@ const AboutUs: React.FC = () => {
                 We focus on technology that fits your workflow, supports your team, and keeps your operations running smoothly.
               </p>
               <div className={styles.ctaSection}>
-                <Link to="/portofolio" className={styles.ctaButton} role="link" aria-label="More about us">
+                <Link
+                  to="/portofolio"
+                  className={styles.ctaButton}
+                  role="link"
+                  aria-label="More about us"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                >
                   <span>MORE ABOUT US</span>
                   <span className={styles.ctaArrow}>→</span>
                 </Link>
@@ -442,27 +480,58 @@ const AboutUs: React.FC = () => {
           <div className={styles.cRight}>
             <div className={styles.cCard} aria-labelledby="cFormTitle">
               <h3 id="cFormTitle" className={styles.cTitle}>Got a Project in Mind?</h3>
-              <form className={styles.cForm} onSubmit={handleContactSubmit}>
+
+              <form
+                className={styles.cForm}
+                name="aboutus-contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={handleContactSubmit}
+              >
+                <input type="hidden" name="form-name" value="aboutus-contact" />
+                <p style={{ display: "none" }}>
+                  <label>
+                    Don’t fill this out if you’re human: <input name="bot-field" />
+                  </label>
+                </p>
+
                 <div className={styles.cGrid2}>
-                  <input className={styles.cInput} placeholder="First Name*" value={contactData.firstName} onChange={onContactChange("firstName")} required />
-                  <input className={styles.cInput} placeholder="Last Name*" value={contactData.lastName} onChange={onContactChange("lastName")} required />
+                  <input className={styles.cInput} placeholder="First Name*" name="firstName" value={contactData.firstName} onChange={onContactChange("firstName")} required />
+                  <input className={styles.cInput} placeholder="Last Name*" name="lastName" value={contactData.lastName} onChange={onContactChange("lastName")} required />
                 </div>
                 <div className={styles.cGrid2}>
-                  <input className={styles.cInput} placeholder="Phone Number*" type="tel" value={contactData.phone} onChange={onContactChange("phone")} required />
-                  <input className={styles.cInput} placeholder="Your email*" type="email" value={contactData.email} onChange={onContactChange("email")} required />
+                  <input className={styles.cInput} placeholder="Phone Number*" name="phone" type="tel" value={contactData.phone} onChange={onContactChange("phone")} required />
+                  <input className={styles.cInput} placeholder="Your email*" name="email" type="email" value={contactData.email} onChange={onContactChange("email")} required />
                 </div>
-                <select className={styles.cInput} value={contactData.service} onChange={onContactChange("service")} required aria-label="Select service">
+                <select className={styles.cInput} name="service" value={contactData.service} onChange={onContactChange("service")} required aria-label="Select service">
                   <option value="" disabled>Select Service*</option>
                   <option value="HIGH-END CUSTOM SOFTWARE SOLUTIONS">HIGH-END CUSTOM SOFTWARE SOLUTIONS</option>
                   <option value="DEDICATED TEAM MODEL">DEDICATED TEAM MODEL</option>
                   <option value="IT SUPPORT">IT SUPPORT</option>
                 </select>
-                <textarea className={`${styles.cInput} ${styles.cTextarea}`} placeholder="How Can We Assist Your Aesthetic Needs..." rows={5} value={contactData.message} onChange={onContactChange("message")} />
+                <textarea className={`${styles.cInput} ${styles.cTextarea}`} name="message" placeholder="How Can We Assist Your Aesthetic Needs..." rows={5} value={contactData.message} onChange={onContactChange("message")} />
+
                 {!isContactValid && <div className={styles.cError}>Please fill all required fields with a valid email.</div>}
-                <button type="submit" className={`${styles.cSubmit} ${!isContactValid ? styles.cDisabled : ""}`} disabled={!isContactValid}>
-                  <span>SEND VIA EMAIL</span>
+
+                <button
+                  type="submit"
+                  className={`${styles.cSubmit} ${(!isContactValid || submitting) ? styles.cDisabled : ""}`}
+                  disabled={!isContactValid || submitting}
+                >
+                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
                   <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
+
+                {toast && (
+                  <div
+                    role="status"
+                    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
+                    style={{ marginTop: 12 }}
+                  >
+                    {toast.text}
+                  </div>
+                )}
               </form>
             </div>
           </div>
@@ -477,7 +546,13 @@ const AboutUs: React.FC = () => {
             Ready to gain competitive advantage by harnessing <br />
             data and modernising your technology?
           </h2>
-          <a href="/contactus" className={styles.ctaButton}>GET IN TOUCH ↗</a>
+          <Link
+            to="/contactus"
+            className={styles.ctaButton}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
+            GET IN TOUCH ↗
+          </Link>
         </div>
       </section>
 

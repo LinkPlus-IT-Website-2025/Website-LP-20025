@@ -1,3 +1,4 @@
+// src/components/tech-scroller/TechScroller.tsx
 import React, { useMemo, useState } from "react";
 import { Card, Button, Space } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
@@ -5,19 +6,26 @@ import { LayoutGroup, motion } from "framer-motion";
 import styles from "./TechScroller.module.scss";
 import defaultHeaderIcon from "../../assets/icons/technologies (1).svg"; // safe fallback
 
-export type TechItem = { id: string; name: string; logoSrc: string };
+export type TechItem = {
+  id: string;
+  name: string;
+  logoSrc: string;
+  /** Optional per-item size hint */
+  sizeHint?: "sm" | "md" | "lg" | "xl";
+};
 
 type Props = {
   title?: string;
   items: TechItem[];
   showNames?: boolean;
   initialIndex?: number;
-  headerIconSrc?: string;   // pass /icons/*.svg
+  headerIconSrc?: string;
   showArrows?: boolean;
-  centerLogo?: boolean;     // legacy “centered” style (kept for compat)
-  /** NEW: render a totally isolated, minimal layout (no arrows/caption).
-   *  Use this ONLY for the 6th card so other cards aren't affected. */
+  centerLogo?: boolean;
+  /** Render a minimal isolated layout (used by your 6th card). */
   solo?: boolean;
+  /** If true, when the scroller is on the LAST item, the logo renders bigger. */
+  bigLast?: boolean;
 };
 
 const TechScroller: React.FC<Props> = ({
@@ -29,11 +37,21 @@ const TechScroller: React.FC<Props> = ({
   showArrows = true,
   centerLogo = false,
   solo = false,
+  bigLast = false,
 }) => {
-  // ---- SOLO VARIANT (used for the 6th card) ----
+  // ---- SOLO VARIANT ----
   if (solo) {
-    // only one image expected, but still guard
     const item = items[0] ?? { id: "logo", name: "", logoSrc: "" };
+    // derive size class from sizeHint if provided
+    const soloSizeClass =
+      item.sizeHint === "xl"
+        ? styles.logoXL
+        : item.sizeHint === "lg"
+        ? styles.logoLG
+        : item.sizeHint === "sm"
+        ? styles.logoSM
+        : styles.logoMD;
+
     return (
       <LayoutGroup id={`tech-card-${title}-solo`}>
         <div className={`${styles.wrapSingle} ${styles.isSolo}`}>
@@ -53,16 +71,16 @@ const TechScroller: React.FC<Props> = ({
               </Space>
             </div>
 
-            {/* Perfectly centered logo zone */}
+            {/* Centered logo */}
             <div className={styles.soloCenter}>
               <motion.div
                 layout
                 layoutId={`solo-logo-${title}`}
-                className={styles.soloHolder}
+                className={`${styles.soloHolder} ${soloSizeClass}`}
                 transition={{ layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
               >
                 <img
-                  className={styles.logo}
+                  className={`${styles.logo} ${soloSizeClass}`}
                   src={item.logoSrc}
                   alt={item.name || title}
                   loading="lazy"
@@ -76,13 +94,26 @@ const TechScroller: React.FC<Props> = ({
     );
   }
 
-  // ---- DEFAULT VARIANT (for the other 5 cards) ----
+  // ---- DEFAULT VARIANT ----
   const [index, setIndex] = useState(initialIndex);
   const len = Math.max(items.length, 1);
   const mod = (n: number, m: number) => ((n % m) + m) % m;
   const item = useMemo(() => items[mod(index, len)], [index, len, items]);
   const hasMultiple = len > 1;
   const shouldShowArrows = showArrows && hasMultiple && !centerLogo;
+
+  const isLast = mod(index, len) === len - 1;
+  const lastBoost = bigLast && isLast;
+
+  // size from per-item hint
+  const hintClass =
+    item.sizeHint === "xl"
+      ? styles.logoXL
+      : item.sizeHint === "lg"
+      ? styles.logoLG
+      : item.sizeHint === "sm"
+      ? styles.logoSM
+      : styles.logoMD;
 
   const rootCls = `${styles.wrapSingle} ${centerLogo ? styles.isCentered : ""}`;
 
@@ -125,17 +156,15 @@ const TechScroller: React.FC<Props> = ({
                 <motion.div
                   layout
                   layoutId={`logo-${title}`}
-                  className={styles.logoHolder}
+                  className={`${styles.logoHolder} ${hintClass} ${lastBoost ? styles.logoBig : ""}`}
                   transition={{ layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
                 >
                   <motion.img
-                    className={styles.logo}
+                    className={`${styles.logo} ${hintClass} ${lastBoost ? styles.logoBig : ""}`}
                     src={item.logoSrc}
                     alt={item.name}
                     loading="lazy"
                     decoding="async"
-                    width={180}
-                    height={110}
                     initial={false}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
