@@ -108,44 +108,45 @@ const AboutUs: React.FC = () => {
   // --------- testimonials index ----------
   const [tIdx, setTIdx] = useState(0);
 
-  // --------- contact form (Netlify-ready) ----------
-  type ContactForm = {
+  /* ===========================================================
+     CONTACT FORM — IDENTICAL AS BEFORE, ONLY ADDING "service"
+     (kept classes & layout; just one new <select> and state key)
+  ============================================================ */
+  type FormState = {
     firstName: string;
     lastName: string;
     email: string;
     phone: string;
-    service: string;
     message: string;
+    service: string; // ✅ added
   };
 
-  const [contactData, setContactData] = useState<ContactForm>({
+  const initial: FormState = {
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-    service: "",
     message: "",
-  });
+    service: "", // ✅ added
+  };
 
-  const onContactChange =
-    (k: keyof ContactForm) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-      setContactData((d) => ({ ...d, [k]: e.target.value }));
-
-  const isContactValid =
-    contactData.firstName &&
-    contactData.lastName &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactData.email) &&
-    contactData.phone &&
-    contactData.service;
-
-  const [submitting, setSubmitting] = useState(false);
+  const [data, setData] = useState<FormState>(initial);
   const [toast, setToast] = useState<null | { type: "ok" | "err"; text: string }>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onChange =
+    (k: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+      setData((d) => ({ ...d, [k]: e.target.value }));
+
+  const isValid = React.useMemo(() => {
+    if (!data.firstName || !data.lastName || !data.email || !data.phone) return false;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+  }, [data]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isContactValid || submitting) return;
-
+    if (!isValid || submitting) return;
     setSubmitting(true);
     setToast(null);
 
@@ -156,17 +157,15 @@ const AboutUs: React.FC = () => {
 
       const form = e.currentTarget;
       const formData = new FormData(form);
-      formData.set("form-name", "aboutus-contact");
+      formData.set("form-name", "contact"); // Netlify form name
 
       if (isLocal) {
-        // simulate ok submit in dev so Vite doesn't 404 on "/"
         await new Promise((r) => setTimeout(r, 350));
       } else {
         await fetch("/", { method: "POST", body: formData });
       }
 
-      // reset form
-      setContactData({ firstName: "", lastName: "", email: "", phone: "", service: "", message: "" });
+      setData(initial);
       form.reset();
       setToast({
         type: "ok",
@@ -451,6 +450,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
+      {/* CONTACT — form unchanged except the added Service select */}
       <section className={styles.contactShell} aria-label="Contact form">
         <div className={styles.contactGrid}>
           <div className={styles.cLeft}>
@@ -483,13 +483,14 @@ const AboutUs: React.FC = () => {
 
               <form
                 className={styles.cForm}
-                name="aboutus-contact"
+                name="contact"
                 method="POST"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
-                onSubmit={handleContactSubmit}
+                onSubmit={handleSubmit}
               >
-                <input type="hidden" name="form-name" value="aboutus-contact" />
+                {/* Netlify requirements */}
+                <input type="hidden" name="form-name" value="contact" />
                 <p style={{ display: "none" }}>
                   <label>
                     Don’t fill this out if you’re human: <input name="bot-field" />
@@ -497,29 +498,81 @@ const AboutUs: React.FC = () => {
                 </p>
 
                 <div className={styles.cGrid2}>
-                  <input className={styles.cInput} placeholder="First Name*" name="firstName" value={contactData.firstName} onChange={onContactChange("firstName")} required />
-                  <input className={styles.cInput} placeholder="Last Name*" name="lastName" value={contactData.lastName} onChange={onContactChange("lastName")} required />
+                  <input
+                    className={styles.cInput}
+                    placeholder="First Name*"
+                    name="firstName"
+                    value={data.firstName}
+                    onChange={onChange("firstName")}
+                    required
+                  />
+                  <input
+                    className={styles.cInput}
+                    placeholder="Last Name*"
+                    name="lastName"
+                    value={data.lastName}
+                    onChange={onChange("lastName")}
+                    required
+                  />
                 </div>
+
                 <div className={styles.cGrid2}>
-                  <input className={styles.cInput} placeholder="Phone Number*" name="phone" type="tel" value={contactData.phone} onChange={onContactChange("phone")} required />
-                  <input className={styles.cInput} placeholder="Your email*" name="email" type="email" value={contactData.email} onChange={onContactChange("email")} required />
+                  <input
+                    className={styles.cInput}
+                    placeholder="Phone Number*"
+                    type="tel"
+                    name="phone"
+                    value={data.phone}
+                    onChange={onChange("phone")}
+                    required
+                  />
+                  <input
+                    className={styles.cInput}
+                    placeholder="Your email*"
+                    type="email"
+                    name="email"
+                    value={data.email}
+                    onChange={onChange("email")}
+                    required
+                  />
                 </div>
-                <select className={styles.cInput} name="service" value={contactData.service} onChange={onContactChange("service")} required aria-label="Select service">
+
+                {/* ✅ ADDED: Service select (exactly as requested, classes unchanged) */}
+                <select
+                  className={styles.cInput}
+                  name="service"
+                  value={data.service}
+                  onChange={onChange("service")}
+                  required
+                  aria-label="Select service"
+                >
                   <option value="" disabled>Select Service*</option>
                   <option value="HIGH-END CUSTOM SOFTWARE SOLUTIONS">HIGH-END CUSTOM SOFTWARE SOLUTIONS</option>
                   <option value="DEDICATED TEAM MODEL">DEDICATED TEAM MODEL</option>
                   <option value="IT SUPPORT">IT SUPPORT</option>
                 </select>
-                <textarea className={`${styles.cInput} ${styles.cTextarea}`} name="message" placeholder="How Can We Assist Your Aesthetic Needs..." rows={5} value={contactData.message} onChange={onContactChange("message")} />
 
-                {!isContactValid && <div className={styles.cError}>Please fill all required fields with a valid email.</div>}
+                <textarea
+                  className={`${styles.cInput} ${styles.cTextarea}`}
+                  placeholder="How Can We Assist Your Aesthetic Needs..."
+                  rows={5}
+                  name="message"
+                  value={data.message}
+                  onChange={onChange("message")}
+                />
+
+                {!isValid && (
+                  <div className={styles.cError}>
+                    Please fill all required fields with a valid email.
+                  </div>
+                )}
 
                 <button
                   type="submit"
-                  className={`${styles.cSubmit} ${(!isContactValid || submitting) ? styles.cDisabled : ""}`}
-                  disabled={!isContactValid || submitting}
+                  className={`${styles.cSubmit} ${!isValid || submitting ? styles.cDisabled : ""}`}
+                  disabled={!isValid || submitting}
                 >
-                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
+                  <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
                   <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
 

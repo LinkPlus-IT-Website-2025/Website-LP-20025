@@ -640,7 +640,7 @@ const HomePage: React.FC = () => {
                   disabled={!isValid || submitting}
                 >
                   {/* Text matches ContactUs */}
-                  <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
+                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
                   <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
 
