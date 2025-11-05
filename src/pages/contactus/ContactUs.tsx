@@ -266,7 +266,7 @@ const ContactUs: React.FC = () => {
                   }`}
                   disabled={!isValid || submitting}
                 >
-                  <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
+                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
                   <span className={styles.submitArrow} aria-hidden>
                     ↗
                   </span>
