@@ -1,5 +1,5 @@
 // src/pages/home/HomePage.tsx
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./HomePage.module.scss";
 
@@ -41,15 +41,6 @@ import pic2 from "../../assets/images/pic2.jpg";
 import pic4 from "../../assets/images/pic4.jpg";
 import teamMeeting from "../../assets/images/teammeeting.jpg";
 import teamDiscussion from "../../assets/images/teamdiscussion.jpg";
-
-type ContactForm = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  service: string;
-  message: string;
-};
 
 const icons = [
   <img key="i1" src={iconSoftware} alt="Software Development" className={styles.iconImg} />,
@@ -106,10 +97,53 @@ const testimonialsLogos = [
   },
 ];
 
+const PinIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
+    <path
+      d="M12 3a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7Zm0 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+    />
+  </svg>
+);
+
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
+    <path
+      d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+/* ================================
+   IDENTICAL FORM LOGIC TO ContactUs.tsx
+   (state keys, validation, Netlify submit)
+   — using Home classes so styles don't change.
+=================================== */
+type FormState = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
+};
+
+const initial: FormState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  message: "",
+};
+
 const HomePage: React.FC = () => {
   const location = useLocation();
 
-  // Always open the page at the top (fixes “opens at bottom” feeling)
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [location.pathname]);
@@ -140,32 +174,24 @@ const HomePage: React.FC = () => {
     return () => clearInterval(id);
   }, []);
 
-  // ===== Netlify-ready Contact form (same behavior as ContactUs) =====
-  const [contactData, setContactData] = useState<ContactForm>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: "",
-  });
-  const [submitting, setSubmitting] = useState(false);
+  // === ContactUs-identical form state/validation/submit ===
+  const [data, setData] = useState<FormState>(initial);
   const [toast, setToast] = useState<null | { type: "ok" | "err"; text: string }>(null);
+  const [submitting, setSubmitting] = useState(false);
 
-  const onContactChange =
-    (k: keyof ContactForm) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-      setContactData((d) => ({ ...d, [k]: e.target.value }));
+  const onChange =
+    (k: keyof FormState) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+      setData((d) => ({ ...d, [k]: e.target.value }));
 
-  const isContactValid = useMemo(() => {
-    if (!contactData.firstName || !contactData.lastName || !contactData.email || !contactData.phone || !contactData.service)
-      return false;
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactData.email);
-  }, [contactData]);
+  const isValid = React.useMemo(() => {
+    if (!data.firstName || !data.lastName || !data.email || !data.phone) return false;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+  }, [data]);
 
-  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isContactValid || submitting) return;
+    if (!isValid || submitting) return;
     setSubmitting(true);
     setToast(null);
 
@@ -176,18 +202,15 @@ const HomePage: React.FC = () => {
 
       const form = e.currentTarget;
       const formData = new FormData(form);
-      // IMPORTANT: use the same form-name as your working ContactUs page
-      formData.set("form-name", "contact");
+      formData.set("form-name", "contact"); // important for Netlify
 
       if (isLocal) {
-        // Avoid 404 in Vite dev server
-        await new Promise((r) => setTimeout(r, 350));
+        await new Promise((r) => setTimeout(r, 350)); // avoid 404 in dev
       } else {
-        // Netlify production: post to "/"
-        await fetch("/", { method: "POST", body: formData });
+        await fetch("/", { method: "POST", body: formData }); // Netlify production
       }
 
-      setContactData({ firstName: "", lastName: "", email: "", phone: "", service: "", message: "" });
+      setData(initial);
       form.reset();
       setToast({
         type: "ok",
@@ -200,29 +223,6 @@ const HomePage: React.FC = () => {
       setTimeout(() => setToast(null), 4000);
     }
   };
-
-  const PinIcon = () => (
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
-      <path
-        d="M12 3a7 7 0 0 0-7 7c0 5 7 11 7 11s7-6 7-11a7 7 0 0 0-7-7Zm0 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-    </svg>
-  );
-
-  const MailIcon = () => (
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden>
-      <path
-        d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
 
   return (
     <div className={styles.container}>
@@ -329,7 +329,10 @@ const HomePage: React.FC = () => {
       {/* IT SERVICES */}
       <div className={styles.itServicesSection} style={{ ["--it-services-bg" as any]: `url(${itServicesBg})` }}>
         <p className={styles.subheading}>OUR SERVICES</p>
-        <h2 className={styles.headinggg} style={{ color: "#99171C", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        <h2
+          className={styles.headinggg}
+          style={{ color: "#99171C", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+        >
           Complete IT Expertise Under One Roof
         </h2>
 
@@ -395,28 +398,56 @@ const HomePage: React.FC = () => {
               <p>Key Industries:</p>
               <span>Airline</span>
               <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: progressAnimated ? "95%" : "0%" }} aria-valuenow={95} aria-valuemin={0} aria-valuemax={100} role="progressbar" />
+                <div
+                  className={styles.progress}
+                  style={{ width: progressAnimated ? "95%" : "0%" }}
+                  aria-valuenow={95}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  role="progressbar"
+                />
               </div>
             </div>
 
             <div className={styles.progressItem}>
               <span>Automotive</span>
               <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: progressAnimated ? "80%" : "0%" }} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} role="progressbar" />
+                <div
+                  className={styles.progress}
+                  style={{ width: progressAnimated ? "80%" : "0%" }}
+                  aria-valuenow={80}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  role="progressbar"
+                />
               </div>
             </div>
 
             <div className={styles.progressItem}>
               <span>Fintech</span>
               <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: progressAnimated ? "90%" : "0%" }} aria-valuenow={90} aria-valuemin={0} aria-valuemax={100} role="progressbar" />
+                <div
+                  className={styles.progress}
+                  style={{ width: progressAnimated ? "90%" : "0%" }}
+                  aria-valuenow={90}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  role="progressbar"
+                />
               </div>
             </div>
 
             <div className={styles.progressItem}>
               <span>Telecom</span>
               <div className={styles.progressBar}>
-                <div className={styles.progress} style={{ width: progressAnimated ? "80%" : "0%" }} aria-valuenow={80} aria-valuemin={0} aria-valuemax={100} role="progressbar" />
+                <div
+                  className={styles.progress}
+                  style={{ width: progressAnimated ? "80%" : "0%" }}
+                  aria-valuenow={80}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  role="progressbar"
+                />
               </div>
             </div>
           </div>
@@ -473,9 +504,7 @@ const HomePage: React.FC = () => {
           <div className={styles.tInner}>
             <p className={styles.tLabel}>WHAT CLIENTS SAY</p>
             <h2 className={styles.tHeading}>Testimonials That Inspire Trust</h2>
-            <div className={styles.tStars} aria-hidden>
-              ★★★★★
-            </div>
+            <div className={styles.tStars} aria-hidden>★★★★★</div>
             <p className={styles.tQuote}>{testimonialsLogos[tIdx].quote}</p>
             <div className={styles.tAuthor}>
               <span className={styles.tAvatar}>
@@ -502,7 +531,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* CONTACT CARD (NETLIFY FORM) */}
+      {/* CONTACT CARD (Home layout) — FORM MARKUP/LOGIC IDENTICAL TO ContactUs */}
       <section className={styles.contactShell} aria-label="Contact form">
         <div className={styles.contactGrid}>
           <div className={styles.cLeft}>
@@ -512,9 +541,7 @@ const HomePage: React.FC = () => {
             <h2 className={styles.cHeading}>Reach Out</h2>
             <ul className={styles.cList}>
               <li className={styles.cRow}>
-                <span className={styles.cIcon}>
-                  <PinIcon />
-                </span>
+                <span className={styles.cIcon}><PinIcon /></span>
                 <div className={styles.cTexts}>
                   <p className={styles.cLabel}>Location</p>
                   <p className={styles.cValue}>Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo</p>
@@ -522,9 +549,7 @@ const HomePage: React.FC = () => {
                 </div>
               </li>
               <li className={styles.cRow}>
-                <span className={styles.cIcon}>
-                  <MailIcon />
-                </span>
+                <span className={styles.cIcon}><MailIcon /></span>
                 <div className={styles.cTexts}>
                   <p className={styles.cLabel}>Email</p>
                   <p className={styles.cValue}>office@linkplus-it.com</p>
@@ -533,20 +558,18 @@ const HomePage: React.FC = () => {
             </ul>
           </div>
 
+          {/* RIGHT — uses Home classes, ContactUs code */}
           <div className={styles.cRight}>
             <div className={styles.cCard} aria-labelledby="cFormTitle">
-              <h3 id="cFormTitle" className={styles.cTitle}>
-                Got a Project in Mind?
-              </h3>
+              <h3 id="cFormTitle" className={styles.cTitle}>Got a Project in Mind?</h3>
 
-              {/* Netlify form (reusing the working "contact" form) */}
               <form
                 className={styles.cForm}
                 name="contact"
                 method="POST"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
-                onSubmit={handleContactSubmit}
+                onSubmit={handleSubmit}
               >
                 {/* Netlify requirements */}
                 <input type="hidden" name="form-name" value="contact" />
@@ -561,27 +584,28 @@ const HomePage: React.FC = () => {
                     className={styles.cInput}
                     placeholder="First Name*"
                     name="firstName"
-                    value={contactData.firstName}
-                    onChange={onContactChange("firstName")}
+                    value={data.firstName}
+                    onChange={onChange("firstName")}
                     required
                   />
                   <input
                     className={styles.cInput}
                     placeholder="Last Name*"
                     name="lastName"
-                    value={contactData.lastName}
-                    onChange={onContactChange("lastName")}
+                    value={data.lastName}
+                    onChange={onChange("lastName")}
                     required
                   />
                 </div>
+
                 <div className={styles.cGrid2}>
                   <input
                     className={styles.cInput}
                     placeholder="Phone Number*"
                     type="tel"
                     name="phone"
-                    value={contactData.phone}
-                    onChange={onContactChange("phone")}
+                    value={data.phone}
+                    onChange={onChange("phone")}
                     required
                   />
                   <input
@@ -589,50 +613,35 @@ const HomePage: React.FC = () => {
                     placeholder="Your email*"
                     type="email"
                     name="email"
-                    value={contactData.email}
-                    onChange={onContactChange("email")}
+                    value={data.email}
+                    onChange={onChange("email")}
                     required
                   />
                 </div>
-
-                <select
-                  className={styles.cInput}
-                  name="service"
-                  value={contactData.service}
-                  onChange={onContactChange("service")}
-                  required
-                  aria-label="Select service"
-                >
-                  <option value="" disabled>
-                    Select Service*
-                  </option>
-                  <option value="HIGH-END CUSTOM SOFTWARE SOLUTIONS">HIGH-END CUSTOM SOFTWARE SOLUTIONS</option>
-                  <option value="DEDICATED TEAM MODEL">DEDICATED TEAM MODEL</option>
-                  <option value="IT SUPPORT">IT SUPPORT</option>
-                </select>
 
                 <textarea
                   className={`${styles.cInput} ${styles.cTextarea}`}
                   placeholder="How Can We Assist Your Aesthetic Needs..."
                   rows={5}
                   name="message"
-                  value={contactData.message}
-                  onChange={onContactChange("message")}
+                  value={data.message}
+                  onChange={onChange("message")}
                 />
 
-                {!isContactValid && (
-                  <div className={styles.cError}>Please fill all required fields with a valid email.</div>
+                {!isValid && (
+                  <div className={styles.cError}>
+                    Please fill all required fields with a valid email.
+                  </div>
                 )}
 
                 <button
                   type="submit"
-                  className={`${styles.cSubmit} ${!isContactValid || submitting ? styles.cDisabled : ""}`}
-                  disabled={!isContactValid || submitting}
+                  className={`${styles.cSubmit} ${!isValid || submitting ? styles.cDisabled : ""}`}
+                  disabled={!isValid || submitting}
                 >
-                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
-                  <span className={styles.cSubmitArrow} aria-hidden>
-                    ↗
-                  </span>
+                  {/* Text matches ContactUs */}
+                  <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
+                  <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
 
                 {toast && (
