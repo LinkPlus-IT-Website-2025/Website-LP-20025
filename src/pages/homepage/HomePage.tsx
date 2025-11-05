@@ -176,7 +176,8 @@ const HomePage: React.FC = () => {
 
       const form = e.currentTarget;
       const formData = new FormData(form);
-      formData.set("form-name", "homepage-contact"); // important for Netlify
+      // IMPORTANT: use the same form-name as your working ContactUs page
+      formData.set("form-name", "contact");
 
       if (isLocal) {
         // Avoid 404 in Vite dev server
@@ -538,17 +539,17 @@ const HomePage: React.FC = () => {
                 Got a Project in Mind?
               </h3>
 
-              {/* Netlify form (same pattern as ContactUs) */}
+              {/* Netlify form (reusing the working "contact" form) */}
               <form
                 className={styles.cForm}
-                name="homepage-contact"
+                name="contact"
                 method="POST"
                 data-netlify="true"
                 netlify-honeypot="bot-field"
                 onSubmit={handleContactSubmit}
               >
                 {/* Netlify requirements */}
-                <input type="hidden" name="form-name" value="homepage-contact" />
+                <input type="hidden" name="form-name" value="contact" />
                 <p style={{ display: "none" }}>
                   <label>
                     Don’t fill this out if you’re human: <input name="bot-field" />
