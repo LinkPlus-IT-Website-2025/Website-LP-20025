@@ -41,7 +41,7 @@ import biChart from "../../assets/images/Group 31.svg";
 import biReport from "../../assets/images/Group 31 (1).svg";
 
 /* -------- PM logo (items) -------- */
-import pmLogo from "../../assets/images/Group 31 (2).svg";
+import pmLogo from "../../assets/images/Group 31 (5).svg";
 
 /* ===== Header icons for the scroller card titles (from /icons) ===== */
 import techIcon from "../../assets/icons/technologies (1).svg";
