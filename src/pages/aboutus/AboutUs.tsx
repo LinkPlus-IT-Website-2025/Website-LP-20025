@@ -109,8 +109,7 @@ const AboutUs: React.FC = () => {
   const [tIdx, setTIdx] = useState(0);
 
   /* ===========================================================
-     CONTACT FORM — IDENTICAL AS BEFORE, ONLY ADDING "service"
-     (kept classes & layout; just one new <select> and state key)
+     CONTACT FORM — same classes/layout; added service + hidden
   ============================================================ */
   type FormState = {
     firstName: string;
@@ -118,7 +117,7 @@ const AboutUs: React.FC = () => {
     email: string;
     phone: string;
     message: string;
-    service: string; // ✅ added
+    service: string;
   };
 
   const initial: FormState = {
@@ -127,7 +126,7 @@ const AboutUs: React.FC = () => {
     email: "",
     phone: "",
     message: "",
-    service: "", // ✅ added
+    service: "",
   };
 
   const [data, setData] = useState<FormState>(initial);
@@ -450,7 +449,7 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* CONTACT — form unchanged except the added Service select */}
+      {/* CONTACT — form identical classes; includes Service + hidden field */}
       <section className={styles.contactShell} aria-label="Contact form">
         <div className={styles.contactGrid}>
           <div className={styles.cLeft}>
@@ -537,7 +536,7 @@ const AboutUs: React.FC = () => {
                   />
                 </div>
 
-                {/* ✅ ADDED: Service select (exactly as requested, classes unchanged) */}
+                {/* Service select */}
                 <select
                   className={styles.cInput}
                   name="service"
@@ -560,6 +559,9 @@ const AboutUs: React.FC = () => {
                   value={data.message}
                   onChange={onChange("message")}
                 />
+
+                {/* Hidden mirror so Netlify includes service in emails */}
+                <input type="hidden" name="service" value={data.service || ""} />
 
                 {!isValid && (
                   <div className={styles.cError}>
