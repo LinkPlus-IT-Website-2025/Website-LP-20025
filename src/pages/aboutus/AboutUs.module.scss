@@ -364,7 +364,7 @@ html, body {
 }
 .serviceItem span{ color:#374151; font-weight:500; font-size:.95rem; }
 
-.additionalText{ color:var(--muted); line-height:1.7; margin-top:6px;  }
+.additionalText{ color:var(--muted); line-height:1.7; margin-top:6px; display: flex;align-items: start; text-align: left;}
 @media (max-width:1126px){ .additionalText{ justify-content:center; padding-right: 50px ;} }
 .ctaSection{ display:flex; align-items:center; gap:12px; margin-top:10px; flex-wrap:wrap; }
 @media (max-width:1126px){ .ctaSection{ justify-content:center; } }
@@ -1026,3 +1026,11 @@ html, body {
 }
 /* Testimonials — homepage-style light grey + white square grid (smaller cells) */
 
+.toastOk {
+  color: #0a7a28;                /* green text */
+  font-weight: 700;              /* bold */
+  background: rgba(16,185,129,.12);
+  border: 1px solid rgba(16,185,129,.35);
+  padding: 10px 12px;
+  border-radius: 8px;
+}

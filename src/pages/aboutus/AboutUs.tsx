@@ -117,7 +117,7 @@ const AboutUs: React.FC = () => {
     email: string;
     phone: string;
     message: string;
-    service: string;
+    // service: string;
   };
 
   const initial: FormState = {
@@ -126,7 +126,7 @@ const AboutUs: React.FC = () => {
     email: "",
     phone: "",
     message: "",
-    service: "",
+    // service: "",
   };
 
   const [data, setData] = useState<FormState>(initial);
@@ -168,7 +168,7 @@ const AboutUs: React.FC = () => {
       form.reset();
       setToast({
         type: "ok",
-        text: isLocal ? "Thanks! (dev mode) We received your message." : "Thanks! We received your message.",
+        text: isLocal ? "We received your message. Thank you!" : "We received your message. Thank you!",
       });
     } catch {
       setToast({ type: "err", text: "Something went wrong. Please try again." });
@@ -537,7 +537,7 @@ const AboutUs: React.FC = () => {
                 </div>
 
                 {/* Service select */}
-                <select
+                {/* <select
                   className={styles.cInput}
                   name="service"
                   value={data.service}
@@ -549,7 +549,7 @@ const AboutUs: React.FC = () => {
                   <option value="HIGH-END CUSTOM SOFTWARE SOLUTIONS">HIGH-END CUSTOM SOFTWARE SOLUTIONS</option>
                   <option value="DEDICATED TEAM MODEL">DEDICATED TEAM MODEL</option>
                   <option value="IT SUPPORT">IT SUPPORT</option>
-                </select>
+                </select> */}
 
                 <textarea
                   className={`${styles.cInput} ${styles.cTextarea}`}
@@ -561,11 +561,11 @@ const AboutUs: React.FC = () => {
                 />
 
                 {/* Hidden mirror so Netlify includes service in emails */}
-                <input type="hidden" name="service" value={data.service || ""} />
+                {/* <input type="hidden" name="service" value={data.service || ""} /> */}
 
                 {!isValid && (
                   <div className={styles.cError}>
-                    Please fill all required fields with a valid email.
+                    {/* Please fill all required fields with a valid email. */}
                   </div>
                 )}
 
@@ -577,16 +577,16 @@ const AboutUs: React.FC = () => {
                   <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
                   <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
+{toast && (
+  <div
+    role="status"
+    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
+    style={{ marginTop: 12 }}
+  >
+    {toast.text}
+  </div>
+)}
 
-                {toast && (
-                  <div
-                    role="status"
-                    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
-                    style={{ marginTop: 12 }}
-                  >
-                    {toast.text}
-                  </div>
-                )}
               </form>
             </div>
           </div>

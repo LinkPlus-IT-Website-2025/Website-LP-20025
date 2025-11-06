@@ -102,8 +102,8 @@ const ContactUs: React.FC = () => {
       setToast({
         type: "ok",
         text: isLocal
-          ? "Thanks! (dev mode) We received your message."
-          : "Thanks! We received your message.",
+          ? "We received your message. Thank you!"
+          : "We received your message. Thank you!",
       });
     } catch {
       setToast({ type: "err", text: "Something went wrong. Please try again." });
@@ -255,7 +255,7 @@ const ContactUs: React.FC = () => {
 
                 {!isValid && (
                   <div className={styles.error}>
-                    Please fill all required fields with a valid email.
+                   
                   </div>
                 )}
 
@@ -273,16 +273,15 @@ const ContactUs: React.FC = () => {
                 </button>
 
                 {toast && (
-                  <div
-                    role="status"
-                    className={
-                      toast.type === "ok" ? styles.toastOk : styles.toastErr
-                    }
-                    style={{ marginTop: 12 }}
-                  >
-                    {toast.text}
-                  </div>
-                )}
+  <div
+    role="status"
+    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
+    style={{ marginTop: 12 }}
+  >
+    {toast.text}
+  </div>
+)}
+
               </form>
             </div>
           </div>

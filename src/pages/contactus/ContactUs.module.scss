@@ -185,3 +185,11 @@
   .textarea{ min-height: 90px; }
   .submit{ font-size: 11px; padding: 9px 14px; }
 }
+.toastOk {
+  color: #0a7a28;                /* green text */
+  font-weight: 700;              /* bold */
+  background: rgba(16,185,129,.12);
+  border: 1px solid rgba(16,185,129,.35);
+  padding: 10px 12px;
+  border-radius: 8px;
+}

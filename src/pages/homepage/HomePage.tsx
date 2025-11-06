@@ -214,7 +214,7 @@ const HomePage: React.FC = () => {
       form.reset();
       setToast({
         type: "ok",
-        text: isLocal ? "Thanks! (dev mode) We received your message." : "Thanks! We received your message.",
+        text: isLocal ? "We received your message. Thank you!" : "We received your message. Thank you!",
       });
     } catch {
       setToast({ type: "err", text: "Something went wrong. Please try again." });
@@ -630,7 +630,7 @@ const HomePage: React.FC = () => {
 
                 {!isValid && (
                   <div className={styles.cError}>
-                    Please fill all required fields with a valid email.
+                    {/* Please fill all required fields with a valid email. */}
                   </div>
                 )}
 
@@ -645,14 +645,15 @@ const HomePage: React.FC = () => {
                 </button>
 
                 {toast && (
-                  <div
-                    role="status"
-                    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
-                    style={{ marginTop: 12 }}
-                  >
-                    {toast.text}
-                  </div>
-                )}
+  <div
+    role="status"
+    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
+    style={{ marginTop: 12 }}
+  >
+    {toast.text}
+  </div>
+)}
+
               </form>
             </div>
           </div>

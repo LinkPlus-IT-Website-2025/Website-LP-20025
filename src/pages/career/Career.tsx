@@ -87,7 +87,7 @@ const Career: React.FC = () => {
 
           <a
             className={styles.cta}
-            href="https://hrbee.ai/"
+            href="https://jobs.hrbee.ai/company-jobs/67"
             target="_blank"
             rel="noopener noreferrer"
           >
