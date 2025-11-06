@@ -437,3 +437,13 @@
     margin-left: 12px;
   }
 }
+/* make award images smaller in the modal */
+.awardModal img,
+.modalImg {
+  max-width: 60% !important;  /* adjust 50–70% depending on how small you want */
+  height: auto !important;
+  display: block;
+  margin: 0 auto 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}

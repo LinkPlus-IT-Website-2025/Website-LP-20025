@@ -136,7 +136,7 @@ const Services: React.FC = () => {
       </section>
 
       <main className={styles.wrap}>
-        {/* === SERVICE CARDS — force 100px gap === */}
+        {/* === SERVICE CARDS === */}
         <div className={styles.grid} style={{ gap: "60px" }}>
           {services.map((s) => (
             <Link
@@ -150,60 +150,27 @@ const Services: React.FC = () => {
             </Link>
           ))}
         </div>
-<section
-  className={`${styles.stackSection} ${styles.stackIntroTight}`}
-  aria-label="Technologies"
->
-  <h2 className={styles.stackTitle}>WHAT TECH STACK WE USE?</h2>
-  <p className={styles.stackText}>
-    In LinkPlus IT we have brought together the best engineers in the region.
-    Our greatest asset is <strong>JAVA</strong>
-  </p>
-</section>
 
-        {/* === STACK SCROLLERS — force 100px gap === */}
+        <section
+          className={`${styles.stackSection} ${styles.stackIntroTight}`}
+          aria-label="Technologies"
+        >
+          <h2 className={styles.stackTitle}>WHAT TECH STACK WE USE?</h2>
+          <p className={styles.stackText}>
+            In LinkPlus IT we have brought together the best engineers in the region.
+            Our greatest asset is <strong>JAVA</strong>
+          </p>
+        </section>
+
+        {/* === STACK SCROLLERS === */}
         <section className={styles.stackSection} aria-label="Stacks">
           <div className={styles.scrollerGrid} style={{ gap: "60px" }}>
-            <TechScroller
-              title="Technologies"
-              items={techItems}
-              showNames={false}
-              headerIconSrc={techIcon}
-            />
-            <TechScroller
-              title="Databases"
-              items={dbItems}
-              showNames={false}
-              headerIconSrc={dbIcon}
-            />
-            <TechScroller
-              title="Mobile"
-              items={mobileItems}
-              showNames={false}
-              headerIconSrc={mobileIcon}
-            />
-
-            <TechScroller
-              title="Quality Assurance"
-              items={qaItems}
-              showNames={false}
-              headerIconSrc={qaIcon}
-            />
-            <TechScroller
-              title="Business Intelligence"
-              items={biItems}
-              showNames
-              headerIconSrc={biIcon}
-            />
-
-            {/* Sixth card: single image, SOLO variant, dead-center, no arrows */}
-            <TechScroller
-              title="Project Management"
-              items={pmItems}
-              solo
-              showNames={false}
-              headerIconSrc={pmIcon}
-            />
+            <TechScroller title="Technologies" items={techItems} showNames={false} headerIconSrc={techIcon} />
+            <TechScroller title="Databases" items={dbItems} showNames={false} headerIconSrc={dbIcon} />
+            <TechScroller title="Mobile" items={mobileItems} showNames={false} headerIconSrc={mobileIcon} />
+            <TechScroller title="Quality Assurance" items={qaItems} showNames={false} headerIconSrc={qaIcon} />
+            <TechScroller title="Business Intelligence" items={biItems} showNames headerIconSrc={biIcon} />
+            <TechScroller title="Project Management" items={pmItems} solo showNames={false} headerIconSrc={pmIcon} />
           </div>
         </section>
       </main>
