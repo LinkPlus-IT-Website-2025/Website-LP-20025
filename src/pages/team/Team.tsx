@@ -31,7 +31,7 @@ const members: Member[] = [
     {
     photo: "", // leave empty to trigger the red placeholder
        name: "Lulzim Ibrahimi",
-    role: "Managing partner",
+    role: "Partner",
      social: { linkedin: "https://al.linkedin.com/in/lulzim-ibrahimi-679b1310a?trk=people-guest_people_search-card" },
   },
   {

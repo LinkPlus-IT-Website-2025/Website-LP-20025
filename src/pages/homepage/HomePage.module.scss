@@ -375,6 +375,87 @@ body {
   .exclusiveImages .imgBottom {
     display: none !important;  /* 🔴 hide second pic on small screens */
   }
+/* Force WHO WE BRING block hard-left at ≤1127px */
+@media (max-width: 1127px){
+  .exclusiveSection{
+    width: 100% !important;           /* stop being a 65% centered column */
+    margin: 0 !important;             /* kill margin: 0 auto */
+    padding-left: 16px !important;    /* tiny left breathing */
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .exclusiveText{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* make all text blocks behave like full-width left-aligned blocks */
+  .sectionLabel,
+  .sectionHeading,
+  .sectionDescription,
+  .listGrid,
+  .ctaSection{
+    text-align: left !important;
+    margin: 0 !important;
+    margin-inline: 0 !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    justify-content: flex-start !important;  /* for .listGrid / .ctaSection */
+    align-items: flex-start !important;
+  }
+}
+
+
+  /* ≤1127px — force the whole “WHO WE BRING” block to align left */
+@media (max-width: 1127px) {
+  /* 1) Section & children: left align wins over body{text-align:center} */
+  .exclusiveSection { text-align: left !important; }
+
+  /* 2) The flex column that contains the texts: align items to the left */
+  .exclusiveSection .exclusiveText {
+    display: flex;                /* keep your layout */
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  /* 3) Headline */
+  .exclusiveSection .sectionHeading {
+    text-align: left !important;
+    display: block !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%; /* optional: prevents odd centering */
+  }
+
+  /* 4) All paragraphs in that block */
+  .exclusiveSection .sectionDescription {
+    text-align: left !important;
+    display: block !important;           /* defeats inline/inline-block centering */
+    margin-left: 0 !important;
+    margin-right: 0 !important;          /* kills margin: 0 auto; */
+    margin-inline: 0 !important;         /* in case logical props are used */
+    align-self: stretch !important;      /* defeats align-self:center on any p */
+    max-width: none !important;          /* if a max-width + auto margins was used */
+    width: 100%;                          /* safe, keeps it left */
+  }
+
+  /* 5) If ONLY the first paragraph is stubborn, nail it specifically */
+  .exclusiveSection .sectionDescription:first-of-type {
+    text-align: left !important;
+    display: block !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    align-self: flex-start !important;
+  }
+
+  /* Lists & CTA align left too */
+  .exclusiveSection .listGrid { justify-content: flex-start !important; }
+  .exclusiveSection .ctaSection { justify-content: flex-start !important; }
+}
+
 
   /* --- IT Services --- */
   .itServicesSection { height: auto; padding-top: 60px; }
@@ -443,6 +524,50 @@ body {
     padding: 0% !important;
   }
 }
+@media (max-width: 390px) {
+  .itServicesSection{
+    font-size: clamp(20px, 5.2vw, 28px);
+    padding: 0px !important;
+    margin: 25px !important;
+  }
+}
+@media (max-width: 745px) {
+  .itServicesSection{
+    font-size: clamp(20px, 5.2vw, 28px);
+    padding: 0px !important;
+    margin: 25px !important;
+  }
+}
+@media (max-width: 390px) {
+  .subheadingg {
+    font-size: clamp(20px, 5.2vw, 28px);
+    padding: 0 !important;
+    margin: 0 !important;
+
+    /* 👇 allow wrapping instead of "..." */
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+
+    /* optional: center align if it looks better on two lines */
+    text-align: center;
+  }
+}
+
+@media (max-width: 390px){
+  .headinggg{
+    font-size: 18px;
+    line-height: 1.2;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+}
+
+
+ .subheadingg {font-size: 11px;
+  font-weight: 800;
+  color: #99171c;}
 
 
 .itServicesSection {
@@ -1423,6 +1548,7 @@ margin-left: 430px;
   }
 }
 
+
 /* tiny screens: stack all cards one-per-row + smaller team cards */
 @media (max-width: 520px) {
   .itCard { flex: 1 1 100%; }
@@ -1436,6 +1562,20 @@ margin-left: 430px;
     100% { transform: translateX(calc(-140px * 5)); }
   }
 }
+
+/* place this AFTER all other .subheading rules */
+@media (min-width: 640px) and (max-width: 852px) {
+  .textSection .subheading {
+    display: block;              /* ensure top margin works */
+    margin-top: 30px !important; /* beat earlier resets */
+  }
+}
+@media (min-width: 640px) and (max-width: 852px) {
+  .textSection .subheading.subheading {
+    margin-top: 30px !important;
+  }
+}
+
 /* =========================================================
    HERO (main first part) — fix ≤ 852px
    ========================================================= */
@@ -1891,7 +2031,11 @@ font-size: 10px !important;
   .cLabel{ font-size: 15px; }
   .cValue{ font-size: 13px; }
 }
-
+@media (max-width: 390px){
+  .ctaButton{ padding: 1px 22px !important; 
+  margin-top: 20px;}
+ 
+}
 .ctaBand{ position:relative; isolation:isolate; width:100%; min-height:260px; display:grid; place-items:center; overflow:hidden; }
 .ctaBg{ position:absolute; inset:0; background-color:var(--brand); transform:scale(1.02); filter:brightness(.6) contrast(1.05); z-index:-2; }
 .ctaOverlay{ position:absolute; inset:0; z-index:-1; }
@@ -1966,7 +2110,6 @@ font-size: 10px !important;
   z-index: 1;
 }
 
-/* ensure links are readable on dark bg */
 .textSectionHero a {
   color: #fff;
   text-decoration: underline;

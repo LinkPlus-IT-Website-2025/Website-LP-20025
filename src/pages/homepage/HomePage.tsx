@@ -65,7 +65,7 @@ type TeamMember = { image?: string; name: string; position: string };
 
 const teamMembers: TeamMember[] = [
   { image: ermalSadiku, name: "Ermal Sadiku", position: "Managing Partner" },
-  { name: "Lulzim Ibrahimi", position: "Managing partner" },
+  { name: "Lulzim Ibrahimi", position: "Partner" },
   { image: ilirianaIbraj, name: "Iliriana Ibraj", position: "Chief Business Development Officer" },
   { image: aleksandarIlioski, name: "Aleksandar Ilioski", position: "Country Manager" },
   { image: leonaTahiri, name: "Leona Tahiri", position: "Business Development Representative" },
@@ -328,12 +328,12 @@ const HomePage: React.FC = () => {
 
       {/* IT SERVICES */}
       <div className={styles.itServicesSection} style={{ ["--it-services-bg" as any]: `url(${itServicesBg})` }}>
-        <p className={styles.subheading}>OUR SERVICES</p>
+        <p className={styles.subheadingg}>OUR SERVICES</p>
         <h2
           className={styles.headinggg}
           style={{ color: "#99171C", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
         >
-          Complete IT Expertise Under One Roof
+          Complete IT Expertise<wbr /> Under One Roof
         </h2>
 
         <div className={styles.itCardSection}>
