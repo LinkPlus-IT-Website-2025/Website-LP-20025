@@ -347,10 +347,10 @@ html, body {
   font-size:clamp(28px,2.5vw,40px); font-weight:500; color:#111827; line-height:1.2; letter-spacing:-.02em;
   text-align:left;
 }
-@media (max-width:1126px){ .mainTitle{ text-align:center; padding-right: 50px ; } }
+@media (max-width:1126px){ .mainTitle{ text-align:left; padding-right: 50px ; } }
 
 .description{ color:var(--muted); font-size:clamp(1rem,1.6vw,1.125rem); line-height:1.7; text-align:left; }
-@media (max-width:1126px){ .description{ text-align:center; padding-right: 50px ; } }
+@media (max-width:1126px){ .description{ text-align:left; padding-right: 50px ; } }
 
 .servicesList{
   display:grid; gap:16px; margin:8px 0 0; grid-template-columns:repeat(2,minmax(0,1fr));
@@ -482,7 +482,8 @@ html, body {
 .statsSection{ width:100%; }
 @media (max-width:424px){
   .statsSection{ margin-right: 120px !important;
-  padding-right: 30px !important; }
+  padding-right: 30px !important; 
+}
 }
 .statsBanner{
   position:relative; width:100%;
@@ -530,7 +531,12 @@ html, body {
   opacity: .95;
   line-height: 1;              /* helps vertical centering with the dot */
 }
-
+@media (max-width:390px){
+  .statsSection{ align-items: center;
+  // margin-left:15px;
+  padding-left: 15px !important;
+}
+}
 /* make the dot actually take size + add spacing (since gap no longer applies) */
 .statsDot{
   display: inline-block;       /* <-- important */
@@ -1016,6 +1022,20 @@ html, body {
   line-height: 1.05;
   letter-spacing: 0.01em;
   font-size: clamp(32px, 6vw, 56px);
+}
+@media (max-width: 640px) {
+  .heroTitle { text-align: center !important;
+  padding-left: 30px !important;}
+  .breadcrumb{text-align: center !important;
+  padding-left: 30px !important;}
+}
+
+@media (min-width: 401px) and (max-width: 640px) {
+  .heroTitle,
+  .breadcrumb {
+    padding-left: 0 !important; /* remove left padding */
+    text-align: center !important; /* keep centered if you want */
+  }
 }
 
 /* ===== MAIN WRAP ===== */

@@ -24,20 +24,13 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-// 🔴 adjust path if needed (relative to this file)
+// 🔴 adjust path if needed
 import lpLogo from "../../assets/images/lp-logo.png";
 
 const { Header } = Layout;
 const { Text } = Typography;
 
-type Props = {
-  isAuthenticated?: boolean | undefined;
-  isCompanyUser?: boolean | undefined;
-  isEmployeeUser?: boolean | undefined;
-  t?: (k: string) => string | undefined;
-};
-
-/* ---------- CSS overrides (with responsive bits) ---------- */
+/* ---------- CSS overrides (kept minimal & safe) ---------- */
 const FORCE_CSS = `
 /* base container padding */
 .lp-container { padding-left: 70px !important; padding-right: 90px !important; }
@@ -57,44 +50,36 @@ const FORCE_CSS = `
 .lp-header-compact :where(.ant-menu-horizontal) > :where(.ant-menu-submenu) {
   padding-inline: 10px !important;
 }
-.lp-header-compact :where(.ant-menu-submenu-title) {
-  line-height: 34px !important;
-}
+.lp-header-compact :where(.ant-menu-submenu-title) { line-height: 34px !important; }
 
-/* Make top-level submenu title + caret white on the transparent header */
+/* Top-level submenu title + caret white on transparent header */
 .lp-header-compact :where(.ant-menu-horizontal)
   > :where(.ant-menu-submenu)
-  > :where(.ant-menu-submenu-title) {
-  color: #fff !important;
-}
+  > :where(.ant-menu-submenu-title) { color: #fff !important; }
 .lp-header-compact :where(.ant-menu-submenu-expand-icon),
-.lp-header-compact :where(.ant-menu-submenu-arrow) {
-  color: #fff !important;
-}
+.lp-header-compact :where(.ant-menu-submenu-arrow) { color: #fff !important; }
 
-/* Ensure dropdown text is dark on white popup */
+/* Popup dropdown text dark on white */
 :where(.ant-menu-submenu-popup) :where(.ant-menu-item) a,
-.lp-header-compact :where(.ant-menu-submenu) :where(.ant-menu-item) a {
-  color: #111827 !important;
-}
+.lp-header-compact :where(.ant-menu-submenu) :where(.ant-menu-item) a { color: #111827 !important; }
 
-/* Buttons on the right side also compact */
+/* Buttons on the right side compact */
 .lp-header-compact :where(.ant-btn) {
-  height: 32px !important;
-  line-height: 32px !important;
-  padding-inline: 12px !important;
+  height: 32px !important; line-height: 32px !important; padding-inline: 12px !important;
 }
 
-/* Tighten typography */
+/* Tight typography */
 .lp-topbar :where(.ant-typography),
 .lp-header-compact :where(.ant-typography) { line-height: 1.2 !important; }
 
-/* Drawer (sidebar) styling) */
-.lp-drawer .ant-drawer-header { border-bottom: 0 !important; }
-.lp-drawer .ant-drawer-title { font-weight: 800; letter-spacing: .02em; }
-.lp-drawer .ant-drawer-body { padding: 8px 0 !important; }
-.lp-drawer .ant-menu-inline { border-right: none !important; }
-.lp-drawer .ant-menu-item a { font-weight: 600 !important; color: #111827 !important; }
+/* Drawer (portal root) — keep panel above mask for clicks */
+.lp-drawer-root .ant-drawer-mask { z-index: 1999 !important; }
+.lp-drawer-root .ant-drawer-content-wrapper { z-index: 2000 !important; }
+.lp-drawer-root .ant-drawer-header { border-bottom: 0 !important; }
+.lp-drawer-root .ant-drawer-title { font-weight: 800; letter-spacing: .02em; }
+.lp-drawer-root .ant-drawer-body { padding: 8px 0 !important; }
+.lp-drawer-root .ant-menu-inline { border-right: none !important; }
+.lp-drawer-root .ant-menu-item a { font-weight: 600 !important; color: #111827 !important; }
 
 /* Social links: remove underline */
 .lp-topbar a { text-decoration: none !important; }
@@ -102,119 +87,85 @@ const FORCE_CSS = `
 
 /* ---------- Brand (logo + wordmark) ---------- */
 .lp-brand{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none !important;
-  white-space:nowrap;              /* keep logo row on one line */
+  display:inline-flex; align-items:center; gap:10px; text-decoration:none !important; white-space:nowrap;
 }
-.lp-brand__img{
-  margin-top:15px;
-  height:28px;
-  width:auto;
-  display:block;
-  flex-shrink:0;
-}
-.lp-brand__text{
-  margin-top:15px;
-  font-size:18px;
-  font-weight:800;
-  letter-spacing:.02em;
-  color:#fff;
-  line-height:1;
-  white-space:nowrap;              /* never wrap LINKPLUS IT */
-  word-break:keep-all;
-}
+.lp-brand__img{ margin-top:15px; height:28px; width:auto; display:block; flex-shrink:0; }
+.lp-brand__text{ margin-top:15px; font-size:18px; font-weight:800; letter-spacing:.02em; color:#fff; line-height:1; white-space:nowrap; word-break:keep-all; }
 
 /* ===== Nav link hover color ===== */
 .lp-header-compact :where(.ant-menu-horizontal) a,
-.lp-header-compact :where(.ant-menu-submenu-title) {
-  transition: color .2s ease;
-}
-.lp-header-compact :where(.ant-menu-horizontal) > :where(.ant-menu-item):hover a {
-  color: #99171C !important;
-}
+.lp-header-compact :where(.ant-menu-submenu-title) { transition: color .2s ease; }
+.lp-header-compact :where(.ant-menu-horizontal) > :where(.ant-menu-item):hover a { color: #99171C !important; }
 .lp-header-compact :where(.ant-menu-horizontal)
   > :where(.ant-menu-submenu):hover
-  > :where(.ant-menu-submenu-title) {
-  color: #99171C !important;
+  > :where(.ant-menu-submenu-title) { color: #99171C !important; }
+:where(.ant-menu-submenu-popup) :where(.ant-menu-item):hover a { color: #99171C !important; }
+.lp-drawer-root .ant-menu-item:hover a,
+.lp-drawer-root .ant-menu-submenu-title:hover { color: #99171C !important; }
+
+/* ===== Contact button ===== */
+.lp-contact-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  font-weight:700; font-size:12px; letter-spacing:.02em;
+  color:#fff; background:transparent; white-space:nowrap !important; opacity:.95;
+  border:1px solid #fff !important; border-radius:10px; padding:2px 10px;
+  box-shadow:0 0 3px 1px rgba(207,207,207,.35);
+  transition: color .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
-:where(.ant-menu-submenu-popup) :where(.ant-menu-item):hover a {
-  color: #99171C !important;
-}
-.lp-drawer .ant-menu-item:hover a,
-.lp-drawer .ant-menu-submenu-title:hover {
-  color: #99171C !important;
+.lp-contact-btn:hover, .lp-contact-btn:focus { color:#99171C !important; border-color:#99171C; box-shadow:0 0 0 2px rgba(93,91,91,.15); }
+@media (max-width:520px){
+  .lp-contact-btn { font-size:11px !important; padding-inline:10px !important; height:30px !important; line-height:30px !important; }
 }
 
-/* ===== Keep Contact button on one line; shrink only on phones ===== */
-.lp-contact-btn { white-space: nowrap !important; }
-.lp-contact-btn:hover,
-.lp-contact-btn:focus {
-  color: #99171C !important;
+/* ===== Minimal inline ISO (keep trophy icon always visible) ===== */
+.lp-iso-inline {
+  display:inline-flex !important; align-items:center; gap:8px;
+  line-height:2.3; font-weight:700; font-size:12px; letter-spacing:.02em;
+  color:#111; background:#fff; border:0; border-radius:10px; padding:2px 10px; white-space:nowrap; text-decoration:none; margin-top:10px;
 }
-@media (max-width: 520px) {
-  .lp-contact-btn {
-    font-size: 11px !important;
-    padding-inline: 10px !important;
-    height: 30px !important;
-    line-height: 30px !important;
+.lp-iso-inline:hover, .lp-iso-inline:focus, .lp-iso-inline:active { color:#111; background:#fff; border:0; text-decoration:none; }
+.lp-iso-inline__icon { display:inline-block !important; visibility:visible !important; opacity:1 !important; font-size:13px; color:#FFC107; }
+
+/* phones: NEVER hide the icon; only simplify the pill */
+@media (max-width:600px){
+  .lp-iso-inline{
+    background:transparent !important; color:inherit !important; border:0 !important; border-radius:0 !important;
+    padding:0 !important; margin-top:0 !important; line-height:1.4 !important; white-space:normal !important; gap:6px;
   }
+  .lp-iso-inline__icon{ display:inline-block !important; }
 }
 
-/* ===== Minimal inline ISO (no bg, no border) ===== */
-.lp-iso-inline{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-weight:700;
-  font-size:12px;
-  letter-spacing:.02em;
-  color:#fff;
-  white-space:nowrap;
-  opacity:.95;
-}
-.lp-iso-inline__icon{ font-size:13px; }
-/* 🔻 562px & below: hide ISO label, show only the icon */
-@media (max-width: 562px) {
-  .lp-iso-inline__label { display:none !important; }
-  .lp-iso-inline { gap:4px; }
+/* ≤562px: hide only the text label (keep icon) */
+@media (max-width:562px){ .lp-iso-inline__label { display:none !important; } }
+
+/* Tiny tooltip when label is hidden */
+@media (max-width:562px){
+  .lp-iso-inline{ position:relative; }
+  .lp-iso-inline:hover::after, .lp-iso-inline:focus-within::after{
+    content: attr(data-label);
+    position:absolute; top:100%; left:50%; transform:translateX(-50%);
+    white-space:nowrap; background:rgba(0,0,0,.88); color:#fff;
+    padding:4px 8px; border-radius:6px; font-size:10.5px; line-height:1.2; margin-top:4px; z-index:1200; pointer-events:none;
+  }
 }
 
 /* ---------------------------------------------
-   ✅ Spacing under header on small displays
-   (wrapper is absolute; push using inner container)
+   Spacing under header on small displays
 ---------------------------------------------- */
-@media (max-width: 1145px) {
-  .lp-header-compact .lp-container {
-    margin-bottom: 17px !important; /* +5px aesthetic bump */
-  }
-}
+@media (max-width:1145px){ .lp-header-compact .lp-container { margin-bottom:17px !important; } }
 
-/* Responsive rules */
-@media (max-width: 1280px) {
-  .lp-container { padding-left: 32px !important; padding-right: 32px !important; }
+/* Responsive paddings */
+@media (max-width:1280px){ .lp-container { padding-left:32px !important; padding-right:32px !important; } }
+@media (max-width:1145px){
+  .lp-container { padding-left:16px !important; padding-right:16px !important; }
+  .lp-brand__img{ height:26px; } .lp-brand__text{ font-size:17px; }
 }
-
-@media (max-width: 1145px) {
-  .lp-container { padding-left: 16px !important; padding-right: 16px !important; }
-  .lp-header-compact { height: 80px !important; }
-  .lp-brand__img{ height:26px; }
-  .lp-brand__text{ font-size:17px; }
+/* tiny screens */
+@media (max-width:640px){
+  .lp-topbar .lp-ut-group > *:nth-child(3) { display:none !important; } /* hide long address */
+  .lp-brand__img{ height:24px; } .lp-brand__text{ font-size:16px; }
 }
-
-/* ≤ 645px: keep LINKPLUS IT on one line and slightly shrink */
-@media (max-width: 645px) {
-  .lp-brand__text { font-size:16px; white-space:nowrap; }
-}
-
-/* 📱 Phones: hide BOTH location items; keep hours + email */
-@media (max-width: 640px) {
-  .lp-topbar .lp-ut-group > *:nth-child(3),
-  .lp-topbar .lp-ut-group > *:nth-child(4) {
-    display: none !important; /* hides Prishtina + Skopje blocks */
-  }
-}
+  
 `;
 
 /* ---------- inline styles ---------- */
@@ -226,60 +177,18 @@ const WRAP: CSSProperties = {
   zIndex: 1000,
   color: "#fff",
 };
+const TOPBAR: CSSProperties = { borderBottom: "1px solid rgba(255,255,255,0.25)", background: "transparent" };
+const MAINBAR: CSSProperties = { background: "transparent", padding: 0, borderBottom: "1px solid rgba(255,255,255,0.18)" };
 
-const TOPBAR: CSSProperties = {
-  borderBottom: "1px solid rgba(255,255,255,0.25)",
-  background: "transparent",
-};
+const NAV_LINK_DESKTOP: CSSProperties = { color: "#fff", opacity: 0.9, fontWeight: 500, fontSize: 13 };
+const DROPDOWN_LINK_DESKTOP: CSSProperties = { color: "#111827", opacity: 0.95, fontWeight: 500, fontSize: 13 };
+const NAV_LINK_MOBILE: CSSProperties = { color: "#111827", opacity: 1, fontWeight: 600, fontSize: 14 };
 
-const MAINBAR: CSSProperties = {
-  background: "transparent",
-  padding: 0,
-  borderBottom: "1px solid rgba(255,255,255,0.18)",
-};
+const TOPBAR_TEXT: CSSProperties = { color: "#fff", opacity: 0.85, fontSize: 11 };
+const GRADIENT_BTN: CSSProperties = { border: "none", borderRadius: 10, fontWeight: 600, fontSize: 12 };
+const SOCIAL_ICON_LINK: CSSProperties = { color: "#fff", textDecoration: "none", display: "inline-flex", alignItems: "center" };
 
-const NAV_LINK_DESKTOP: CSSProperties = {
-  color: "#fff",
-  opacity: 0.9,
-  fontWeight: 500,
-  fontSize: 13,
-};
-
-const DROPDOWN_LINK_DESKTOP: CSSProperties = {
-  color: "#111827",
-  opacity: 0.95,
-  fontWeight: 500,
-  fontSize: 13,
-};
-
-const NAV_LINK_MOBILE: CSSProperties = {
-  color: "#111827",
-  opacity: 1,
-  fontWeight: 600,
-  fontSize: 14,
-};
-
-const TOPBAR_TEXT: CSSProperties = {
-  color: "#fff",
-  opacity: 0.85,
-  fontSize: 11,
-};
-
-const GRADIENT_BTN: CSSProperties = {
-  border: "none",
-  borderRadius: 10,
-  fontWeight: 600,
-  fontSize: 12,
-};
-
-const SOCIAL_ICON_LINK: CSSProperties = {
-  color: "#fff",
-  textDecoration: "none",
-  display: "inline-flex",
-  alignItems: "center",
-};
-
-/* ---------- custom width hook ---------- */
+/* ---------- width hook ---------- */
 const MOBILE_CUTOFF = 1145;
 function useIsDesktop(cutoff = MOBILE_CUTOFF) {
   const [w, setW] = useState<number>(() =>
@@ -297,20 +206,22 @@ function useIsDesktop(cutoff = MOBILE_CUTOFF) {
 const Logo: React.FC = () => (
   <Link to="/" className="lp-brand" aria-label="LinkPlus IT — Home">
     <img src={lpLogo} alt="" className="lp-brand__img" />
-    {/* non-breaking space prevents wrap between the two words */}
     <span className="lp-brand__text">LINKPLUS&nbsp;IT</span>
   </Link>
 );
 
-/* ---------- Minimal ISO (inline, no bg/border) ---------- */
+/* ---------- ISO (trophy always visible) ---------- */
 const IsoInline: React.FC = () => (
   <Tooltip
     title="ISO 9001:2015 Quality Management & ISO/IEC 27001 Information Security"
     placement="bottomRight"
   >
-    <span className="lp-iso-inline" aria-label="ISO certifications">
+    <span
+      className="lp-iso-inline"
+      aria-label="ISO certifications"
+      data-label="ISO 9001:2015 & 27001 CERTIFIED"   // <-- restored for hover text on small screens
+    >
       <TrophyOutlined className="lp-iso-inline__icon" />
-      {/* this span gets hidden ≤ 562px via CSS */}
       <span className="lp-iso-inline__label">ISO 9001:2015 & 27001 CERTIFIED</span>
     </span>
   </Tooltip>
@@ -370,7 +281,6 @@ function useMenuItems(opts: {
 
   const desktop = makeItems(NAV_LINK_DESKTOP, DROPDOWN_LINK_DESKTOP);
   const mobile  = makeItems(NAV_LINK_MOBILE,  NAV_LINK_MOBILE);
-
   return { desktop, mobile };
 }
 
@@ -398,19 +308,11 @@ const UtilityBar: React.FC = () => (
               <Text style={TOPBAR_TEXT}>info@linkplus.com</Text>
             </Space>
 
-            {/* Address: Prishtina */}
+            {/* Address */}
             <Space size={6} style={{ color: "#fff" }}>
               <EnvironmentOutlined style={{ fontSize: 12 }} />
               <Text style={TOPBAR_TEXT}>
                 Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo
-              </Text>
-            </Space>
-
-            {/* Address: Skopje, North Macedonia */}
-            <Space size={6} style={{ color: "#fff" }}>
-              <EnvironmentOutlined style={{ fontSize: 12 }} />
-              <Text style={TOPBAR_TEXT}>
-                Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia
               </Text>
             </Space>
           </Space>
@@ -429,7 +331,6 @@ const UtilityBar: React.FC = () => (
             >
               <FacebookOutlined style={{ fontSize: 12 }} />
             </a>
-
             <a
               href="https://www.instagram.com/linkplus_it/?hl=en"
               target="_blank"
@@ -440,7 +341,6 @@ const UtilityBar: React.FC = () => (
             >
               <InstagramOutlined style={{ fontSize: 12 }} />
             </a>
-
             <a
               href="https://www.linkedin.com/company/linkplus-it"
               target="_blank"
@@ -459,6 +359,13 @@ const UtilityBar: React.FC = () => (
 );
 
 /* ---------- main header ---------- */
+type Props = {
+  isAuthenticated?: boolean;
+  isCompanyUser?: boolean;
+  isEmployeeUser?: boolean;
+  t?: (k: string) => string | undefined;
+};
+
 export const SiteHeader: React.FC<Props> = ({
   isAuthenticated,
   isCompanyUser,
@@ -492,10 +399,7 @@ export const SiteHeader: React.FC<Props> = ({
             </Col>
 
             {/* Nav (left) */}
-            <Col
-              flex="auto"
-              style={{ display: "flex", justifyContent: "flex-start", minWidth: 0 }}
-            >
+            <Col flex="auto" style={{ display: "flex", justifyContent: "flex-start", minWidth: 0 }}>
               {isDesktop ? (
                 <Menu
                   mode="horizontal"
@@ -514,7 +418,7 @@ export const SiteHeader: React.FC<Props> = ({
               )}
             </Col>
 
-            {/* Right side: ISO (inline) + Contact (Contact is LAST) */}
+            {/* Right side: ISO (inline) + Contact */}
             <Col flex="none" style={{ whiteSpace: "nowrap" }}>
               <Space size={16} align="center" style={{ color: "#fff", padding: "15px" }}>
                 <IsoInline />
@@ -531,12 +435,15 @@ export const SiteHeader: React.FC<Props> = ({
 
       {/* Sidebar Drawer */}
       <Drawer
-        className="lp-drawer"
+        rootClassName="lp-drawer-root"     /* target the portal root (mask + panel) */
         title={<span>LINKPLUS IT</span>}
         placement="left"
         onClose={() => setOpen(false)}
         open={open}
         width={300}
+        zIndex={2000}
+        maskClosable
+        keyboard
         styles={{ header: { borderBottom: "none" }, body: { padding: 0 } }}
       >
         <Menu
