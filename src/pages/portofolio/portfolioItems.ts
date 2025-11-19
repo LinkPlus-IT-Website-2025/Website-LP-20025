@@ -1,47 +1,47 @@
-// src/pages/portofolio/portfolioItems.ts
-import smartbluetooth from "../../assets/images/smart-bluetooth-control-device-app-portrait.png";
-import smartbluetoothL from "../../assets/images/smart-bluetooth-control-device-app-landscape.png";
-import smartbluetooth1 from "../../assets/images/smart-bluetooth-control-device-app-pic1.png";
-import smartbluetooth2 from "../../assets/images/smart-bluetooth-control-device-app-pic2.png";
+import smartbluetooth from "../../assets/images/smart-bluetooth-control-device-app-portrait.webp";
+import smartbluetoothL from "../../assets/images/smart-bluetooth-control-device-app-landscape.webp";
+import smartbluetooth1 from "../../assets/images/smart-bluetooth-control-device-app-pic1.webp";
+import smartbluetooth2 from "../../assets/images/smart-bluetooth-control-device-app-pic2.webp";
 
-import SDKP from "../../assets/images/sdk-for-automotive-portrait.png";
-import SDKL from "../../assets/images/sdk-for-automotive-landscape.png";
-import SDK1 from "../../assets/images/sdk-for-automotive-pic2.png";
-import SDK2 from "../../assets/images/sdk-for-automotive-pic1.png";
+import SDKP from "../../assets/images/sdk-for-automotive-portrait.webp";
+import SDKL from "../../assets/images/sdk-for-automotive-landscape.webp";
+import SDK1 from "../../assets/images/sdk-for-automotive-pic2.webp";
+import SDK2 from "../../assets/images/sdk-for-automotive-pic1.webp";
 
-import LMSSP from "../../assets/images/learning-management-system-solution-portrait.png";
-import LMSSL from "../../assets/images/learning-management-system-solution-landscape.png";
-import ISP from "../../assets/images/insurance-solution-portrait.png";
-import ISL from "../../assets/images/insurance-solution-landscape.png";
-import EMPP from "../../assets/images/event-management-solution-portrait.png";
-import EMPL from "../../assets/images/event-management-solution-landscape.png";
-import CPSP from "../../assets/images/copyright-solution-portrait.png";
-import CPSL from "../../assets/images/copyright-solution-landscape.png";
-import CPS1 from "../../assets/images/copyright-solution-pic1.png";
-import CPS2 from "../../assets/images/copyright-solution-pic2.png";
-
+import LMSSP from "../../assets/images/learning-management-system-solution-portrait.webp";
+import LMSSL from "../../assets/images/learning-management-system-solution-landscape.webp";
+import ISP from "../../assets/images/insurance-solution-portrait.webp";
+import ISL from "../../assets/images/insurance-solution-landscape.webp";
+import EMPP from "../../assets/images/event-management-solution-portrait.jpg";
+import EMPL from "../../assets/images/event-management-solution-landscape.webp";
+import CPSP from "../../assets/images/copyright-solution-portrait.webp";
+import CPSL from "../../assets/images/copyright-solution-landscape.webp";
+import CPS1 from "../../assets/images/copyright-solution-pic1.webp";
+import CPS2 from "../../assets/images/copyright-solution-pic2.webp";
 
 
+import imgFlotilla1 from "../../assets/images/flotillapic1.webp";
+import imgFlotilla2 from "../../assets/images/flotillapic2.webp";
 import imgFlotilla from "../../assets/images/flotilla.png";
-import imgFlotillaP from "../../assets/images/flotillaP.png";
+import imgFlotillaP from "../../assets/images/flotillaP.webp";
 import imgLinkOne from "../../assets/images/link-one.png";
-import imgLinkOneP from "../../assets/images/LinkOne-Portrait.png";
-import imgLinkOne1 from "../../assets/images/LinkOne-pic1.png";
-import imgLinkOne2 from "../../assets/images/LinkOne-pic2.png";
+import imgLinkOneP from "../../assets/images/LinkOne-Portrait.webp";
+import imgLinkOne1 from "../../assets/images/LinkOne-pic1.webp";
+import imgLinkOne2 from "../../assets/images/LinkOne-pic2.webp";
 import imgSwissProtect from "../../assets/images/swiss-protect.png";
-import imgSwissProtectP from "../../assets/images/swiss-protectP.png";
+import imgSwissProtectP from "../../assets/images/swiss-protectP.webp";
 import imgSwissProtect1 from "../../assets/images/swiss-protect-pic1.png";
-import imgSwissProtect2 from "../../assets/images/swiss-protect-pic2.png";
+import imgSwissProtect2 from "../../assets/images/swiss-protect-pic2.webp";
 import imgLHIndustry from "../../assets/images/lufthansa-industry-solutions.png";
-import imgLHIndustryP from "../../assets/images/lufthansa-industry-solutionsP.png";
-import imgLHIndustry1 from "../../assets/images/lufthansa-industry-solutions-pic1.png";
-import imgLHIndustry2 from "../../assets/images/lufthansa-industry-solutions-pic2.png";
-import IMWM1 from "../../assets/images/online-insurance.jpg";
-import IMWM2 from "../../assets/images/online-insurance2.jpg";
-import DBLAI1 from "../../assets/images/digital-business-list-app-interface.jpg";
-import DBLAI2 from "../../assets/images/entrepreneurs-exchange-ideas-work.jpg";
-import LMS1 from "../../assets/images/LMS1.png";
-import LMS2 from "../../assets/images/LMS2.png";
+import imgLHIndustryP from "../../assets/images/lufthansa-industry-solutionsP.webp";
+import imgLHIndustry1 from "../../assets/images/lufthansa-industry-solutions-pic1.webp";
+import imgLHIndustry2 from "../../assets/images/lufthansa-industry-solutions-pic2.webp";
+import IMWM1 from "../../assets/images/online-insurance.webp";
+import IMWM2 from "../../assets/images/online-insurance2.webp";
+import DBLAI1 from "../../assets/images/digital-business-list-app-interface.webp";
+import DBLAI2 from "../../assets/images/entrepreneurs-exchange-ideas-work.webp";
+import LMS1 from "../../assets/images/LMS1.webp";
+import LMS2 from "../../assets/images/LMS2.webp";
 
 export type PortfolioItem = {
   id: string;
@@ -64,29 +64,22 @@ export type PortfolioItem = {
   detailBody?: string;
 };
 
-const pics = {
-  one: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop",
-  two: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1400&auto=format&fit=crop",
-  three: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1400&auto=format&fit=crop",
-  four: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1400&auto=format&fit=crop",
-  five: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1400&auto=format&fit=crop",
-  six: "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1400&auto=format&fit=crop",
-};
+
 
 const GALLERY_AUTOMOTIVE = [SDK1, SDK2];
 const IMWM = [IMWM2, IMWM1];
 const DBLAI = [DBLAI1, DBLAI2];
 const LMS = [LMS1, LMS2];
 
-// ✅ smart bluetooth app
 const GALLERY_SMART_BT = [smartbluetooth1, smartbluetooth2];
 
-// ✅ copyright management
 const GALLERY_COPYRIGHT = [CPS1, CPS2];
 const GALLERY_LH = [imgLHIndustry1, imgLHIndustry2];
 
 const SWISS_PROTECT = [imgSwissProtect1, imgSwissProtect2];
 const LINK_ONE = [imgLinkOne1, imgLinkOne2];
+
+const FLOTILLA = [imgFlotilla1, imgFlotilla2];
 
 export const PORTFOLIO: PortfolioItem[] = [
   {
@@ -96,13 +89,13 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: imgLHIndustryP,
     heroImg: imgLHIndustry,
     detailMainImg: imgLHIndustry,
-    gallery: GALLERY_LH, // 👈 now uses your pic1/pic2
+    gallery: GALLERY_LH, 
     info: {
       completionDate: "• Streamlined 7 business processes for Lufthansa",
       completionDatee: "• Automated decision-making with data-driven workflows",
       completionDateee: "• Improved process accuracy and transparency",
-      completionDateeee: "• Improved process accuracy and transparency",
-      completionDateeeee: "• Improved process accuracy and transparency",
+      completionDateeee: "• Integrated seamlessly with Java systems",
+      completionDateeeee: "• Reduced manual work and increased efficiency",
       location: "Germany",
       techstack: "Java • 7 Engineers",
     },
@@ -118,7 +111,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: CPSP,
     heroImg: CPSL,
     detailMainImg: CPSL,
-    gallery: GALLERY_COPYRIGHT, // 👈 pic1/pic2
+    gallery: GALLERY_COPYRIGHT, 
     info: {
       completionDate: "• Royalty distribution systems",
       completionDatee: "• Data processing tools",
@@ -141,7 +134,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: SDKP,
     heroImg: SDKL,
     detailMainImg: SDKL,
-    gallery: GALLERY_AUTOMOTIVE, // 👈 pic1/pic2
+    gallery: GALLERY_AUTOMOTIVE,
     info: {
       completionDate: "• Standardized SDK for automotive connectivity",
       completionDatee: "• Reliable cross-platform performance (iOS & Android)",
@@ -158,19 +151,19 @@ export const PORTFOLIO: PortfolioItem[] = [
 
   {
     id: "bluetooth-control-app",
-    title: "Smart Bluetooth Device Control App, Holland",
+    title: "Smart Bluetooth Device Control App, Holand",
     excerpt: "Maintaining & Development of an online application...",
     cardImg: smartbluetooth,
     heroImg: smartbluetoothL,
     detailMainImg: smartbluetoothL,
-    gallery: GALLERY_SMART_BT, // 👈 pic1/pic2
+    gallery: GALLERY_SMART_BT, 
     info: {
       completionDate: "• Bluetooth connectivity & pairing",
       completionDatee: "• Real-time data streaming",
       completionDateee: "• Device command handling",
       completionDateeee: "• Optimized React Native performance",
       completionDateeeee: "• Enhanced user experience",
-      location: "Holland",
+      location: "Holand",
       techstack: "React Native",
     },
     body:
@@ -230,7 +223,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: imgFlotillaP,
     heroImg: imgFlotilla,
     detailMainImg: imgFlotilla,
-    gallery: [pics.one, pics.five, pics.four],
+    gallery: FLOTILLA,
     info: {
       completionDate: "• One-click trip booking & in-app payments",
       completionDatee: "• Web portal for trip management and invoicing",

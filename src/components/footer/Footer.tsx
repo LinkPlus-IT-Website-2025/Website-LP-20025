@@ -14,29 +14,25 @@ import styles from "./Footer.module.scss";
 import footerBg from "../../assets/images/footer.jpg";
 import lpLogo from "../../assets/images/lp-logo.png";
 
-/* Award images you DO have */
 import impactStarsImg from "../../assets/images/impact-stars.png";
 import isoCertificatesImg from "../../assets/images/iso-certificates.jpg";
 
-/* Also clickable */
-import presidentialMedalImg from "../../assets/images/Medalja e Presidentes.jpg";
-import genderEquityImg from "../../assets/images/Screenshot 2025-10-28 at 11.10.57.png";
+import presidentialMedalImg from "../../assets/images/Medalja e Presidentes.webp";
+import genderEquityImg from "../../assets/images/Screenshot 2025-10-28 at 11.10.57.webp";
 
 const { Title, Text } = Typography;
 
-/* ---------- Link helper ---------- */
 interface FooterLinkProps {
   children: React.ReactNode;
-  to?: string;          // internal route like "/aboutus"
-  href?: string;        // external url
-  onClick?: () => void; // for opening modals etc.
+  to?: string;         
+  href?: string;       
+  onClick?: () => void; 
 }
 
 const FooterLink: React.FC<FooterLinkProps> = ({ children, to, href = "#", onClick }) => {
   const clickable = !!onClick;
 
   if (to) {
-    // INTERNAL route — scroll to top when navigating
     return (
       <div className={styles.footerLinkWrapper}>
         <RouterLink
@@ -54,7 +50,6 @@ const FooterLink: React.FC<FooterLinkProps> = ({ children, to, href = "#", onCli
     );
   }
 
-  // EXTERNAL or modal trigger
   return (
     <div className={styles.footerLinkWrapper}>
       <a
@@ -80,12 +75,9 @@ const FooterLink: React.FC<FooterLinkProps> = ({ children, to, href = "#", onCli
 };
 
 const Footer: React.FC = () => {
-  // LEGAL modals
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showConduct, setShowConduct] = useState(false);
   const [showDataProtection, setShowDataProtection] = useState(false);
-
-  // Awards modal (shared)
   const [awardOpen, setAwardOpen] = useState(false);
   const [awardSrc, setAwardSrc] = useState<string | null>(null);
   const [awardCaption, setAwardCaption] = useState<React.ReactNode>(null);
@@ -109,10 +101,8 @@ const Footer: React.FC = () => {
           }}
         >
           <div className={styles.footerOverlay}>
-            {/* ========== MAIN GRID CONTENT (constrained width) ========== */}
             <div className={styles.footerContent}>
               <Row gutter={[32, 32]} justify="space-between">
-                {/* Brand */}
                 <Col xs={24} sm={24} md={6} lg={6}>
                   <div className={styles.footerBrand}>
                     <div className={styles.logoContainer}>
@@ -160,7 +150,6 @@ const Footer: React.FC = () => {
                   </div>
                 </Col>
 
-                {/* Quick Links */}
                 <Col xs={24} sm={12} md={5} lg={5}>
                   <div className={styles.footerSection}>
                     <Title level={4} className={styles.sectionTitle}>Quick Links</Title>
@@ -174,13 +163,11 @@ const Footer: React.FC = () => {
                   </div>
                 </Col>
 
-                {/* Awards */}
                 <Col xs={24} sm={12} md={7} lg={7}>
                   <div className={styles.footerSection}>
                     <Title level={4} className={styles.sectionTitle}>Awards</Title>
 
                     <div className={`${styles.footerLinkss} ${styles.awardsGlass}`}>
-                      {/* Impact Stars (clickable) */}
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
                         <button
@@ -202,7 +189,6 @@ const Footer: React.FC = () => {
                         </button>
                       </p>
 
-                      {/* ISO (clickable) */}
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
                         <button
@@ -222,7 +208,6 @@ const Footer: React.FC = () => {
                         </button>
                       </p>
 
-                      {/* Presidential Medal (clickable) */}
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
                         <button
@@ -246,7 +231,6 @@ const Footer: React.FC = () => {
                         </button>
                       </p>
 
-                      {/* Gender Equity (clickable) */}
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
                         <button
@@ -271,7 +255,6 @@ const Footer: React.FC = () => {
                   </div>
                 </Col>
 
-                {/* Contact */}
                 <Col xs={24} sm={12} md={6} lg={6}>
                   <div className={`${styles.footerSection} ${styles.contactSection}`}>
                     <Title level={4} className={styles.sectionTitle}>Contact</Title>
@@ -285,7 +268,7 @@ const Footer: React.FC = () => {
                       <Space align="start" size={8} style={{ display: "flex", marginTop: 8 }}>
                         <EnvironmentOutlined style={{ fontSize: 14, color: "#fff", marginTop: 2 }} />
                         <Text className={styles.contactAddress}>
-                          Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia
+                          Flatiron 75, Skopje, North Macedonia
                         </Text>
                       </Space>
                       <Space align="start" size={8} style={{ display: "flex", marginTop: 8 }}>
@@ -298,7 +281,6 @@ const Footer: React.FC = () => {
               </Row>
             </div>
 
-            {/* ========== FULL-WIDTH LEGAL BAR (outside the grid) ========== */}
             <div className={styles.legalBar}>
               <div className={styles.legalInner}>
                 <div className={styles.policyLinks}>
@@ -309,7 +291,6 @@ const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Copyright */}
             <div className={styles.footerBottom}>
               <Text className={styles.copyrightText}>
                 © 2025 <span className={styles.brandHighlight}>LINKPLUS IT</span> | All rights reserved
@@ -319,9 +300,6 @@ const Footer: React.FC = () => {
         </div>
       </footer>
 
-      {/* =================== MODALS =================== */}
-
-      {/* Award viewer */}
       <Modal
         open={awardOpen}
         onCancel={() => setAwardOpen(false)}
@@ -340,7 +318,6 @@ const Footer: React.FC = () => {
         </div>
       </Modal>
 
-      {/* Privacy Policy */}
       <Modal
         open={showPrivacy}
         onCancel={() => setShowPrivacy(false)}
@@ -789,7 +766,6 @@ const Footer: React.FC = () => {
         </div>
       </Modal>
 
-      {/* Data Protection Policy */}
       <Modal
         open={showDataProtection}
         onCancel={() => setShowDataProtection(false)}

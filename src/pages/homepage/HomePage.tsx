@@ -1,4 +1,3 @@
-// src/pages/home/HomePage.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./HomePage.module.scss";
@@ -6,8 +5,6 @@ import styles from "./HomePage.module.scss";
 import itServicesBg from "../../assets/images/intro-pattern-light.svg";
 import teamImage from "../../assets/images/team.jpg";
 import headerBg from "../../assets/images/header.jpg";
-
-/* icons (keep your filenames as-is) */
 import iconSoftware from "../../assets/icons/software development.svg";
 import iconTeam from "../../assets/icons/team building.svg";
 import iconIT from "../../assets/icons/it support.svg";
@@ -17,30 +14,27 @@ import iconQA from "../../assets/icons/quality testing.svg";
 import experience from "../../assets/icons/experience.svg";
 import speed from "../../assets/icons/speed.svg";
 
-/* people */
-import deboraMeta from "../../assets/images/debora-meta.jpeg";
+import deboraMeta from "../../assets/images/debora-meta.webp";
 import ermalSadiku from "../../assets/images/ermal-sadiku.png";
 import ilirianaIbraj from "../../assets/images/iliriana-ibraj.png";
 import leonaTahiri from "../../assets/images/leona-tahiri.jpg";
-import zimrieIdrizi from "../../assets/images/zimrie-idrizi.jpg";
+import zimrieIdrizi from "../../assets/images/zimrie-idrizi.webp";
 import aleksandarIlioski from "../../assets/images/aleksandar-ilioski.jpg";
 
-/* testimonials */
 import bdoLogo from "../../assets/images/BDO.png";
 import conplementLogo from "../../assets/images/conplement.png";
 import whatdigitalLogo from "../../assets/images/whatdigital.png";
 
-/* images for hovers/services */
-import pic6 from "../../assets/images/pic6.jpg";
-import pic7 from "../../assets/images/pic7.jpg";
-import pic8 from "../../assets/images/pic8.jpg";
-import pic9 from "../../assets/images/pic9.jpg";
-import pic10 from "../../assets/images/pic10.jpg";
-import pic1 from "../../assets/images/pic1.jpg";
+import pic6 from "../../assets/images/pic6.webp";
+import pic7 from "../../assets/images/pic7.webp";
+import pic8 from "../../assets/images/pic8.webp";
+import pic9 from "../../assets/images/pic9.webp";
+import pic10 from "../../assets/images/pic10.webp";
+import pic1 from "../../assets/images/pic1.webp";
 import pic2 from "../../assets/images/pic2.jpg";
 import pic4 from "../../assets/images/pic4.jpg";
-import teamMeeting from "../../assets/images/teammeeting.jpg";
-import teamDiscussion from "../../assets/images/teamdiscussion.jpg";
+import teamMeeting from "../../assets/images/teammeeting.webp";
+import teamDiscussion from "../../assets/images/teamdiscussion.webp";
 
 const icons = [
   <img key="i1" src={iconSoftware} alt="Software Development" className={styles.iconImg} />,
@@ -120,11 +114,6 @@ const MailIcon = () => (
   </svg>
 );
 
-/* ================================
-   IDENTICAL FORM LOGIC TO ContactUs.tsx
-   (state keys, validation, Netlify submit)
-   — using Home classes so styles don't change.
-=================================== */
 type FormState = {
   firstName: string;
   lastName: string;
@@ -148,7 +137,6 @@ const HomePage: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [location.pathname]);
 
-  // Progress animation
   const [progressAnimated, setProgressAnimated] = useState(false);
   const progressSectionRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -167,14 +155,12 @@ const HomePage: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
-  // Testimonials auto-rotate
   const [tIdx, setTIdx] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setTIdx((i) => (i + 1) % testimonialsLogos.length), 5000);
     return () => clearInterval(id);
   }, []);
 
-  // === ContactUs-identical form state/validation/submit ===
   const [data, setData] = useState<FormState>(initial);
   const [toast, setToast] = useState<null | { type: "ok" | "err"; text: string }>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -202,12 +188,12 @@ const HomePage: React.FC = () => {
 
       const form = e.currentTarget;
       const formData = new FormData(form);
-      formData.set("form-name", "contact"); // important for Netlify
+      formData.set("form-name", "contact"); 
 
       if (isLocal) {
-        await new Promise((r) => setTimeout(r, 350)); // avoid 404 in dev
+        await new Promise((r) => setTimeout(r, 350)); 
       } else {
-        await fetch("/", { method: "POST", body: formData }); // Netlify production
+        await fetch("/", { method: "POST", body: formData }); 
       }
 
       setData(initial);
@@ -226,7 +212,6 @@ const HomePage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      {/* slider dots (unchanged) */}
       <div className={styles.slider}>
         <input type="radio" name="slider" id="slide1" defaultChecked />
         <input type="radio" name="slider" id="slide2" />
@@ -238,7 +223,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* HERO */}
       <div
         className={styles.textSection}
         style={{
@@ -249,7 +233,7 @@ const HomePage: React.FC = () => {
         }}
       >
         <p className={styles.subheading}>
-          <a href="https://linkplus-it.com/"> Advanced Software Solutions</a>
+          <a href=""> Advanced Software Solutions</a>
         </p>
         <p className={styles.subheading}>Scalable, Customized Technology - Built for Growth at Any Level</p>
 
@@ -268,7 +252,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* SERVICES CARDS */}
       <div className={styles.cardSection}>
         {cards.map((card, index) => (
           <div
@@ -283,7 +266,6 @@ const HomePage: React.FC = () => {
         ))}
       </div>
 
-      {/* WHO WE BRING */}
       <div className={styles.exclusiveSection}>
         <div className={styles.exclusiveText}>
           <p className={styles.sectionLabel}>WHO WE BRING</p>
@@ -326,7 +308,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* IT SERVICES */}
       <div className={styles.itServicesSection} style={{ ["--it-services-bg" as any]: `url(${itServicesBg})` }}>
         <p className={styles.subheadingg}>OUR SERVICES</p>
         <h2
@@ -363,7 +344,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* PROJECT INDEX + PROGRESS */}
       <div className={styles.technologySolutionSection}>
         <div className={styles.imageWrapper}>
           <img src={teamImage} alt="Team working" className={styles.teamImage} />
@@ -459,7 +439,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* TEAM */}
       <div className={styles.teamSection}>
         <p className={styles.teamLabel}>MEET OUR TEAM</p>
         <h2 className={styles.teamHeading}>Our Leadership</h2>
@@ -498,7 +477,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* TESTIMONIALS */}
       <section className={styles.testimonialSection} aria-label="What clients say">
         <div className={styles.tWrap}>
           <div className={styles.tInner}>
@@ -531,7 +509,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* CONTACT CARD (Home layout) — FORM MARKUP/LOGIC IDENTICAL TO ContactUs */}
       <section className={styles.contactShell} aria-label="Contact form">
         <div className={styles.contactGrid}>
           <div className={styles.cLeft}>
@@ -545,7 +522,7 @@ const HomePage: React.FC = () => {
                 <div className={styles.cTexts}>
                   <p className={styles.cLabel}>Location</p>
                   <p className={styles.cValue}>Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo</p>
-                  <p className={styles.cValue}>Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia</p>
+                  <p className={styles.cValue}>Flatiron 75, Skopje, North Macedonia</p>
                 </div>
               </li>
               <li className={styles.cRow}>
@@ -558,7 +535,6 @@ const HomePage: React.FC = () => {
             </ul>
           </div>
 
-          {/* RIGHT — uses Home classes, ContactUs code */}
           <div className={styles.cRight}>
             <div className={styles.cCard} aria-labelledby="cFormTitle">
               <h3 id="cFormTitle" className={styles.cTitle}>Got a Project in Mind?</h3>
@@ -571,7 +547,6 @@ const HomePage: React.FC = () => {
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
               >
-                {/* Netlify requirements */}
                 <input type="hidden" name="form-name" value="contact" />
                 <p style={{ display: "none" }}>
                   <label>
@@ -630,7 +605,6 @@ const HomePage: React.FC = () => {
 
                 {!isValid && (
                   <div className={styles.cError}>
-                    {/* Please fill all required fields with a valid email. */}
                   </div>
                 )}
 
@@ -639,7 +613,6 @@ const HomePage: React.FC = () => {
                   className={`${styles.cSubmit} ${!isValid || submitting ? styles.cDisabled : ""}`}
                   disabled={!isValid || submitting}
                 >
-                  {/* Text matches ContactUs */}
                   <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
                   <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
@@ -660,7 +633,6 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA BAND */}
       <section className={styles.ctaBand} aria-label="Get in touch">
         <div className={styles.ctaBg} />
         <div className={styles.ctaOverlay} />

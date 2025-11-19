@@ -1,4 +1,3 @@
-// src/pages/contactus/ContactUs.tsx
 import React, { useMemo, useState } from "react";
 import styles from "./ContactUs.module.scss";
 import heroImg from "../../assets/images/pic4.jpg";
@@ -7,7 +6,7 @@ const TO_EMAIL = "info@linkplus.com";
 const ADDRESS =
   "Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo";
 const ADDRESS1 =
-  "Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia";
+  "Flatiron 75, Skopje, North Macedonia";
 
 const MAP_LAT = 42.655479;
 const MAP_LNG = 21.1516511;
@@ -72,7 +71,6 @@ const ContactUs: React.FC = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
   }, [data]);
 
-  // JS submit to Netlify (no navigation). Works locally (fake) and on Netlify (real).
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isValid || submitting) return;
@@ -87,13 +85,11 @@ const ContactUs: React.FC = () => {
 
       const form = e.currentTarget;
       const formData = new FormData(form);
-      formData.set("form-name", "contact"); // important for Netlify
+      formData.set("form-name", "contact"); 
 
       if (isLocal) {
-        // Avoid 404 in Vite dev server
         await new Promise((r) => setTimeout(r, 350));
       } else {
-        // Netlify production: post to "/"
         await fetch("/", { method: "POST", body: formData });
       }
 
@@ -115,7 +111,6 @@ const ContactUs: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      {/* HERO */}
       <section className={styles.hero} aria-label="Contact hero">
         <div
           className={styles.heroBg}
@@ -138,10 +133,8 @@ const ContactUs: React.FC = () => {
         </div>
       </section>
 
-      {/* CONTENT */}
       <main className={styles.container}>
         <section className={styles.shell} aria-label="Contact content">
-          {/* LEFT */}
           <div className={styles.left}>
             <div className={styles.eyebrowWrap}>
               <span className={styles.eyebrow}>
@@ -178,7 +171,6 @@ const ContactUs: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT (Form) */}
           <div className={styles.right}>
             <div className={styles.formCard} aria-labelledby="formTitle">
               <h3 id="formTitle" className={styles.formTitle}>
@@ -288,7 +280,6 @@ const ContactUs: React.FC = () => {
         </section>
       </main>
 
-      {/* MAP */}
       <section className={styles.mapSection} aria-label="Map">
         <div className={styles.mapWrap}>
           <iframe
