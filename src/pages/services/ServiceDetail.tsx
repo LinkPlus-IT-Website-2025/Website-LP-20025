@@ -16,6 +16,10 @@ const ServiceDetail: React.FC = () => {
     return () => document.body.classList.remove("sdBleed");
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!data) return <Navigate to="/services" replace />;
 
   const heroBg = useMemo(() => state?.heroImg ?? data.heroImage, [state, data]);
@@ -23,7 +27,6 @@ const ServiceDetail: React.FC = () => {
 
   return (
     <div className={styles.page}>
-      {/* ===== HERO (keep your structure; just set the bg; no CSS file changes) ===== */}
       <section
         className={styles.hero}
         aria-label={data.heroTitle}
@@ -38,7 +41,6 @@ const ServiceDetail: React.FC = () => {
             : undefined
         }
       >
-        {/* make the red band transparent inline so the photo shows */}
        <div className={styles.band} style={{ background: "rgba(94, 14, 17, 0.87)" }}>
 
           <div className={styles.inner}>
@@ -53,17 +55,9 @@ const ServiceDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* <svg
-          className={styles.slice}
-          viewBox="0 0 100 12"
-          preserveAspectRatio="none"
-          aria-hidden
-        >
-          <polygon fill="#b71c1c" points="0,0 100,3 100,12 0,12" />
-        </svg> */}
+        
       </section>
 
-      {/* ===== INTRO CARDS ===== */}
       {data.introCards?.length ? (
         <section className={styles.cardsWrap} aria-label="Intro">
           <div className={styles.cards}>
@@ -77,7 +71,6 @@ const ServiceDetail: React.FC = () => {
         </section>
       ) : null}
 
-      {/* ===== PROCESS (for IT support) ===== */}
       {data.process?.length ? (
         <section className={styles.process} aria-label="Process">
           <h2 className={styles.processHeading}>Our Support Process</h2>
@@ -95,7 +88,6 @@ const ServiceDetail: React.FC = () => {
         </section>
       ) : null}
 
-      {/* ===== Frame 13 ONLY for Dedicated Team ===== */}
       {slug === "dedicated-team" && (
         <div style={{ display: "flex", justifyContent: "center", padding: "16px" }}>
           <img
@@ -112,7 +104,6 @@ const ServiceDetail: React.FC = () => {
         </div>
       )}
 
-      {/* ===== BACK LINK ===== */}
       <div className={styles.backRow}>
         <Link to="/services" className={styles.backLink}>
           ← Back to Services

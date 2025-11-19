@@ -3,11 +3,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { Check, ArrowUp } from "lucide-react";
 import styles from "./AboutUs.module.scss";
 import { Link, useLocation } from "react-router-dom";
-import deboraMeta from "../../assets/images/debora-meta.jpeg";
+import deboraMeta from "../../assets/images/debora-meta.webp";
 import ermalSadiku from "../../assets/images/ermal-sadiku.png";
 import ilirianaIbraj from "../../assets/images/iliriana-ibraj.png";
 import leonaTahiri from "../../assets/images/leona-tahiri.jpg";
-import zimrieIdrizi from "../../assets/images/zimrie-idrizi.jpg";
+import zimrieIdrizi from "../../assets/images/zimrie-idrizi.webp";
 import aleksandarIlioski from "../../assets/images/aleksandar-ilioski.jpg";
 import icExperience from "../../assets/icons/experience.svg";
 import icProfessionals from "../../assets/icons/proffessionals.svg";
@@ -18,12 +18,12 @@ import icClients from "../../assets/icons/clients.svg";
 import bdoLogo from "../../assets/images/BDO.png";
 import conplementLogo from "../../assets/images/conplement.png";
 import whatdigitalLogo from "../../assets/images/whatdigital.png";
-import teamMeeting from "../../assets/images/teammeeting.jpg";
+import teamMeeting from "../../assets/images/teammeeting.webp";
 import aboutushero from "../../assets/images/aboutushero.jpg";
-import teamDiscussion from "../../assets/images/teamdiscussion.jpg";
+import teamDiscussion from "../../assets/images/teamdiscussion.webp";
 
 const teamMembers = [
-  { image: ermalSadiku, name: "Ermal Sadiku", position: "Managing Partner" },
+  { image: ermalSadiku, name: "Ermal Sadiku", position: "Partner" },
   { name: "Lulzim Ibrahimi", position: "Managing partner" },
   { image: ilirianaIbraj, name: "Iliriana Ibraj", position: "Chief Business Development Officer" },
   { image: aleksandarIlioski, name: "Aleksandar Ilioski", position: "Country Manager" },
@@ -105,19 +105,14 @@ const AboutUs: React.FC = () => {
     return () => obs.disconnect();
   }, []);
 
-  // --------- testimonials index ----------
   const [tIdx, setTIdx] = useState(0);
 
-  /* ===========================================================
-     CONTACT FORM — same classes/layout; added service + hidden
-  ============================================================ */
   type FormState = {
     firstName: string;
     lastName: string;
     email: string;
     phone: string;
     message: string;
-    // service: string;
   };
 
   const initial: FormState = {
@@ -126,7 +121,6 @@ const AboutUs: React.FC = () => {
     email: "",
     phone: "",
     message: "",
-    // service: "",
   };
 
   const [data, setData] = useState<FormState>(initial);
@@ -449,7 +443,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* CONTACT — form identical classes; includes Service + hidden field */}
       <section className={styles.contactShell} aria-label="Contact form">
         <div className={styles.contactGrid}>
           <div className={styles.cLeft}>
@@ -463,7 +456,7 @@ const AboutUs: React.FC = () => {
                 <div className={styles.cTexts}>
                   <p className={styles.cLabel}>Location</p>
                   <p className={styles.cValue}>Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo</p>
-                  <p className={styles.cValue}>Boris Trajkovski 1/2 - 75 Skopje 1000, North Macedonia</p>
+                  <p className={styles.cValue}>Flatiron 75, Skopje, North Macedonia</p>
                 </div>
               </li>
               <li className={styles.cRow}>
@@ -488,7 +481,6 @@ const AboutUs: React.FC = () => {
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
               >
-                {/* Netlify requirements */}
                 <input type="hidden" name="form-name" value="contact" />
                 <p style={{ display: "none" }}>
                   <label>
@@ -536,20 +528,7 @@ const AboutUs: React.FC = () => {
                   />
                 </div>
 
-                {/* Service select */}
-                {/* <select
-                  className={styles.cInput}
-                  name="service"
-                  value={data.service}
-                  onChange={onChange("service")}
-                  required
-                  aria-label="Select service"
-                >
-                  <option value="" disabled>Select Service*</option>
-                  <option value="HIGH-END CUSTOM SOFTWARE SOLUTIONS">HIGH-END CUSTOM SOFTWARE SOLUTIONS</option>
-                  <option value="DEDICATED TEAM MODEL">DEDICATED TEAM MODEL</option>
-                  <option value="IT SUPPORT">IT SUPPORT</option>
-                </select> */}
+             
 
                 <textarea
                   className={`${styles.cInput} ${styles.cTextarea}`}
@@ -560,12 +539,8 @@ const AboutUs: React.FC = () => {
                   onChange={onChange("message")}
                 />
 
-                {/* Hidden mirror so Netlify includes service in emails */}
-                {/* <input type="hidden" name="service" value={data.service || ""} /> */}
-
                 {!isValid && (
                   <div className={styles.cError}>
-                    {/* Please fill all required fields with a valid email. */}
                   </div>
                 )}
 

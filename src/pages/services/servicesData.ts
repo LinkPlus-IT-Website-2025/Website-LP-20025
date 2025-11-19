@@ -1,16 +1,14 @@
-// src/pages/services/servicesData.ts
 
 export type ServiceDetail = {
   slug: string;
-  heroTitle: string;        // use \n for line breaks
-  heroImage?: string;       // fallback hero image for direct URL visits
+  heroTitle: string;        
+  heroImage?: string;       
   introCards?: Array<{ title: string; body: string }>;
   process?: Array<{ title: string; sub?: string }>;
 };
 
-// fallback images (match your filenames)
-import highendservice from "../../assets/images/highendservice.jpg";
-import dedicatedTeam from "../../assets/images/deticaatedteam.jpg"; // rename if needed
+import highendservice from "../../assets/images/highendservice.webp";
+import dedicatedTeam from "../../assets/images/deticaatedteam.webp"; 
 import itservice from "../../assets/images/itservice.jpg";
 
 export const SERVICES_DETAIL: Record<string, ServiceDetail> = {

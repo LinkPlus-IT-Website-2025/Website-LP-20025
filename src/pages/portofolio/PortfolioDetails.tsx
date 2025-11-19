@@ -1,4 +1,3 @@
-// src/pages/portofolio/PortfolioDetails.tsx
 import React, { useMemo, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Row, Col, Typography, Divider } from "antd";
