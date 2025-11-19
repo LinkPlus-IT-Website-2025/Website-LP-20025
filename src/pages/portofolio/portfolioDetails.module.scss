@@ -1,10 +1,7 @@
-/* ===== general ===== */
 .pageWrap { background:#ffffff; }
 
-/* content container under the hero */
 .container { max-width:1200px; margin:0 auto; padding:24px 20px 40px; }
 
-/* ===== HERO ===== */
 .pageHero{
   position:relative;
   min-height:400px;
@@ -41,17 +38,14 @@
   font-size:48px; line-height:1.15; letter-spacing:.2px;
 }
 
-/* ===== rounded image ===== */
 .heroImgWrap{
   width:100%; border-radius:36px; overflow:hidden;
   margin-top:90px; margin-bottom:28px;
   img{ width:80%; height:420px; border-radius:36px; }
 }
 
-/* ===== two-column ===== */
 .contentRow{ position:relative; margin-top:8px; text-align:left; }
 
-/* left column */
 .detailTitle{
   margin-left:110px;
   font-size:34px; line-height:1.2; font-weight:700; color:#0f172a;
@@ -61,19 +55,17 @@
   margin-bottom:14px; margin-left:110px;
 }
 
-/* gallery — TWO items */
 .galleryRow {
   height: auto;
   display: flex;
   gap: 16px;
   margin-top: 18px;
-  margin-left: auto;          /* ✅ pushes the row to the right */
-  width: fit-content;         /* shrink-wrap the row so auto works */
-  /* remove grid props here */
+  margin-left: auto;          
+  width: fit-content;        
 }
 
 .galleryItem {
-  width: 320px;               /* control card width */
+  width: 320px;              
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid #e6e9f0;
@@ -89,14 +81,13 @@
 @media (max-width: 768px) {
   .galleryRow {
     flex-direction: column;
-    margin-left: 0;           /* center or stretch on mobile */
+    margin-left: 0;          
     width: 100%;
   }
   .galleryItem { width: 100%; }
 }
 
 
-/* ===== Recent Launched Projects (uses ServiceFeatureCard) ===== */
 .studiesSection{ margin-top:56px; text-align:center; }
 .studiesKicker{
   display:inline-flex; align-items:center; gap:8px;
@@ -117,7 +108,6 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-/* ===== right column (Project Info) — smaller fonts ===== */
 .infoPanel{
   position:relative; padding-left:72px; padding-right:12px; isolation:isolate;
   &::before{
@@ -138,11 +128,9 @@
 .infoLabel{ color:#0f172a; font-weight:600; font-size:10px; line-height:1.3; }
 .infoValue{ color:#667085; font-weight:400; font-size:14px; line-height:1.4; }
 
-/* back link */
 .backWrap{ margin-top:16px; }
 .backLink{ color:#99171C; font-size:12px; text-decoration:none; &:hover{ text-decoration:underline; color:#99171C;  } }
 
-/* ===== responsive ===== */
 @media (max-width: 1200px){
   .heroTitle{ font-size:44px; }
 }
@@ -158,9 +146,7 @@
   .galleryRow{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width: 750px){
-  // .studiesHeading{ font-size:28px; }
   .heroImgWrap img{ height:260px; width: 550px !important; }
-  // .studiesGrid{ grid-template-columns: 1fr; }
 }
 @media (max-width: 600px){
   .studiesHeading{ font-size:28px; }
@@ -172,34 +158,29 @@
   .heroImgWrap img{ height:260px; width: 350px !important; }
   .galleryRow{ grid-template-columns:1fr; }
 }
-/* Default (desktop stays as-is) */
 
 
-/* ===== Small screens: center text + 20px right margin ===== */
 @media (max-width: 768px) {
   .heroImgWrap img{ height:260px; width: 350px !important; }
   .contentRow {
-    padding: 0 12px; /* soften gutter */
+    padding: 0 12px; 
   }
 
   .detailTitle,
   .lead {
     text-align: center;
-    margin-right: 20px !important;  /* what you asked for */
-    margin-left: 20px !important;   /* keeps it balanced */
+    margin-right: 20px !important;  
+    margin-left: 20px !important;   
   }
 
-  /* Optional: slightly smaller paragraph on phones */
   .lead {
     font-size: 14px;
     line-height: 1.6;
   }
 
-  /* Gallery: keep images centered and not too wide */
 
 }
 
-/* Extra-tight phones (≤ 420px) */
 @media (max-width: 420px) {
   .detailTitle,
   .lead {
@@ -207,16 +188,13 @@
     margin-left: 16px !important;
   }
 }
-/* Hero container */
 
 
-/* Background image */
 .heroBg {
 
   z-index: 0;
 }
 
-/* The red overlay (0.5 opacity) */
 .heroShade {
 
   background: linear-gradient(

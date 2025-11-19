@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Services.module.scss";
 import ServiceFeatureCard from "../../components/servicecard/ServiceFeatureCard";
 import TechScroller, { type TechItem } from "../../components/tech-scroller/TechScroller";
 
-/* -------- Hero / service images -------- */
-import serviceHero from "../../assets/images/service.jpg";
-import highendservice from "../../assets/images/highendservice.jpg";
-import dedicatedTeam from "../../assets/images/deticaatedteam.jpg";
+import serviceHero from "../../assets/images/service.webp";
+import highendservice from "../../assets/images/highendservice.webp";
+import dedicatedTeam from "../../assets/images/deticaatedteam.webp";
 import itservice from "../../assets/images/pic4.jpg";
 
-/* -------- Technology logos (items) -------- */
 import javaLogo from "../../assets/images/devicon_java.svg";
 import springLogo from "../../assets/images/logos_spring.svg";
 import angularLogo from "../../assets/images/logos_angular.svg";
@@ -19,31 +17,25 @@ import jsLogo from "../../assets/images/skill-icons_javascript.svg";
 import hibernateLogo from "../../assets/images/devicon_hibernate-wordmark.svg";
 import phpLogo from "../../assets/images/material-icon-theme_php.svg";
 
-/* -------- Database logos (items) -------- */
 import mongoLogo from "../../assets/images/logos_mongodb.svg";
 import mysqlLogo from "../../assets/images/logos_mysql.svg";
 import postgresLogo from "../../assets/images/devicon_postgresql-wordmark.svg";
 
-/* -------- Mobile logos (items) -------- */
 import kotlinLogo from "../../assets/images/logos_kotlin.svg";
 import androidLogo from "../../assets/images/logos_android.svg";
 import swiftLogo from "../../assets/images/devicon_swift.svg";
 import rnLogo from "../../assets/images/devicon_reactnative-wordmark.svg";
 
-/* -------- QA logos (items) -------- */
 import seleniumLogo from "../../assets/images/skill-icons_selenium.svg";
 import cypressLogo from "../../assets/images/logos_cypress.svg";
 import gherkinLogo from "../../assets/images/skill-icons_gherkin-dark.svg";
 import testcafeLogo from "../../assets/images/Group 34.svg";
 
-/* -------- BI logos (items) -------- */
 import biChart from "../../assets/images/Group 31.svg";
 import biReport from "../../assets/images/Group 31 (1).svg";
 
-/* -------- PM logo (items) -------- */
 import pmLogo from "../../assets/images/Group 31 (5).svg";
 
-/* ===== Header icons for the scroller card titles (from /icons) ===== */
 import techIcon from "../../assets/icons/technologies (1).svg";
 import dbIcon from "../../assets/icons/databases (1).svg";
 import mobileIcon from "../../assets/icons/mobile (1).svg";
@@ -72,7 +64,6 @@ const services = [
   },
 ];
 
-/* -------- Items per category -------- */
 const techItems: TechItem[] = [
   { id: "java", name: "Java", logoSrc: javaLogo },
   { id: "spring", name: "Spring", logoSrc: springLogo },
@@ -111,9 +102,12 @@ const biItems: TechItem[] = [
 const pmItems: TechItem[] = [{ id: "agile", name: "Agile & Scrum Methods", logoSrc: pmLogo }];
 
 const Services: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
-      {/* === HERO === */}
       <section
         className={styles.hero}
         aria-label="Services hero"
@@ -136,7 +130,6 @@ const Services: React.FC = () => {
       </section>
 
       <main className={styles.wrap}>
-        {/* === SERVICE CARDS === */}
         <div className={styles.grid} style={{ gap: "60px" }}>
           {services.map((s) => (
             <Link
@@ -162,7 +155,6 @@ const Services: React.FC = () => {
           </p>
         </section>
 
-        {/* === STACK SCROLLERS === */}
         <section className={styles.stackSection} aria-label="Stacks">
           <div className={styles.scrollerGrid} style={{ gap: "60px" }}>
             <TechScroller title="Technologies" items={techItems} showNames={false} headerIconSrc={techIcon} />

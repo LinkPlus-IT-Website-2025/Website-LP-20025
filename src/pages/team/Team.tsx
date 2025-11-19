@@ -3,19 +3,18 @@ import styles from "./Team.module.scss";
 
 import teamImage from "../../assets/images/team.jpg";
 
-import deboraMeta from "../../assets/images/debora-meta.jpeg";
+import deboraMeta from "../../assets/images/debora-meta.webp";
 import ermalSadiku from "../../assets/images/ermal-sadiku.png";
 import ilirianaIbraj from "../../assets/images/iliriana-ibraj.png";
 import leonaTahiri from "../../assets/images/leona-tahiri.jpg";
-import zimrieIdrizi from "../../assets/images/zimrie-idrizi.jpg";
+import zimrieIdrizi from "../../assets/images/zimrie-idrizi.webp";
 import aleksandarIlioski from "../../assets/images/aleksandar-ilioski.jpg";
 
-/* Only keep LinkedIn */
 type Social = {
   linkedin?: string;
 };
 type Member = {
-  photo: string; // use "" for no photo
+  photo: string; 
   name: string;
   role: string;
   social?: Social;
@@ -29,7 +28,7 @@ const members: Member[] = [
     social: { linkedin: "https://www.linkedin.com/in/ermal-sadiku" },
   },
     {
-    photo: "", // leave empty to trigger the red placeholder
+    photo: "", 
        name: "Lulzim Ibrahimi",
     role: "Partner",
      social: { linkedin: "https://al.linkedin.com/in/lulzim-ibrahimi-679b1310a?trk=people-guest_people_search-card" },
@@ -65,11 +64,9 @@ const members: Member[] = [
     social: { linkedin: "https://www.linkedin.com/in/zimrie-idrizi-0400b01b7?trk=blended-typeahead" },
   },
 
-  // ➕ EXTRA CARD WITHOUT PHOTO (renders as solid red block)
 
 ];
 
-/* LinkedIn icon only */
 const InIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden>
     <path
@@ -82,7 +79,6 @@ const InIcon = () => (
 const Team: React.FC = () => {
   return (
     <div className={styles.page}>
-      {/* HERO */}
       <section className={styles.hero} aria-label="Our Team hero">
         <div
           className={styles.heroBg}
@@ -99,13 +95,11 @@ const Team: React.FC = () => {
         </div>
       </section>
 
-      {/* GRID */}
       <main className={styles.container}>
         <div className={styles.grid}>
           {members.map((m, i) => (
             <article key={i} className={styles.card}>
               <div className={styles.photoWrap}>
-                {/* if photo is missing/empty => show solid red “photo” box */}
                 {m.photo ? (
                   <img
                     className={styles.photo}
@@ -117,7 +111,7 @@ const Team: React.FC = () => {
                   <div
                     className={styles.photo}
                     aria-label={`${m.name} (no photo)`}
-                    style={{ background: "#b71c1c" }} // solid red, same size as photos
+                    style={{ background: "#b71c1c" }} 
                   />
                 )}
 

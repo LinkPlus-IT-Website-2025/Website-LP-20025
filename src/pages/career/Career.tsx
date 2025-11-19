@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Career.module.scss";
-import careerHero from "../../assets/images/career.jpg";
+import careerHero from "../../assets/images/career.webp";
 
 const perks = [
   {

@@ -1,13 +1,4 @@
-/* =========================================================
-   AboutUs.module.css — FULL RESPONSIVE WITH WIDE-RANGE CONTAINERS
-   Goal:
-   - Consistent left/right margins & padding on MANY breakpoints (incl. 2778px)
-   - Elements shrink instead of overflowing (minmax(0,1fr))
-   - 1024px: both hero images visible (stacked)
-   - Team carousel continues sliding
-   ========================================================= */
 
-/* ---------- Base & tokens ---------- */
 *,
 *::before,
 *::after { box-sizing: border-box; }
@@ -20,27 +11,20 @@ html, body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
 
-/* Theme tokens */
 :root{
   --brand: #99171C;
   --brand-dark: #801316;
   --ink: #0f172a;
   --muted: #6b7280;
 
-  /* Container system (will be overridden by media queries below) */
   --maxw: 1280px;            /* max content width */
   --px: 24px;                /* base horizontal padding */
   --gutterR: 0px;            /* extra right gutter */
 
-  /* Team carousel */
   --card-w: clamp(150px, 16vw, 220px);
   --slide-dur: 20s;
 }
 
-/* =========================================================
-   CONTAINER SYSTEM
-   Apply to all your main containers so margins/padding are consistent.
-   ========================================================= */
 .container,
 .heroContainer,
 .statsContainer,
@@ -57,139 +41,103 @@ html, body {
   padding-right: calc(var(--px) + var(--gutterR)); /* right margin “visual” */
 }
 
-/* ---------- MANY BREAKPOINTS (wide to small) ---------- */
-/* ≥ 3200 */
 @media (min-width: 3200px){
   :root{ --maxw: 1560px; --px: 40px; --gutterR: 120px; }
 }
-/* 3000–3199 */
 @media (min-width: 3000px) and (max-width: 3199.98px){
   :root{ --maxw: 1540px; --px: 40px; --gutterR: 110px; }
 }
-/* 2778–2999 (big iMac etc.) */
 @media (min-width: 2778px) and (max-width: 2999.98px){
   :root{ --maxw: 1520px; --px: 40px; --gutterR: 104px; }
 }
-/* 2560–2777 (2.5K/4K scaled) */
 @media (min-width: 2560px) and (max-width: 2777.98px){
   :root{ --maxw: 1480px; --px: 40px; --gutterR: 96px; }
 }
-/* 2400–2559 */
 @media (min-width: 2400px) and (max-width: 2559.98px){
   :root{ --maxw: 1460px; --px: 36px; --gutterR: 84px; }
 }
-/* 2200–2399 */
 @media (min-width: 2200px) and (max-width: 2399.98px){
   :root{ --maxw: 1440px; --px: 36px; --gutterR: 72px; }
 }
-/* 2048–2199 (UW 2K) */
 @media (min-width: 2048px) and (max-width: 2199.98px){
   :root{ --maxw: 1440px; --px: 34px; --gutterR: 64px; }
 }
-/* 1920–2047 (FHD large) */
 @media (min-width: 1920px) and (max-width: 2047.98px){
   :root{ --maxw: 1440px; --px: 32px; --gutterR: 64px; }
 }
-/* 1800–1919 */
 @media (min-width: 1800px) and (max-width: 1919.98px){
   :root{ --maxw: 1400px; --px: 32px; --gutterR: 56px; }
 }
-/* 1680–1799 */
 @media (min-width: 1680px) and (max-width: 1799.98px){
   :root{ --maxw: 1380px; --px: 30px; --gutterR: 48px; }
 }
-/* 1600–1679 */
 @media (min-width: 1600px) and (max-width: 1679.98px){
   :root{ --maxw: 1360px; --px: 28px; --gutterR: 44px; }
 }
-/* 1536–1599 (1440p scaled common) */
 @media (min-width: 1536px) and (max-width: 1599.98px){
   :root{ --maxw: 1340px; --px: 28px; --gutterR: 40px; }
 }
-/* 1440–1535 */
 @media (min-width: 1440px) and (max-width: 1535.98px){
   :root{ --maxw: 1320px; --px: 28px; --gutterR: 32px; }
 }
-/* 1366–1439 */
 @media (min-width: 1366px) and (max-width: 1439.98px){
   :root{ --maxw: 1280px; --px: 26px; --gutterR: 20px; }
 }
-/* 1280–1365 */
 @media (min-width: 1280px) and (max-width: 1365.98px){
   :root{ --maxw: 1240px; --px: 24px; --gutterR: 12px; }
 }
-/* 1200–1279 */
 @media (min-width: 1200px) and (max-width: 1279.98px){
   :root{ --maxw: 1180px; --px: 24px; --gutterR: 10px; }
 }
-/* 1176–1199 */
 @media (min-width: 1176px) and (max-width: 1199.98px){
   :root{ --maxw: 1160px; --px: 24px; --gutterR: 40px; } /* keep that extra right margin pre-1126 */
 }
-/* 1126–1175 (your problem zone: force right gutter visible) */
 @media (min-width: 1126px) and (max-width: 1175.98px){
   :root{ --maxw: 1120px; --px: 22px; --gutterR: 40px; }
 }
-/* 1080–1125 */
 @media (min-width: 1080px) and (max-width: 1125.98px){
   :root{ --maxw: 1060px; --px: 22px; --gutterR: 36px; }
 }
-/* 1024–1079 (stack some layouts, still keep right gutter) */
 @media (min-width: 1024px) and (max-width: 1079.98px){
   :root{ --maxw: 1000px; --px: 22px; --gutterR: 28px; }
 }
-/* 900–1023 */
 @media (min-width: 900px) and (max-width: 1023.98px){
   :root{ --maxw: 860px; --px: 22px; --gutterR: 24px; }
 }
-/* 840–899 */
 @media (min-width: 840px) and (max-width: 899.98px){
   :root{ --maxw: 820px; --px: 22px; --gutterR: 20px; }
 }
-/* 768–839 (tablet) */
 @media (min-width: 768px) and (max-width: 839.98px){
   :root{ --maxw: 740px; --px: 20px; --gutterR: 18px; }
 }
-/* 720–767 */
 @media (min-width: 720px) and (max-width: 767.98px){
   :root{ --maxw: 700px; --px: 18px; --gutterR: 16px; }
 }
-/* 640–719 */
 @media (min-width: 640px) and (max-width: 719.98px){
   :root{ --maxw: 620px; --px: 16px; --gutterR: 14px; }
 }
-/* 600–639 */
 @media (min-width: 600px) and (max-width: 639.98px){
   :root{ --maxw: 580px; --px: 16px; --gutterR: 12px; }
 }
-/* 560–599 */
 @media (min-width: 560px) and (max-width: 599.98px){
   :root{ --maxw: 540px; --px: 16px; --gutterR: 10px; }
 }
-/* 480–559 */
 @media (min-width: 480px) and (max-width: 559.98px){
   :root{ --maxw: 460px; --px: 14px; --gutterR: 8px; }
 }
-/* 414–479 */
 @media (min-width: 414px) and (max-width: 479.98px){
   :root{ --maxw: 400px; --px: 14px; --gutterR: 6px; }
 }
-/* 390–413 */
 @media (min-width: 390px) and (max-width: 413.98px){
   :root{ --maxw: 376px; --px: 12px; --gutterR: 6px; }
 }
-/* 360–389 */
 @media (min-width: 360px) and (max-width: 389.98px){
   :root{ --maxw: 346px; --px: 12px; --gutterR: 6px; }
 }
-/* < 360 */
 @media (max-width: 359.98px){
   :root{ --maxw: 320px; --px: 10px; --gutterR: 4px; }
 }
 
-/* =========================================================
-   HERO
-   ========================================================= */
 .hero{
   position:relative; min-height:520px; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
@@ -199,7 +147,6 @@ html, body {
 }
 .heroBackground{
   position:absolute; top:-20%; left:0; width:100%; height:120%;
-  /* background-image: url('...');  <-- can delete this line */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -222,21 +169,20 @@ html, body {
   font-size:clamp(1rem,2.2vw,1.35rem); font-weight:400; opacity:.92;
   max-width:760px; margin:0 auto; line-height:1.6; text-align:center;
 }
-/* Center hero text on small displays */
 @media (max-width: 768px) {
   .heroContent {
-    display: flex;              /* ensure we can center */
+    display: flex;            
     align-items: center;
     justify-content: center;
-    text-align: center;         /* center inline text */
-    padding: 0px !important;            /* trim side padding */
+    text-align: center;         
+    padding: 0px !important;           
   }
 
   .heroContainer {
     width: 100%;
-    display: grid;              /* easy vertical spacing + centering */
+    display: grid;            
     gap: 8px;
-    justify-items: center;      /* center breadcrumb + title */
+    justify-items: center;    
     margin: 0 auto;
   }
 
@@ -244,7 +190,7 @@ html, body {
     display: flex;
     gap: 6px;
     align-items: center;
-    justify-content: center;    /* center the nav line */
+    justify-content: center;   
   }
 
   .heroTitle {
@@ -254,7 +200,6 @@ html, body {
   }
 }
 
-/* Center hero text and tighten spacing on very small phones */
 @media (max-width: 400px) {
   .heroContent {
     min-height: 220px;
@@ -272,12 +217,12 @@ html, body {
     margin: 0 auto;
     display: grid;
     gap: 6px;
-    justify-items: center; /* centers breadcrumb + title */
+    justify-items: center; 
   }
 
   .breadcrumb {
     display: flex;
-    flex-wrap: wrap;      /* allow wrapping if needed */
+    flex-wrap: wrap;     
     gap: 4px;
     justify-content: center;
     font-size: 11px;
@@ -291,7 +236,6 @@ html, body {
     margin: 4px 0 0;
   }
 
-  /* If you show it later, keep it small & centered */
   .heroSubtitle {
     font-size: 12px;
     max-width: 32ch;
@@ -300,20 +244,13 @@ html, body {
 }
 
 
-/* =========================================================
-   MAIN CONTENT
-   ========================================================= */
 .mainContent{ background:#fff; position:relative; z-index:3; }
-/* =========================================================
-   IMAGE CLUSTER — your two local images
-   ========================================================= */
 
 .primaryImage{
   position:absolute; top:0; right:0; width:66%; height:56%;
   background-size:cover; background-position:center; background-repeat:no-repeat;
   border-radius:22px; box-shadow:0 24px 48px rgba(0,0,0,.12);
-  /* ⬇️ use your local file */
-  background-image: url('/src/assets/images/teammeeting.jpg');
+  background-image: url('/src/assets/images/teammeeting.webp');
   z-index:2;
 }
 
@@ -321,12 +258,10 @@ html, body {
   position:absolute; bottom:0; left:0; width:68%; height:50%;
   background-size:cover; background-position:center; background-repeat:no-repeat;
   border-radius:22px; box-shadow:0 24px 48px rgba(0,0,0,.12);
-  /* ⬇️ use your local file */
-  background-image: url('/src/assets/images/teamdiscussion.jpg');
+  background-image: url('/src/assets/images/teamdiscussion.webp');
   z-index:1;
 }
 
-/* minmax(0,...) so columns SHRINK (no right cut around 1126px) */
 .contentGrid{
   display:grid; gap:clamp(24px,4vw,48px); align-items:center;
   grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
@@ -380,9 +315,6 @@ html, body {
 .ctaArrow{ transition:transform .25s ease; }
 .ctaButton:hover .ctaArrow{ transform:translateX(4px); }
 
-/* =========================================================
-   IMAGE CLUSTER — FIX @ 1024px (both images visible, stacked)
-   ========================================================= */
 .imageContent{ position:relative; display:flex; justify-content:center; align-items:center; min-height:420px; }
 .imageWrapper{ position:relative; width:100%; max-width:560px; min-height:360px; }
 .primaryImage, .secondaryImage{
@@ -405,34 +337,31 @@ html, body {
     position:relative !important; width:100%; height:240px; margin:10px 0;
   }
 }
-/* Small screens: hide secondary, add right margin to primary */
-/* Phones ≤415px: hide secondary; center primary */
-/* Phones ≤415px: hide secondary; center primary with side padding */
-/* Phones ≤415px: hide secondary; center primary with side padding */
 @media (max-width: 415px) {
   .imageWrapper {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    padding: 0 16px;              /* ← add a little space on both sides */
+    padding: 0 16px;     
+      padding: 0% !important;
+    margin: 0% !important;      
   }
+.techIndex{
+  position:relative; display:flex;margin-top: 0% !important; justify-content:center; align-items:center; min-height:250px; }
 
   .secondaryImage { display: none !important; }
+.imageContent{ position:relative; display:flex; justify-content:center; align-items:center; min-height:250px; }
 
   .primaryImage {
     width: 100%;
-    max-width: 420px;             /* keeps it nicely centered */
+    max-width: 420px;            
     height: 240px !important;
-    margin: 10px 0 !important;    /* no extra right/left margins */
+    margin: 10px 0 !important;   
+    padding: 0% !important;
+    margin: 0% !important;
   }
 }
 
-
-
-
-/* =========================================================
-   BACK TO TOP
-   ========================================================= */
 .backToTop{
   position:fixed; bottom:24px; right:24px; z-index:50; width:52px; height:52px;
   background:linear-gradient(135deg,#111827,#374151); color:#fff; border:none; border-radius:50%; cursor:pointer;
@@ -442,9 +371,6 @@ html, body {
 .backToTop.visible{ opacity:1; transform:translateY(0); }
 .backToTop:hover{ transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,.2); }
 
-/* =========================================================
-   PROCESS
-   ========================================================= */
 .process{ position:relative; background:#fff; padding:0; margin:0; }
 .processHead{ text-align:center; margin-bottom:18px; }
 .processTitle{ margin:10px 0 0; font-weight:600; font-size:clamp(26px,3vw,40px); letter-spacing:-.02em; line-height:1.15; color:var(--ink); }
@@ -476,9 +402,6 @@ html, body {
 .stepTitle{ margin:12px 0 4px; font-weight:700; color:var(--ink); font-size:18px; }
 .stepText{ margin:0 auto; color:var(--muted); line-height:1.6; font-size:13px; max-width:320px; }
 
-/* =========================================================
-   STATS SECTION (matches your model) — reuses container system
-   ========================================================= */
 .statsSection{ width:100%; }
 @media (max-width:424px){
   .statsSection{ margin-right: 120px !important;
@@ -514,7 +437,6 @@ html, body {
 .statsDot{ width:8px; height:8px; background:#fff; border-radius:2px; }
 .statsTitle{ margin:14px 0 0; font-weight:500; line-height:1.1; letter-spacing:-.01em; font-size:clamp(22px,2.6vw,32px); text-align:left; }
 .statsShape{ position:absolute; right:8%; bottom:10%; width:clamp(120px,22vw,240px); height:clamp(70px,12vw,140px); border-radius:28px; background:rgba(255,255,255,.16); transform:rotate(-18deg); pointer-events:none; }
-/* keep your working left-align version */
 .statsBadge {
   display: block;
   width: max-content;
@@ -523,29 +445,26 @@ html, body {
   align-self: flex-start !important;
   justify-self: start !important;
 
-  /* visual styles */
   font-size: 12px;
   letter-spacing: .14em;
   text-transform: uppercase;
   font-weight: 700;
   opacity: .95;
-  line-height: 1;              /* helps vertical centering with the dot */
+  line-height: 1;             
 }
 @media (max-width:390px){
   .statsSection{ align-items: center;
-  // margin-left:15px;
   padding-left: 15px !important;
 }
 }
-/* make the dot actually take size + add spacing (since gap no longer applies) */
 .statsDot{
-  display: inline-block;       /* <-- important */
+  display: inline-block;       
   width: 8px;
   height: 8px;
   background: #fff;
   border-radius: 2px;
   vertical-align: middle;
-  margin-right: 8px;           /* replaces the old gap */
+  margin-right: 8px;          
 }
 
 .statsRight{ position:relative; background:#f2f5fb; padding:clamp(22px,3.2vw,36px); display:grid; place-items:center; }
@@ -573,9 +492,6 @@ html, body {
 .kpiLabel{ margin-top:2px; color:var(--brand); font-size:14px; font-weight:600; }
 .kpiCenter{ grid-column:1 / -1; justify-self:center; }
 
-/* =========================================================
-   TECH INDEX
-   ========================================================= */
 .techIndex{
   display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
   gap:clamp(24px,4vw,48px); align-items:start; padding-top:40px; padding-bottom:8px;  margin-left: 50px;margin-right: 50px;margin-top: 90px;
@@ -589,21 +505,18 @@ html, body {
 
 .techTitle{ margin:12px 0 1px; font-weight:500; color:var(--ink); letter-spacing:-.02em; line-height:1.1; font-size:22px; }
 @media (max-width:440px){ .techTitle{  margin-right: 0px !important;padding: 0px !important; } }
-/* Kill the 100px side padding from .techLeft on small screens */
 @media (max-width: 1024px) {
   .techLeft { padding: 0 40px !important; }
 }
 .techTitlee{ margin:1px 0 1px; font-weight:300; color:var(--ink); letter-spacing:-.02em; line-height:1.1; font-size:18px; }
 @media (max-width:440px){ .techTitle{  margin-right: 0px !important;padding: 0px !important; } }
-/* Kill the 100px side padding from .techLeft on small screens */
 @media (max-width: 1024px) {
   .techLeft { padding: 0 40px !important; }
 }
 @media (max-width: 640px) {
-  .techLeft { padding: 0 14px !important; }   /* phone-friendly */
+  .techLeft { padding: 0 14px !important; }   
 }
 
-/* Optional: tighten the right column too so both sides match */
 @media (max-width: 640px) {
   .technologyContent { padding: 16px !important; }
   .techTitle        { margin: 0 !important; padding: 0 !important; }
@@ -623,9 +536,6 @@ html, body {
 .meterTag{ position:absolute; right:-6px; top:-22px; background:var(--ink); color:#fff; font-size:12px; padding:3px 6px; border-radius:4px; line-height:1; }
 .meterTag::after{ content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:-4px; border-left:4px solid transparent; border-right:4px solid transparent; border-top:4px solid var(--ink); }
 
-/* =========================================================
-   TEAM — carousel
-   ========================================================= */
 .teamSection{ text-align:center; padding:20px 0 0; background:#fff;margin-top: 90px; }
 .teamLabel{ font-size:11px; font-weight:800; color:#99171C; letter-spacing:2px; margin-bottom:8px; text-transform:uppercase; }
 .teamHeading{ font-size:clamp(26px,3.2vw,36px); font-weight:500; margin-bottom:36px; color:#222; }
@@ -637,53 +547,35 @@ html, body {
 }
 .teamCard{ flex:0 0 var(--card-w); display:flex; flex-direction:column; align-items:center; text-align:center; padding:10px; }
 .teamMember{ width:100%; height:clamp(220px,24vw,280px); object-fit:cover; border-radius:12px; margin-bottom:12px; filter: grayscale(100%);
-  -webkit-filter: grayscale(100%); /* Safaris */
-
-  /* Optional: fade to color on hover */
+  -webkit-filter: grayscale(100%); 
   transition: filter 250ms ease;}
 .teamName{ font-size:16px; font-weight:600; margin-bottom:4px; color:#222; }
 .teamPosition{ font-size:13px; color:#777; }
 @keyframes slideLoop{ 0%{ transform:translateX(0); } 100%{ transform:translateX(calc(var(--card-w) * -5)); } }
 
-/* =========================================================
-   TESTIMONIALS
-   ========================================================= */
-// .testimonialSection{
-//   display:flex; flex-direction:column; justify-content:center; align-items:center;
-//   padding:40px 0; background:#fff; position:relative;
-//   background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
-//   background-size:30px 30px;margin-top: 90px;
-// }
 .testimonialSection {
-  /* make the background go edge-to-edge like your homepage */
   margin-top: 90px;
   max-width: none !important;
   width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
   margin-right: calc(50% - 50vw) !important;
-
-  /* background look */
-  background-color: #f3f4f6 !important; /* light grey */
+  background-color: #f3f4f6 !important; 
   background-image:
-    linear-gradient(180deg, transparent, transparent), /* no extra wash */
+    linear-gradient(180deg, transparent, transparent), 
     repeating-linear-gradient(90deg, rgba(255,255,255,.86) 0 1px, transparent 1px 20px),
     repeating-linear-gradient(0deg,  rgba(255,255,255,.86) 0 1px, transparent 1px 20px) !important;
-  background-size: auto, 20px 20px, 20px 20px !important; /* cell size */
+  background-size: auto, 20px 20px, 20px 20px !important; 
   background-repeat: no-repeat, repeat, repeat !important;
-
-  /* remove container padding so the bg hits the edges */
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
-/* keep the inner content nicely centered & padded */
 .tWrap {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: clamp(16px, 4vw, 32px);
 }
 
-/* Mobile: smaller cells, same white lines */
 @media (max-width: 862px) {
   .testimonialSection {
     background-image:
@@ -707,9 +599,7 @@ html, body {
 .dot:hover{ transform:scale(1.08); }
 .activeDot{ background:#111827; transform:scale(1.18); }
 
-/* =========================================================
-   EXTRA TESTIMONIAL SLIDER CONTROLS
-   ========================================================= */
+
 .tWrap{ background:#fff; padding:56px 0 64px; }
 .tInner{ position:relative; text-align:center; }
 .tTitle{ text-transform:uppercase; font-weight:800; letter-spacing:.04em; color:#0b0b0b; font-size:clamp(22px,3vw,36px); margin:0 0 6px; }
@@ -733,9 +623,6 @@ html, body {
 .tDot{ width:8px; height:8px; border:0; border-radius:999px; background:#d1d5db; cursor:pointer; }
 .tDotActive{ background:#111827; }
 
-/* =========================================================
-   CTA BAND
-   ========================================================= */
 .ctaBand{ position:relative; isolation:isolate; width:100%; min-height:260px; display:grid; place-items:center; overflow:hidden; }
 .ctaBg{ position:absolute; inset:0; background-color:var(--brand); transform:scale(1.02); filter:brightness(.6) contrast(1.05); z-index:-2; }
 .ctaOverlay{ position:absolute; inset:0; z-index:-1; }
@@ -759,9 +646,7 @@ html, body {
   box-shadow: 0 16px 36px rgba(108, 18, 18, 0.36);
   filter: brightness(1.03);
 }
-/* =========================================================
-   CONTACT
-   ========================================================= */
+
 .contactShell{ padding:56px 0; }
 .contactGrid{
   display:grid;
@@ -812,9 +697,6 @@ html, body {
 .cSubmitArrow{ display:inline-grid; place-items:center; width:22px; height:22px; border-radius:7px; background:#ffffff1a; font-size:12px; }
 .cDisabled{ opacity:.6; pointer-events:none; }
 
-/* =========================================================
-   GLOBAL RESPONSIVE SAFETY
-   ========================================================= */
 @media (max-width:1126px){
   .contentGrid{ grid-template-columns:1fr; }
   .techIndex{ grid-template-columns:1fr; }
@@ -825,40 +707,27 @@ html, body {
   .hero{ min-height:420px; padding:32px 0; }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   .heroBackground, .primaryImage, .secondaryImage, .teamSlides{ animation:none !important; transform:none !important; }
   .ctaButton, .backToTop{ transition:none !important; }
 }
 
-/* ===== Testimonial (tight + static dots) ===== */
-// .testimonialSection {
-//   padding: 36px 0 48px;
-//    display: flex; flex-direction: column; align-items: center; justify-content: center;
-//   padding: 40px 0; background: #fff; position: relative;
-
-//   /* square + circle pattern */
-//   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
-//   background-size: 30px 30px;
-//   background-repeat: repeat;
-// }
 
 .tWrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 34px 24px 56px; /* extra bottom so dots won't overlap */
+  padding: 34px 24px 56px; 
   background:
     radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.06) 1px, transparent 1px)
       0 0 / 40px 40px no-repeat;
   border-radius: 8px;
 }
 
-/* NEW: inner positioned box so pager dots can be fixed */
 .tInner {
   position: relative;
   max-width: 980px;
   margin: 0 auto;
-  min-height: 320px; /* keeps overall height steady so dots don't move */
+  min-height: 320px;
 }
 
 .tLabel {
@@ -876,14 +745,14 @@ html, body {
   text-align: center;
   color: #0f172a;
   font-weight: 500;
-  font-size: 36px; /* smaller */
+  font-size: 36px;
   line-height: 1.2;
 }
 
 .tStars {
   text-align: center;
   color: #f59e0b;
-  font-size: 12px; /* smaller */
+  font-size: 12px;
   margin: 6px 0 10px;
   letter-spacing: 1px;
 }
@@ -893,7 +762,7 @@ html, body {
   margin: 0 auto 10px;
   text-align: center;
   color: #374151;
-  font-size: 14px; /* smaller */
+  font-size: 14px;
   line-height: 1.7;
 }
 
@@ -906,7 +775,7 @@ html, body {
 }
 
 .tAvatar {
-  width: 70px; /* smaller avatar */
+  width: 70px;
   height: 70px;
   border-radius: 9px;
   border: 3px solid #c3181a;
@@ -926,7 +795,7 @@ html, body {
 .tName {
   color: #0f172a;
   font-weight: 800;
-  font-size: 16px; /* smaller */
+  font-size: 16px;
   line-height: 1.1;
 }
 
@@ -936,34 +805,29 @@ html, body {
   margin-top: 2px;
 }
 
-/* Pager dots: ABSOLUTE + STATIC */
-/* Pager dots — force true 3px across both sliders */
 .tDots .tDot,
 .testimonialDots .dot {
   width: 10px !important;
   height: 10px !important;
   min-width: 3px;
   min-height: 3px;
-  display: inline-block;   /* ensure width/height apply */
-  padding: 0;              /* kill default <button> padding */
-  line-height: 0;          /* avoid vertical expansion */
+  display: inline-block;   
+  padding: 0;             
+  line-height: 0;        
   border: 0;
   border-radius: 999px;
   background: #d1d5db;
-  transform: none !important;     /* stop any scale from other rules */
+  transform: none !important;    
 }
 
-/* active states */
 .tDots .tDotActive,
 .testimonialDots .activeDot {
   background: #0f172a;
 }
 
-/* optional: tighter spacing for tiny dots */
 .tDots { gap: 6px; }
 .testimonialDots { gap: 6px; }
 
-/* ensure buttons don’t bring UA styles */
 .tDots button.tDot {
   -webkit-appearance: none;
   appearance: none;
@@ -981,19 +845,12 @@ html, body {
   --ink: #101828;
 }
 
-/* ===== HERO ===== */
-// .hero {
-//   position: relative;
-//   padding: clamp(96px, 16vw, 180px) var(--gutter) clamp(80px, 10vw, 120px);
-//   color: #fff;
-// }
 
 .heroInner {
   width: min(var(--wrap), 92vw);
   margin-inline: auto;
 }
 
-/* ===== BREADCRUMB (matches Services look) ===== */
 .breadcrumb {
   display: inline-flex;
   align-items: center;
@@ -1016,7 +873,6 @@ html, body {
   text-decoration: underline;
 }
 
-/* ===== TITLE ===== */
 .heroTitle {
   font-weight: 800;
   line-height: 1.05;
@@ -1028,29 +884,71 @@ html, body {
   padding-left: 30px !important;}
   .breadcrumb{text-align: center !important;
   padding-left: 30px !important;}
+   .hero{height: 520px !important;}
 }
 
 @media (min-width: 401px) and (max-width: 640px) {
   .heroTitle,
   .breadcrumb {
-    padding-left: 0 !important; /* remove left padding */
-    text-align: center !important; /* keep centered if you want */
+    padding-left: 0 !important; 
+    text-align: center !important; 
   }
+  .hero{height: 520px !important;}
 }
 
-/* ===== MAIN WRAP ===== */
 .wrap {
   max-width: var(--wrap);
   margin-inline: auto;
   padding: 32px var(--gutter) 64px;
 }
-/* Testimonials — homepage-style light grey + white square grid (smaller cells) */
 
 .toastOk {
-  color: #0a7a28;                /* green text */
-  font-weight: 700;              /* bold */
+  color: #0a7a28;               
+  font-weight: 700;            
   background: rgba(16,185,129,.12);
   border: 1px solid rgba(16,185,129,.35);
   padding: 10px 12px;
   border-radius: 8px;
+}
+.teamMember {
+  width: 98%;
+  height: 230px !important;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+
+  transition: filter 250ms ease;
+}
+
+@media (max-width: 1024px) {
+  .teamMember {
+    height: 230px;
+  }
+}
+
+@media (max-width: 768px) {
+  .teamMember {
+    height: 200px;
+  }
+   .hero{height: 520px !important;}
+}
+
+@media (max-width: 520px) {
+  .teamMember {
+    width: 98%;
+    height: 155px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 390px) {
+  .teamMember {
+    width: 98%;
+    height: 155px !important;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
 }

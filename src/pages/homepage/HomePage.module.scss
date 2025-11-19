@@ -1,4 +1,3 @@
-none of these worked,fix it,this is my full codehtml,
 body {
   margin: 0;
   padding: 0;
@@ -71,22 +70,6 @@ body {
   max-width: 500px;
 }
 
-/* HomePage.module.scss */
-// .button {
-//   display: inline-block;
-//   padding: 10px 20px;
-//   // background: #99171C;
-//   // box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.429);
-//   border: none;
-//   color: #fff;
-//   cursor: pointer;
-//   border-radius: 4px;
-//   font-weight: 500;
-//   font-size: 11px;
-//   text-decoration: none; /* remove underline */
-// }
-
-/* make sure all link states stay un-underlined and white */
 .button:link,
 .button:visited,
 .button:hover,
@@ -118,46 +101,40 @@ body {
   flex-direction: column;
   align-items: center;
 
-  /* needed for the bg image layer to sit behind content */
   position: relative;
   isolation: isolate;
   overflow: hidden;
 }
 
-/* the image/gradient layer (behind content) */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
 
-  /* read from inline style: style={{["--card-bg"]: `url(...)`}} */
   background-image:
     linear-gradient(135deg, #80131775, #8013177d 55%, #99171b74),
     var(--card-bg);
   background-size: cover, cover;
   background-position: center, center;
 
-  opacity: 0;              /* start hidden */
+  opacity: 0;              
   transform: scale(1.04);
   transition: opacity .28s ease, transform .38s ease;
-  z-index: 0;              /* keep it behind */
+  z-index: 0;              
 }
 
-/* keep all your existing content above the bg layer */
 .card > * {
   position: relative;
   z-index: 1;
 }
 
-/* show the bg on hover/focus — content stays unchanged */
 .card:hover::before,
 .card:focus-within::before {
-  opacity: 1;              /* (was 6 — CSS opacity is 0..1) */
+  opacity: 1;            
   transform: scale(1.08);
 }
 
-/* hard-stop any unintended hover color changes coming from elsewhere */
 .card:hover .cardTitle,
 .card:hover .cardText,
 .card:hover .cardIcon svg {
@@ -256,53 +233,39 @@ body {
   margin-bottom: 10px;
   font-size: 12px;
 }
-/* =========================
-   Exclusive images (right stack)
-   Paste this into your HomePage.module.scss (or the file that holds .exclusiveSection)
-   ========================= */
-
-/* Smaller variant for the exclusive images */
-/* --- FIX: exclusive images sizing + safe right alignment --- */
 .exclusiveImages {
-  /* sizes */
- --topW: clamp(260px, 20vw, 360px);    /* first (big) image a bit smaller */
-  --bottomW: clamp(220px, 18vw, 300px);  /* second (small) image */
-  --overlap: 100px;                      /* keep 100px overlap */
+ --topW: clamp(260px, 20vw, 360px);    
+  --bottomW: clamp(220px, 18vw, 300px);  
+  --overlap: 100px;                     
 
-  /* keep content away from container edge */
   padding-right: clamp(8px, 2vw, 24px);
 }
 
-/* main image (on top-right) */
 .exclusiveImages .imgTop {
   width: var(--topW);
   height: auto;
   display: block;
   border-radius: 18px;
   box-shadow: 0 22px 55px rgba(6, 15, 45, .08);
-  /* no horizontal shift anymore */
 }
 
-/* overlapping image (bottom-right corner of the first) */
 .exclusiveImages .imgBottom {
   position: absolute;
-  top: calc(100% - var(--overlap));          /* 100px overlap */
+  top: calc(100% - var(--overlap));        
   right: clamp(8px, 2vw, 24px);      
-  left: clamp(228px, 2vw, 24px);           /* keep inside, not cut off */
+  left: clamp(228px, 2vw, 24px);         
   width: var(--bottomW);
   height: auto;
   border-radius: 18px;
   box-shadow: 0 22px 55px rgba(6, 15, 45, .08);
 }
 
-/* make sure the wrapping element positions children correctly */
 .exclusiveImages {
   position: relative;
   display: grid;
-  justify-content: end; /* push the block to the right within the section */
+  justify-content: end; 
 }
 
-/* responsive: stack neatly on small screens */
 @media (max-width: 900px) {
   .exclusiveImages {
     --topW: min(88%, 420px);
@@ -315,17 +278,12 @@ body {
   }
 }
 
-/* ===== Exclusive images (keep your current desktop styles) ===== */
-
-/* Ensure the wrapper can position .imgBottom */
 .exclusiveImages {
   position: relative;
   display: grid;
   justify-content: end;
-  /* your existing custom props & spacing can stay here */
 }
 
-/* Desktop/base (keep as you have it) */
 .exclusiveImages .imgTop {
   width: var(--topW);
   height: auto;
@@ -343,7 +301,6 @@ body {
   box-shadow: 0 22px 55px rgba(6, 15, 45, .08);
 }
 
-/* Tablet scaling (optional; keep if you like) */
 @media (max-width: 900px) {
   .exclusiveImages {
     --topW: min(88%, 420px);
@@ -353,7 +310,6 @@ body {
   .exclusiveImages .imgBottom { right: 12px; }
 }
 
-/* ===== PHONE: hide the second image ===== */
 @media (max-width: 746px) {
   .exclusiveText { width: 100%; }
   .sectionHeading { font-size: 28px; width: 100%; }
@@ -364,7 +320,7 @@ body {
     width: 100%;
     gap: 12px;
     align-items: center;
-    justify-content: center;   /* center the single image */
+    justify-content: center;  
     padding-right: 0;
   }
   .exclusiveImages .imgTop {
@@ -373,14 +329,13 @@ body {
     height: auto;
   }
   .exclusiveImages .imgBottom {
-    display: none !important;  /* 🔴 hide second pic on small screens */
+    display: none !important;  
   }
-/* Force WHO WE BRING block hard-left at ≤1127px */
 @media (max-width: 1127px){
   .exclusiveSection{
-    width: 100% !important;           /* stop being a 65% centered column */
-    margin: 0 !important;             /* kill margin: 0 auto */
-    padding-left: 16px !important;    /* tiny left breathing */
+    width: 100% !important;          
+    margin: 0 !important;            
+    padding-left: 16px !important;    
     justify-content: flex-start !important;
     text-align: left !important;
   }
@@ -391,7 +346,6 @@ body {
     align-items: flex-start !important;
   }
 
-  /* make all text blocks behave like full-width left-aligned blocks */
   .sectionLabel,
   .sectionHeading,
   .sectionDescription,
@@ -402,46 +356,40 @@ body {
     margin-inline: 0 !important;
     align-self: stretch !important;
     width: 100% !important;
-    justify-content: flex-start !important;  /* for .listGrid / .ctaSection */
+    justify-content: flex-start !important;  
     align-items: flex-start !important;
   }
 }
 
 
-  /* ≤1127px — force the whole “WHO WE BRING” block to align left */
 @media (max-width: 1127px) {
-  /* 1) Section & children: left align wins over body{text-align:center} */
   .exclusiveSection { text-align: left !important; }
 
-  /* 2) The flex column that contains the texts: align items to the left */
   .exclusiveSection .exclusiveText {
-    display: flex;                /* keep your layout */
+    display: flex;                
     flex-direction: column;
     align-items: flex-start !important;
   }
 
-  /* 3) Headline */
   .exclusiveSection .sectionHeading {
     text-align: left !important;
     display: block !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    width: 100%; /* optional: prevents odd centering */
+    width: 100%; 
   }
 
-  /* 4) All paragraphs in that block */
   .exclusiveSection .sectionDescription {
     text-align: left !important;
-    display: block !important;           /* defeats inline/inline-block centering */
+    display: block !important;           
     margin-left: 0 !important;
-    margin-right: 0 !important;          /* kills margin: 0 auto; */
-    margin-inline: 0 !important;         /* in case logical props are used */
-    align-self: stretch !important;      /* defeats align-self:center on any p */
-    max-width: none !important;          /* if a max-width + auto margins was used */
-    width: 100%;                          /* safe, keeps it left */
+    margin-right: 0 !important;          
+    margin-inline: 0 !important;       
+    align-self: stretch !important;     
+    max-width: none !important;         
+    width: 100%;                         
   }
 
-  /* 5) If ONLY the first paragraph is stubborn, nail it specifically */
   .exclusiveSection .sectionDescription:first-of-type {
     text-align: left !important;
     display: block !important;
@@ -451,19 +399,16 @@ body {
     align-self: flex-start !important;
   }
 
-  /* Lists & CTA align left too */
   .exclusiveSection .listGrid { justify-content: flex-start !important; }
   .exclusiveSection .ctaSection { justify-content: flex-start !important; }
 }
 
 
-  /* --- IT Services --- */
   .itServicesSection { height: auto; padding-top: 60px; }
   .itCardSection { gap: 12px; margin: 40px 0; }
   .itCard { flex: 1 1 calc(50% - 12px); max-width: 100%; }
   .itCard img { height: 160px; }
 
-  /* --- Technology Solution split --- */
   .technologySolutionSection {
     flex-direction: column;
     max-width: 100%;
@@ -484,7 +429,6 @@ body {
   .progressItem span { font-size: 13px; }
   .progressBar { height: 6px; }
 
-  /* --- Team slider (shrink cards & re-time animation) --- */
   .teamSection { margin-top: 60px; }
   .teamHeading { font-size: 28px; margin-bottom: 24px; }
   .teamSlides { width: calc(160px * 10); animation-duration: 24s; }
@@ -498,7 +442,6 @@ body {
     100% { transform: translateX(calc(-160px * 5)); }
   }
 }
-/* Center + responsive heading */
 .itServicesSection .heading {
   text-align: center;
   margin: 8px auto 0;
@@ -509,7 +452,6 @@ body {
   width: 50% !important;
 }
 
-/* Tablet and down (≤ 900px) */
 @media (max-width: 900px) {
   .itServicesSection .heading {
     font-size: clamp(22px, 4.8vw, 32px);
@@ -517,7 +459,6 @@ body {
   }
 }
 
-/* Phones (≤ 640px) */
 @media (max-width: 640px) {
   .itServicesSection .heading {
     font-size: clamp(20px, 5.2vw, 28px);
@@ -543,13 +484,9 @@ body {
     font-size: clamp(20px, 5.2vw, 28px);
     padding: 0 !important;
     margin: 0 !important;
-
-    /* 👇 allow wrapping instead of "..." */
     white-space: normal !important;
     overflow: visible !important;
     text-overflow: unset !important;
-
-    /* optional: center align if it looks better on two lines */
     text-align: center;
   }
 }
@@ -576,14 +513,12 @@ body {
   text-align: center;
   background: #ececec31;
   margin-top: 150px;
-  //  margin-bottom: 100px !important;
    --bg: var(--it-services-bg);
 
   position: relative;
   overflow: hidden;
 
-  /* base + overlay + image */
-  background-color: #fafcff; /* fallback color */
+  background-color: #fafcff; 
   background-image:
     linear-gradient(180deg, rgba(250, 251, 255, 0.418), rgba(255, 255, 255, 0.35)),
     var(--bg);
@@ -592,14 +527,8 @@ body {
   background-size: cover;
 
   padding: clamp(32px, 6vw, 72px) 16px;
-  border-radius: 16px; /* remove if full-bleed */
+  border-radius: 16px; 
 }
-// .itServicesSection .subheading,
-// .itServicesSection .heading {
-//   color: #fff;
-// }
-
-/* optional: give the cards a subtle panel feel over the bg */
 .itCardSection .itCard {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(120%) blur(2px);
@@ -625,14 +554,14 @@ body {
 
 .itCard img {
   width: 100%;
-  height: 700px;            /* ↑ make taller (try 280–360px) */
-  object-fit: cover;        /* fill without distortion */
-  border-radius: 14px;      /* optional */
+  height: 700px;           
+  object-fit: cover;      
+  border-radius: 14px;    
   display: block;
 }
 
 @media (max-width: 640px) {
-  .itCard img { height: 240px; } /* a bit shorter on mobile */
+  .itCard img { height: 240px; } 
 }
 
 
@@ -721,8 +650,7 @@ body {
   width: 26px;
   height: 26px;
   object-fit: contain;
-  flex-shrink: 0;             /* icon won’t squish */
-  /* optional if something was centering it with margin */
+  flex-shrink: 0;            
   margin: 0;     
   margin-bottom: 10px;             
 }
@@ -752,7 +680,6 @@ body {
   font-size: 12px;
 }
 
-/* === Animated progress bars === */
 .progressBars {
   margin-bottom: 20px;
 }
@@ -772,7 +699,7 @@ body {
 
 .progressBar {
   width: 100%;
-  height: 6px;                 /* a bit thicker for animation */
+  height: 6px;                 
   background: #e0e0e0;
   border-radius: 3px;
   overflow: hidden;
@@ -780,9 +707,9 @@ body {
 
 .progress {
   height: 100%;
-  background: #99171C;         /* theme color */
+  background: #99171C;        
   border-radius: 3px;
-  width: 0%;                   /* start collapsed */
+  width: 0%;                 
   transition: width 1200ms cubic-bezier(.2,.7,.2,1);
   will-change: width;
 }
@@ -798,7 +725,6 @@ body {
   line-height: 1.5;
 }
 
-/* Team Section Container */
 .teamSection {
   max-width: 1200px;
   margin: 100px auto 0 auto;
@@ -807,7 +733,6 @@ body {
   background: white;
 }
 
-/* Label above heading */
 .teamLabel {
   font-size: 11px;
   font-weight: 800;
@@ -816,7 +741,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Heading of the section */
 .teamHeading {
   font-size: 36px;
   font-weight: 500;
@@ -824,23 +748,20 @@ body {
   color: #222;
 }
 
-/* Slider Container */
 .teamSlider {
   width: 100%;
   overflow: hidden;
   position: relative;
 }
 
-/* Slides Container */
 .teamSlides {
   display: flex;
-  width: calc(220px * 10); /* 220px per card * (5 original + 5 duplicates) */
-  animation: slide 20s infinite linear; /* Adjusted for 10 cards, 2s per card */
+  width: calc(220px * 10); 
+  animation: slide 20s infinite linear; 
 }
 
-/* Individual Team Card */
 .teamCard {
-  flex: 0 0 220px; /* Fixed width for each card */
+  flex: 0 0 220px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -848,21 +769,18 @@ body {
   padding: 10px;
 }
 
-/* Team Member Image */
 .teamMember {
-  width: 100%;
-  height: 300px;
+  width: 98%;
+  height: 230px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 15px;
   filter: grayscale(100%);
-  -webkit-filter: grayscale(100%); /* Safaris */
+  -webkit-filter: grayscale(100%); 
 
-  /* Optional: fade to color on hover */
   transition: filter 250ms ease;
 }
 
-/* Name of Team Member */
 .teamName {
   font-size: 18px;
   font-weight: 600;
@@ -870,24 +788,21 @@ body {
   color: #222;
 }
 
-/* Position of Team Member */
 .teamPosition {
   font-size: 14px;
   font-weight: 400;
   color: #777;
 }
 
-/* Keyframes for Seamless Sliding Animation */
 @keyframes slide {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-220px * 5)); /* Move to the start of duplicates */
+    transform: translateX(calc(-220px * 5)); 
   }
 }
 
-/* Slider for images at top */
 .slider {
   width: 100%;
   max-width: 600px;
@@ -899,7 +814,7 @@ body {
 
 .slides {
   display: flex;
-  width: 300%; /* 3 slides */
+  width: 300%; 
   transition: transform 0.5s ease-in-out;
 }
 
@@ -913,7 +828,6 @@ body {
   display: block;
 }
 
-/* Navigation dots */
 .navigation {
   position: absolute;
   bottom: 10px;
@@ -935,12 +849,10 @@ body {
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* Radio buttons hidden */
 .slider input[type="radio"] {
   display: none;
 }
 
-/* Slider movement using :checked */
 :global(#slide1:checked) ~ .slides {
   transform: translateX(0%);
 }
@@ -953,49 +865,15 @@ body {
   transform: translateX(-200%);
 }
 
-/* Active dot style */
 :global(#slide1:checked) ~ .navigation label[for="slide1"],
 :global(#slide2:checked) ~ .navigation label[for="slide2"],
 :global(#slide3:checked) ~ .navigation label[for="slide3"] {
   background: white;
 }
-/* Frequently Asked Questions Section */
-// .faqSection {
-//   display: flex;
-//   align-items: center; /* center vertically */
-//   background: #f8fafd;
-//   padding: 3rem 2rem;
-//   border-radius: 1rem;
-//   gap: 3rem;
-// }
 
-// .experienceBadge {
-//   background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-//   color: white;
-//   font-weight: bold;
-//   font-size: 2rem;
-//   border-radius: 1rem;
-//   text-align: center;
-
-//   /* Fixed size so it's not super wide */
-//   width: 160px;
-//   height: 160px;
-
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;   
-//   justify-content: center;
-
-//   span {
-//     font-size: 0.85rem;
-//     font-weight: 400;
-//     margin-top: 0.3rem;
-//     text-transform: uppercase;
-//   }
-// }
 .faqSection {
   display: flex;
-  align-items: center; /* vertical centering of both columns */
+  align-items: center; 
   background: #f8fafd;
   padding: 3rem 2rem;
   border-radius: 1rem;
@@ -1003,10 +881,10 @@ body {
 }
 
 .badgeWrapper {
-  flex: 1; /* take up left space */
+  flex: 1; 
   display: flex;
-  justify-content: center; /* center badge horizontally */
-  align-items: center; /* center badge vertically */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .experienceBadge {
@@ -1040,17 +918,16 @@ margin-left: 430px;
   width: 50%;
   margin-left: auto;
 
-  /* Make heading and boxes align */
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* align to left inside this column */
+  align-items: flex-start;
 }
 
 .faqHeading {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  align-self: flex-start; /* ensures heading aligns with start of box */
+  align-self: flex-start; 
 }
 
 
@@ -1085,7 +962,6 @@ margin-left: 430px;
     }
   }
 
-  /* Plus sign */
   summary::after {
     content: "+";
     position: absolute;
@@ -1103,7 +979,6 @@ margin-left: 430px;
   }
 }
 
-/* Open state: plus → minus */
 .faqItem[open] summary::after {
   content: "−";
 }
@@ -1124,7 +999,7 @@ margin-left: 430px;
 
   .recentLabel {
     font-size: 10px;
-    color: #99171C; /* purple like in screenshot */
+    color: #99171C;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 1px;
@@ -1197,7 +1072,6 @@ margin-left: 430px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-//   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1241,30 +1115,26 @@ margin-left: 430px;
   color: #111827;
   margin: 0;
 }
-/* ===== Testimonial (tight + static dots) ===== */
 .testimonialSection {
   padding: 36px 0 48px;
    display: flex; flex-direction: column; align-items: center; justify-content: center;
   padding: 40px 0; background: #fff; position: relative;
 
   background-color: #cccccc33;
-  /* square + circle pattern */
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="none" stroke="%23e5e7eb" stroke-width="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23dbeafe" stroke-width="0.3"/%3E%3C/svg%3E');
   background-size: 30px 30px;
   background-repeat: repeat;
 }
-/* Testimonial pattern: white squares on light grey bg (smaller cells) */
 .testimonialSection {
-  background-color: #f3f4f6 !important; /* light grey */
+  background-color: #f3f4f6 !important;
   background-image:
-    linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0)), /* no extra wash */
+    linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0)), 
     repeating-linear-gradient(to right, rgba(255, 255, 255, 0.866) 0 1px, transparent 1px 20px),
     repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.858) 0 1px, transparent 1px 20px) !important;
-  background-size: auto, 20px 20px, 20px 20px !important; /* smaller cells */
+  background-size: auto, 20px 20px, 20px 20px !important; 
   background-repeat: no-repeat, repeat, repeat !important;
 }
 
-/* Mobile: even smaller cells so pattern still reads */
 @media (max-width: 862px) {
   .testimonialSection {
     background-image:
@@ -1278,19 +1148,18 @@ margin-left: 430px;
 .tWrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 34px 24px 56px; /* extra bottom so dots won't overlap */
+  padding: 34px 24px 56px; 
   background:
     radial-gradient(circle at 1px 1px, rgb(15, 23, 42) 1px, transparent 1px)
       0 0 / 40px 40px no-repeat;
   border-radius: 8px;
 }
 
-/* NEW: inner positioned box so pager dots can be fixed */
 .tInner {
   position: relative;
   max-width: 980px;
   margin: 0 auto;
-  min-height: 320px; /* keeps overall height steady so dots don't move */
+  min-height: 320px; 
 }
 
 .tLabel {
@@ -1308,14 +1177,14 @@ margin-left: 430px;
   text-align: center;
   color: #0f172a;
   font-weight: 500;
-  font-size: 36px; /* smaller */
+  font-size: 36px;
   line-height: 1.2;
 }
 
 .tStars {
   text-align: center;
   color: #f59e0b;
-  font-size: 12px; /* smaller */
+  font-size: 12px;
   margin: 6px 0 10px;
   letter-spacing: 1px;
 }
@@ -1325,7 +1194,7 @@ margin-left: 430px;
   margin: 0 auto 10px;
   text-align: center;
   color: #374151;
-  font-size: 14px; /* smaller */
+  font-size: 14px;
   line-height: 1.7;
 }
 
@@ -1338,7 +1207,7 @@ margin-left: 430px;
 }
 
 .tAvatar {
-  width: 70px; /* smaller avatar */
+  width: 70px; 
   height: 70px;
   border-radius: 9px;
   border: 3px solid #c3181a;
@@ -1358,7 +1227,7 @@ margin-left: 430px;
 .tName {
   color: #0f172a;
   font-weight: 800;
-  font-size: 16px; /* smaller */
+  font-size: 16px;
   line-height: 1.1;
 }
 
@@ -1367,35 +1236,29 @@ margin-left: 430px;
   font-size: 13px;
   margin-top: 2px;
 }
-
-/* Pager dots: ABSOLUTE + STATIC */
-/* Pager dots — force true 3px across both sliders */
 .tDots .tDot,
 .testimonialDots .dot {
   width: 10px !important;
   height: 10px !important;
   min-width: 3px;
   min-height: 3px;
-  display: inline-block;   /* ensure width/height apply */
-  padding: 0;              /* kill default <button> padding */
-  line-height: 0;          /* avoid vertical expansion */
+  display: inline-block; 
+  padding: 0;              
+  line-height: 0;         
   border: 0;
   border-radius: 999px;
   background: #d1d5db;
-  transform: none !important;     /* stop any scale from other rules */
+  transform: none !important;     
 }
 
-/* active states */
 .tDots .tDotActive,
 .testimonialDots .activeDot {
   background: #0f172a;
 }
 
-/* optional: tighter spacing for tiny dots */
 .tDots { gap: 6px; }
 .testimonialDots { gap: 6px; }
 
-/* ensure buttons don’t bring UA styles */
 .tDots button.tDot {
   -webkit-appearance: none;
   appearance: none;
@@ -1409,48 +1272,36 @@ margin-left: 430px;
 }
 
 
-/* ===============================
-   RESPONSIVE FIXES (as requested)
-   - Only <=1195px (FAQ center)
-   - Only <=861px (mobile tweaks)
-   =============================== */
-
-/* 1) Center the FAQ “questions” block from 1195px and below */
 @media (max-width: 1195px) {
   .faqSection {
-    flex-direction: column;       /* stack badge + questions */
-    align-items: center;          /* center the whole block */
+    flex-direction: column;    
+    align-items: center;        
     gap: 2rem;
   }
 
   .experienceBadge {
-    margin-left: 0;               /* remove hard offset */
+    margin-left: 0;             
   }
 
   .faqContent {
     width: 100%;
-    max-width: 760px;             /* nice readable width */
-    margin: 0 auto;               /* center the questions column */
-    align-items: center;          /* center internal items (heading, list) */
+    max-width: 760px;             
+    margin: 0 auto;               
+    align-items: center;          
   }
 
   .faqHeading {
     align-self: center;
-    text-align: center;           /* only the heading centered */
+    text-align: center;           
   }
 
   .faqItems {
     width: 100%;
-    max-width: 700px;             /* keep FAQ cards at a good width */
+    max-width: 700px;            
   }
 }
 
-/* =========================================================
-   MOBILE FIXES (≤ 862px) — from "WHO WE BRING" and below
-   (FAQ section untouched)
-   ========================================================= */
 @media (max-width: 862px) {
-  /* --- Exclusive Technology ("WHO WE BRING") --- */
   .exclusiveSection {
     width: 100%;
     padding: 24px 16px;
@@ -1466,9 +1317,8 @@ margin-left: 430px;
   .imgTop, .imgBottom { width: 100%; height: auto; max-width: 560px; }
   .imgBottom { align-self: stretch; }
 
-  /* --- IT Services --- */
   .itServicesSection {
-    height: auto;               /* was fixed height */
+    height: auto;              
     padding-top: 60px;
   }
   
@@ -1476,7 +1326,6 @@ margin-left: 430px;
   .itCard { flex: 1 1 calc(50% - 12px); max-width: 100%; }
   .itCard img { height: 160px; }
 
-  /* --- Technology Solution split --- */
   .technologySolutionSection {
     flex-direction: column;
     max-width: 100%;
@@ -1497,7 +1346,6 @@ margin-left: 430px;
   .progressItem span { font-size: 13px; }
   .progressBar { height: 6px; }
 
-  /* --- Team slider (shrink cards & re-time animation) --- */
   .teamSection { margin-top: 60px; }
   .teamHeading { font-size: 28px; margin-bottom: 24px; }
   .teamSlides { width: calc(160px * 10); animation-duration: 24s; }
@@ -1505,13 +1353,11 @@ margin-left: 430px;
   .teamMember { height: 220px; border-radius: 10px; }
   .teamName { font-size: 16px; }
   .teamPosition { font-size: 13px; }
-  /* re-define keyframes for the smaller card width */
   @keyframes slide {
     0%   { transform: translateX(0); }
     100% { transform: translateX(calc(-160px * 5)); }
   }
 
-  /* --- Recent Projects --- */
   .recentProjectsSection { padding: 50px 16px; }
   .recentProjectsGrid { grid-template-columns: 1fr; gap: 16px; }
   .projectImage { height: 240px; }
@@ -1523,7 +1369,6 @@ margin-left: 430px;
   }
   .projectTitle { font-size: 1rem; }
 
-  /* --- Testimonials --- */
   .testimonialSection {
     flex-direction: column;
     padding: 32px 16px;
@@ -1537,7 +1382,7 @@ margin-left: 430px;
   background-image:
     linear-gradient(180deg, rgba(15,23,42,0.06), rgba(15,23,42,0.0)),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='none' stroke='%23cbd5e1' stroke-width='1.2'/%3E%3Ccircle cx='50' cy='50' r='45' fill='none' stroke='%2394a3b8' stroke-width='0.8'/%3E%3C/svg%3E");
-  background-size: auto, 22px 22px; /* first = gradient, second = pattern */
+  background-size: auto, 22px 22px;
   background-repeat: no-repeat, repeat;
 }
 
@@ -1549,25 +1394,23 @@ margin-left: 430px;
 }
 
 
-/* tiny screens: stack all cards one-per-row + smaller team cards */
 @media (max-width: 520px) {
   .itCard { flex: 1 1 100%; }
   .sectionHeading, .technologyHeading { font-size: 24px; }
 
   .teamSlides { width: calc(140px * 10); }
   .teamCard { flex-basis: 140px; }
-  .teamMember { height: 200px; }
+  .teamMember { height: 155px; }
   @keyframes slide {
     0%   { transform: translateX(0); }
     100% { transform: translateX(calc(-140px * 5)); }
   }
 }
 
-/* place this AFTER all other .subheading rules */
 @media (min-width: 640px) and (max-width: 852px) {
   .textSection .subheading {
-    display: block;              /* ensure top margin works */
-    margin-top: 30px !important; /* beat earlier resets */
+    display: block;              
+    margin-top: 30px !important; 
   }
 }
 @media (min-width: 640px) and (max-width: 852px) {
@@ -1576,13 +1419,10 @@ margin-left: 430px;
   }
 }
 
-/* =========================================================
-   HERO (main first part) — fix ≤ 852px
-   ========================================================= */
 @media (max-width: 852px) {
   .textSection {
     margin-top: 8px;
-    padding: 140px 16px;     /* was huge horizontal padding */
+    padding: 140px 16px;    
     text-align: left;
   }
 
@@ -1592,9 +1432,9 @@ margin-left: 430px;
   }
 
   .heading1 {
-    font-size: 40px;         /* scale down headline */
+    font-size: 40px;         
     line-height: 1.15;
-    padding-left: 0 !important;  /* kill the desktop left offset */
+    padding-left: 0 !important; 
   }
 
   .button {
@@ -1604,12 +1444,11 @@ margin-left: 430px;
   .button:hover
    .button:visited,
   .button:active{
-    color: inherit;           /* use parent text color */
+    color: inherit;           
   text-decoration: none;   
   }
 }
 
-/* smaller phones */
 @media (max-width: 520px) {
   .textSection {
     padding: 100px 14px;
@@ -1619,16 +1458,12 @@ margin-left: 430px;
   }
 }
 
-
-/* =========================================================
-   CARD SECTION — fix ≤ 852px
-   ========================================================= */
 @media (max-width: 852px) {
   .cardSection {
     width: 100%;
-    padding: 16px;           /* remove giant padding value */
+    padding: 16px;         
     gap: 12px;
-    flex-wrap: wrap;         /* allow wrapping */
+    flex-wrap: wrap;        
     justify-content: center;
   }
   .card {
@@ -1641,7 +1476,6 @@ margin-left: 430px;
   .cardText  { font-size: 12px; }
 }
 
-/* 1-per-row on small phones */
 @media (max-width: 520px) {
   .card {
     flex: 1 1 100%;
@@ -1650,9 +1484,6 @@ margin-left: 430px;
 }
 
 
-/* =========================================================
-   RECENT PROJECTS — fix ≤ 746px
-   ========================================================= */
 @media (max-width: 746px) {
   .recentProjectsSection {
     padding: 40px 16px;
@@ -1662,28 +1493,24 @@ margin-left: 430px;
     margin-bottom: 28px;
   }
   .recentProjectsGrid {
-    grid-template-columns: 1fr;   /* single column */
+    grid-template-columns: 1fr;   
     gap: 16px;
   }
   .projectImage {
-    height: 240px !important;     /* reduce tall images */
+    height: 240px !important;   
   }
-  /* make overlay card fill nicely without overflow */
   .cardContent {
     left: 12px;
     right: 12px;
     bottom: -14px;
     width: auto;
-    transform: none;               /* override translateX(-50%) */
+    transform: none;              
     padding: 16px 18px;
     border-radius: 14px;
   }
   .projectTitle { font-size: 1rem; }
   .projectCategory { font-size: 0.7rem; }
 }
-/* =========================================================
-   RECENT PROJECTS — fix text overflow & hidden image (≤746px)
-   ========================================================= */
 @media (max-width: 746px) {
   .recentProjectsSection { padding: 36px 16px; }
 
@@ -1697,12 +1524,11 @@ margin-left: 430px;
   }
 
   .projectImage {
-    height: 240px !important;   /* override inline 380px */
+    height: 240px !important;  
     display: block;
     border-radius: 16px;
   }
 
-  /* Remove overlay on small screens; place text under image */
   .cardContent {
     position: static !important;
     left: auto !important;
@@ -1722,12 +1548,10 @@ font-size: 10px !important;
     margin-bottom: 6px;
   }
 
-  /* Clamp long titles so they don't push the image off-screen */
   .projectTitle {
     font-size: 10px !important;
     line-height: 1.3;
     display: -webkit-box;
-    // -webkit-line-clamp: 2;       /* max 2 lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1735,21 +1559,17 @@ font-size: 10px !important;
     margin: 0;
   }
 }
-/* --- Recent Projects: force one-per-row at ≤564px --- */
 @media (max-width: 564px) {
-  /* beat the earlier ".recentProjectsSection .recentProjectsGrid { display:flex }" */
   .recentProjectsSection .recentProjectsGrid {
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 14px;
   }
 
-  /* safety: if flex still applies, stack anyway */
   .recentProjectsSection .recentProjectsGrid {
     flex-direction: column !important;
   }
 
-  /* undo the 33.33% flex-basis from the nested rule */
   .recentProjectsSection .projectCard {
     flex: 0 0 auto !important;
     width: 100% !important;
@@ -1761,7 +1581,6 @@ font-size: 10px !important;
     height: 220px !important;
   }
 
-  /* put text below image so nothing overlaps on small screens */
   .recentProjectsSection .cardContent {
     position: static !important;
     transform: none !important;
@@ -1817,16 +1636,12 @@ font-size: 10px !important;
 
     .cardText {
       opacity: 1;
-      max-height: 200px; // enough to show the text
+      max-height: 200px; 
       margin-bottom: 16px;
     }
   }
 }
-/* ================================
-   WHAT OUR CUSTOMERS SAY — slider
-   ================================ */
 .tWrap {
-  // background: #fff;
   padding: 56px 20px 72px;
 }
 
@@ -1837,7 +1652,6 @@ font-size: 10px !important;
   position: relative;
 }
 
-/* Title + small red mark */
 .tTitle {
   text-transform: uppercase;
   font-weight: 800;
@@ -1854,21 +1668,18 @@ font-size: 10px !important;
   width: 1ch;
 }
 
-/* Slide */
 .tSlide {
   display: grid;
   justify-items: center;
   gap: 16px;
 }
 
-/* Logo */
 .tLogo {
   height: clamp(42px, 7vw, 78px);
   width: auto;
   user-select: none;
 }
 
-/* Quote */
 .tQuote {
   max-width: 900px;
   margin: 8px auto 4px;
@@ -1878,7 +1689,6 @@ font-size: 10px !important;
   letter-spacing: .005em;
 }
 
-/* Company + Country */
 .tFoot { display: grid; gap: 4px; }
 
 .tCompany {
@@ -1894,7 +1704,6 @@ font-size: 10px !important;
   font-size: clamp(13px, 1.5vw, 18px);
 }
 
-/* Arrows */
 .tNav {
   position: absolute;
   top: 50%;
@@ -1924,7 +1733,6 @@ font-size: 10px !important;
   .tNext { right: -48px; }
 }
 
-/* Dots */
 .tDots {
   display: flex;
   gap: 8px;
@@ -1943,10 +1751,6 @@ font-size: 10px !important;
 .tDot:hover { transform: scale(1.1); }
 .tDotActive { background: #111827; }
 
-
-/* ==============
-   Contact block
-   ============== */
 .contactShell { padding: 56px 0; }
 
 .contactGrid {
@@ -1976,7 +1780,6 @@ font-size: 10px !important;
 .cLabel { font-weight: 500; font-size: 14px; color: #111827; }
 .cValue { color: #98a3b7; font-size: 13px; }
 
-/* Right column (form) */
 .cRight { align-self: start;margin-right: 60px; }
 .cCard {
   width: 100%; background: #fff; border-radius: 18px; padding: 44px;
@@ -2017,7 +1820,6 @@ font-size: 10px !important;
 
 .cDisabled { opacity: .6; pointer-events: none; }
 
-/* responsive */
 @media (max-width: 1080px){
   .contactGrid { grid-template-columns: 1fr; gap: 28px; }
   .cRight { order: 2; }
@@ -2060,9 +1862,9 @@ font-size: 10px !important;
   filter: brightness(1.03);
 }
 .cardLink {
-  text-decoration: none;        /* remove underline */
-  color: inherit;               /* keep text color */
-  display: block;               /* make the whole card clickable area */
+  text-decoration: none;     
+  color: inherit;               
+  display: block;              
 }
 
 .itCard {
@@ -2073,21 +1875,18 @@ font-size: 10px !important;
     box-shadow: 0 8px 22px rgba(0,0,0,.12);
   }
 }
-/* opsionale, nëse do logo katrore */
 .authorImage { border-radius: 8px; /* ose 0 */ }
-/* Only this instance gets the background */
 .textSectionHero {
-  /* receive the image from inline style */
   --hero-bg: none;
 
   position: relative;
-  min-height: 420px;         /* adjust height as you like */
-  padding: 80px 24px;        /* breathing room */
+  min-height: 420px;         
+  padding: 80px 24px;       
   display: grid;
   place-items: center;
   text-align: center;
   color: #fff;
-  border-radius: 20px;       /* optional */
+  border-radius: 20px;      
   overflow: hidden;
 
   background-image: var(--hero-bg);
@@ -2096,7 +1895,6 @@ font-size: 10px !important;
   background-repeat: no-repeat;
 }
 
-/* soft dark overlay so text reads well */
 .textSectionHero::before {
    content: "";
   position: absolute;
@@ -2104,7 +1902,6 @@ font-size: 10px !important;
    background-color: rgba(128, 19, 23, 0.5);
   pointer-events: none;
 }
-/* keep the content above the overlay */
 .textSectionHero > * {
   position: relative;
   z-index: 1;
@@ -2115,7 +1912,6 @@ font-size: 10px !important;
   text-decoration: underline;
 }
 
-/* optional: bigger headline when used as hero */
 .textSectionHero .heading1 {
   font-size: clamp(36px, 6vw, 64px);
   font-weight: 800;
@@ -2128,7 +1924,6 @@ font-size: 10px !important;
   opacity: .95;
 }
 
-/* optional button contrast tweak on dark bg */
 .textSectionHero .button {
   background: #fff;
   color: #111827;
@@ -2144,9 +1939,9 @@ font-size: 10px !important;
   padding:12px 22px;
   background:linear-gradient(135deg,var(--brand),var(--brand-dark));
   color:#fff;
-  text-decoration:none;        /* remove link underline */
+  text-decoration:none;       
   border:none;
-  border-radius:9999px;        /* ← pill/capsule */
+  border-radius:9999px;       
   font-weight:700;
   font-size:12px;
   cursor:pointer;
@@ -2161,36 +1956,33 @@ font-size: 10px !important;
 
 .ctaArrow{ transition:transform .25s ease; }
 .ctaButton:hover .ctaArrow{ transform:translateX(4px); }
-/* ===== Contact form responsiveness & compact mobile layout ===== */
 
-/* Tablet and down */
 @media (max-width: 900px) {
   .contactShell { padding: 28px 0; }
 
   .contactGrid {
-    grid-template-columns: 1fr;   /* stack columns */
+    grid-template-columns: 1fr;  
     gap: 18px;
-    padding: 0 12px;              /* tighter side padding */
+    padding: 0 12px;              
   }
 
   .cLeft,
   .cRight {
-    margin: 0 !important;         /* kill custom margins */
+    margin: 0 !important;         
     width: 100% !important;
   }
 
   .cCard {
-    padding: 22px;                /* reduce card padding */
+    padding: 22px;              
     border-radius: 14px;
   }
 
   .cTitle { font-size: 18px; }
   .cNote  { font-size: 12px; }
 
-  .cGrid2 { grid-template-columns: 1fr; } /* inputs full width */
+  .cGrid2 { grid-template-columns: 1fr; }
 }
 
-/* Phones */
 @media (max-width: 640px) {
   .contactShell { padding: 16px 0; }
 
@@ -2212,7 +2004,7 @@ font-size: 10px !important;
   .cForm { gap: 10px; }
   .cInput {
     padding: 8px 10px;
-    font-size: 12px;              /* smaller field text */
+    font-size: 12px;           
     border-radius: 10px;
   }
   .cTextarea { min-height: 96px; }
@@ -2228,7 +2020,6 @@ font-size: 10px !important;
   .cSubmitArrow { width: 18px; height: 18px; font-size: 11px; }
 }
 
-/* Extra-small phones */
 @media (max-width: 380px) {
   .contactGrid { padding: 0 6px; }
   .cCard { padding: 12px; }
@@ -2237,8 +2028,8 @@ font-size: 10px !important;
   .cSubmit { padding: 9px 12px; font-size: 10.5px; }
 }
 .toastOk {
-  color: #0a7a28;                /* green text */
-  font-weight: 700;              /* bold */
+  color: #0a7a28;                
+  font-weight: 700;              
   background: rgba(16,185,129,.12);
   border: 1px solid rgba(16,185,129,.35);
   padding: 10px 12px;

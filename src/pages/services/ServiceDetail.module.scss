@@ -6,23 +6,16 @@
   --muted: #4b5563;
 }
 
-/* ===== HERO (band full-bleed, content centered) ===== */
 .hero {
   position: relative;
   overflow: hidden;
 }
 
 .band {
-//   position: relative;
-//   left: 50%;
-//   right: 50%;
-  width: 100dvw;
-//   margin-left: -50dvw;
-//   margin-right: -50dvw;
 
+  width: 100dvw;
   background: var(--red);
   color: #fff;
-
   display: grid;
   place-items: center;
   text-align: left;
@@ -48,7 +41,6 @@
   display: block;
 }
 
-/* ===== CONTENT WRAPS ===== */
 .cardsWrap,
 .process,
 .backRow {
@@ -70,7 +62,6 @@
   gap: clamp(14px, 2vw, 22px);
 }
 
-/* ===== Cards ===== */
 .card {
   background: #fff;
   border-radius: 14px;
@@ -98,7 +89,6 @@
   line-height: 1.55;
 }
 
-/* ===== Process ===== */
 .process {
   margin: 34px auto 8px;
 }
@@ -153,7 +143,6 @@
   margin-top: 2px;
 }
 
-/* ===== Back link ===== */
 .backRow { margin: 28px auto 64px; }
 
 .backLink {
@@ -164,11 +153,6 @@
 }
 .backLink:hover { text-decoration: underline; }
 
-/* =========================================================
-   PAGE-LOCAL FOOTER FIX (no global CSS touched)
-   Adds full-bleed only while this page is mounted.
-   We use :global so it compiles with CSS Modules.
-   ========================================================= */
 :global(body.sdBleed > footer) {
   position: relative;
   left: 50%;
@@ -178,7 +162,6 @@
   margin-right: -50dvw;
 }
 
-/* If your footer has an inner container, keep it centered */
 :global(body.sdBleed > footer .container),
 :global(body.sdBleed > footer .inner),
 :global(body.sdBleed > footer .wrap) {
@@ -186,17 +169,15 @@
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-/* Hero container */
 .pageHero {
   position: relative;
-  isolation: isolate; /* keeps z-index stacking clean */
+  isolation: isolate; 
   min-height: 44vh;
   display: grid;
   align-items: end;
   overflow: hidden;
 }
 
-/* Background image */
 .heroBg {
   position: absolute;
   inset: 0;
@@ -206,7 +187,6 @@
   z-index: 0;
 }
 
-/* The red overlay (0.5 opacity) */
 .heroShade {
   position: absolute;
   inset: 0;
@@ -218,14 +198,12 @@
   pointer-events: none;
 }
 
-/* Optional decorative layer if you keep it */
 .heroDecor {
   position: absolute;
   inset: 0;
-  z-index: 1; /* same layer as shade; adjust if needed */
+  z-index: 1; 
 }
 
-/* Content on top of the overlay */
 .heroContainer {
   position: relative;
   z-index: 2;
