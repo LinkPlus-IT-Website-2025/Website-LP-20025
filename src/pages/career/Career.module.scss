@@ -209,6 +209,51 @@
     margin-top: 20px;
   }
 }
+@media (max-width: 440px){
+  .grid{
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  .h1{
+    font-size: 29px;
+  }
+
+  .intro{
+    padding: 24px 0 8px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 390px){
+  .grid{
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  .h1{
+    font-size: 26px;
+  }
+
+  .intro{
+    padding: 24px 0 8px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 360px){
+  .grid{
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  .h1{
+    font-size: 24px;
+  }
+
+  .intro{
+    padding: 24px 0 8px;
+    margin-top: 20px;
+  }
+}
 
 .hero .container{
   position: relative;

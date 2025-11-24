@@ -30,7 +30,6 @@ import lpLogo from "../../assets/images/lp-logo.png";
 const { Header } = Layout;
 const { Text } = Typography;
 
-/* ---------- inline styles that are still ok ---------- */
 const WRAP: CSSProperties = {
   position: "absolute",
   top: 0,

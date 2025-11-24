@@ -24,7 +24,7 @@ const members: Member[] = [
   {
     photo: ermalSadiku,
     name: "Ermal Sadiku",
-    role: "Managing partner",
+    role: "Managing Partner",
     social: { linkedin: "https://www.linkedin.com/in/ermal-sadiku" },
   },
     {

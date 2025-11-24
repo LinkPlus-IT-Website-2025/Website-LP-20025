@@ -952,3 +952,7 @@ html, body {
     margin-bottom: 15px;
   }
 }
+@media (max-width:440px){ .ctaSection{ justify-content:left; } }
+.ctaButton{
+  display:inline-flex; gap:10px; align-items:left; cursor:pointer;
+}

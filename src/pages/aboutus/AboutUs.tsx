@@ -23,8 +23,8 @@ import aboutushero from "../../assets/images/aboutushero.jpg";
 import teamDiscussion from "../../assets/images/teamdiscussion.webp";
 
 const teamMembers = [
-  { image: ermalSadiku, name: "Ermal Sadiku", position: "Partner" },
-  { name: "Lulzim Ibrahimi", position: "Managing partner" },
+  { image: ermalSadiku, name: "Ermal Sadiku", position: "Managing Partner" },
+  { name: "Lulzim Ibrahimi", position: "Partner" },
   { image: ilirianaIbraj, name: "Iliriana Ibraj", position: "Chief Business Development Officer" },
   { image: aleksandarIlioski, name: "Aleksandar Ilioski", position: "Country Manager" },
   { image: leonaTahiri, name: "Leona Tahiri", position: "Business Development Representative" },
