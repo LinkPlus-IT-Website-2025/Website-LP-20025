@@ -1421,7 +1421,7 @@ margin-left: 430px;
 
 @media (max-width: 852px) {
   .textSection {
-    margin-top: 8px;
+    margin-top: 0px;
     padding: 140px 16px;    
     text-align: left;
   }
@@ -1833,6 +1833,16 @@ font-size: 10px !important;
   .cLabel{ font-size: 15px; }
   .cValue{ font-size: 13px; }
 }
+@media (max-width: 733px){
+  .ctaButton{ padding: 1px 22px !important; 
+  margin-top: 20px;}
+ 
+}
+@media (max-width: 440px){
+  .ctaButton{ padding: 1px 22px !important; 
+  margin-top: 20px;}
+ 
+}
 @media (max-width: 390px){
   .ctaButton{ padding: 1px 22px !important; 
   margin-top: 20px;}
@@ -2035,3 +2045,11 @@ font-size: 10px !important;
   padding: 10px 12px;
   border-radius: 8px;
 }
+// .buttonreadmore{
+//   padding: 1px;
+// }
+// @media (max-width: 430px) {
+// .buttonreadmore{
+//   padding: 1px;
+// }
+// }

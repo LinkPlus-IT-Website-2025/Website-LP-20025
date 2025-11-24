@@ -30,8 +30,6 @@ body {
   width:520px; height:520px; border-radius:24px;
   transform:rotate(35deg); filter:blur(.4px);
 }
-// .heroDecor::before{ left:-180px; top:-180px; background:linear-gradient(135deg,#3b82f6,#9333ea); opacity:.35; }
-// .heroDecor::after{ right:-180px; top:-80px; background:linear-gradient(135deg,#22d3ee,#6366f1); opacity:.45; }
 .heroInner {
   position:relative; z-index:2; width:100%; max-width:1240px;
   margin:0 auto; padding:0 24px; color:#fff; text-align:center;
@@ -43,7 +41,6 @@ body {
 
 .wrap{
   width: 100%;
-  // margin: 200px;
   margin-bottom: 130px !important;
   margin-top: 100px !important;
   padding: 0 24px;
@@ -56,27 +53,22 @@ body {
 }
 @media (max-width: 1490px){
   .wrap{ 
-    // margin: 85px; 
 margin-top: 80px !important;}
 }
 @media (max-width: 1463px){
   .wrap{ 
-    // margin: 80px; 
 margin-top: 60px !important;}
 }
 @media (max-width: 1400px){
   .wrap{ 
-    // margin: 50px;
 margin-top: 50px !important; }
 }
 @media (max-width: 1360px){
   .wrap{ 
-    // margin: 20px; 
 margin-top: 40px !important;}
 }
 @media (max-width: 1285px){
   .wrap{ 
-    // margin: 5px; 
 margin-top: 80px !important;}
 }
 
@@ -171,7 +163,6 @@ margin-top: 80px !important;}
   margin-bottom: 48px;
 }
 
-/* ===== Process Section ===== */
 .process {
   width: 100%;
   display: flex;
@@ -204,7 +195,6 @@ margin-top: 80px !important;}
   margin-bottom: 12px;
 }
 
-/* Circle + Arc + Icon */
 .stepCircle {
   position: relative;
   width: clamp(140px, 16vw, 200px);
@@ -232,7 +222,6 @@ margin-top: 80px !important;}
   z-index: 2;
 }
 
-/* Texts */
 .stepSub {
   color: #4b5563;
   font-size: clamp(13px, 1.4vw, 15px);
@@ -246,7 +235,6 @@ margin-top: 80px !important;}
   font-size: clamp(13px, 1.5vw, 15px);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .processInner {
     flex-wrap: wrap;
@@ -273,7 +261,6 @@ margin-top: 80px !important;}
   margin-bottom: 48px;
 }
 
-/* ===== Process Section ===== */
 .process {
   width: 100%;
   display: flex;
@@ -307,18 +294,14 @@ margin-top: 80px !important;}
   margin-bottom: 12px;
 }
 
-/* Circle + Arc + Icon */
-/* ===== Circle + Arc + Icon (smaller) ===== */
 .stepCircle {
   position: relative;
-  /* was clamp(140px, 16vw, 200px) */
   width: clamp(110px, 12vw, 150px);
   height: clamp(110px, 12vw, 150px);
   border-radius: 50%;
-  /* was 2px */
   border: 1.5px solid #e6e7eb;
   background: #fff;
-  margin: 0 auto 10px; /* a touch tighter */
+  margin: 0 auto 10px; 
   display: grid;
   place-items: center;
 }
@@ -327,28 +310,23 @@ margin-top: 80px !important;}
   position: absolute;
   top: 50%;
   left: 50%;
-  /* was 82% */
   width: 76%;
   height: 76%;
   transform: translate(-50%, -50%);
 }
 
 .stepIcon {
-  /* was clamp(52px, 5.5vw, 70px) */
   width: clamp(40px, 4.2vw, 56px);
   height: clamp(40px, 4.2vw, 56px);
   z-index: 2;
 }
 
-/* optional: pull cards a bit closer when circles get smaller */
 .processInner {
-  gap: 28px; /* was 40px */
+  gap: 28px;
 }
 
-/* keep small screens balanced */
 @media (max-width: 900px) {
   .stepCircle {
-    /* was 160px */
     width: 130px;
     height: 130px;
   }
@@ -368,7 +346,6 @@ margin-top: 80px !important;}
   font-size: clamp(13px, 1.5vw, 15px);
 }
 
-/* WHAT WE USE SECTION */
 .stackSection {
   text-align: center;
   margin-top: 30px;
@@ -421,7 +398,6 @@ margin-top: 80px !important;}
 
 .accordion summary::-webkit-details-marker { display: none; }
 
-/* Default shows + ; when section is open it shows – */
 .toggle::before { content: '+'; }
 .accordion details[open] summary .toggle::before { content: '–'; }
 
@@ -457,17 +433,9 @@ margin-top: 80px !important;}
 .content p {
   margin: 0;
 }
-/* =========================================================
-   RESPONSIVE OVERRIDES — ONLY ≤ 1011px
-   (Append these at the very end of your file)
-   ========================================================= */
-
-/* ===== Base container breathing ===== */
 @media (max-width: 1011px){
-  /* keep hero from creating a horizontal scrollbar on some devices */
   .hero{ width: 100%; }
 
-  /* safe content frame */
   .heroInner,
   .wrap,
   .processInner,
@@ -476,7 +444,7 @@ margin-top: 80px !important;}
     margin-left: auto;
     margin-right: auto;
     padding-left: 20px;
-    padding-right: 24px; /* a bit more on right so nothing feels cut */
+    padding-right: 24px; 
   }
 
   .wrap{
@@ -484,10 +452,7 @@ margin-top: 80px !important;}
     margin-bottom: 100px !important;
   }
 
-  /* ===== GRID (Services cards) =====
-     Switch to 2 columns and let cards shrink safely */
   .grid{
-    /* force grid mode at this width */
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 36px 24px;
@@ -499,20 +464,18 @@ margin-top: 80px !important;}
   .card{ width: 100%; max-width: 420px; }
   .thumb{ aspect-ratio: 16 / 10; }
 
-  /* ===== PROCESS =====
-     Wrap items, smaller circles so four steps fit comfortably */
   .process{ margin-top: 48px; }
   .processInner{
-    display: flex;            /* keep your flex scroller behavior */
-    flex-wrap: wrap;          /* but allow wrapping here */
-    gap: 28px;                /* tighter gaps */
-    justify-content: center;  /* center rows */
+    display: flex;            
+    flex-wrap: wrap;         
+    gap: 28px;              
+    justify-content: center;  
     padding-left: 20px;
     padding-right: 24px;
   }
 
   .step{
-    flex: 1 1 260px;         /* let them wrap as 2×2 grid feel */
+    flex: 1 1 260px;         
     min-width: 240px;
   }
 
@@ -524,14 +487,11 @@ margin-top: 80px !important;}
   .stepArc{ width: 76%; height: 76%; }
   .stepIcon{ width: 52px; height: 52px; }
 
-  /* ===== WHAT WE USE ===== */
   .stackSection{ margin-top: 10px; }
   .accordion{ max-width: 620px; }
 }
 
-/* ===== Narrow tablets / large phones (≤ 811px) ===== */
 @media (max-width: 811px){
-  /* Cards → single column */
   .grid{
     grid-template-columns: 1fr;
     gap: 28px 20px;
@@ -546,7 +506,6 @@ margin-top: 80px !important;}
     padding-right: 22px;
   }
 
-  /* Process tighter */
   .processInner{
     gap: 24px;
     padding-left: 18px;
@@ -558,7 +517,6 @@ margin-top: 80px !important;}
   .stepIcon{ width: 46px; height: 46px; }
 }
 
-/* ===== Phones (≤ 720px) ===== */
 @media (max-width: 720px){
   .heroInner{ padding-left: 18px; padding-right: 20px; }
   .wrap{ padding-left: 18px; padding-right: 20px; }
@@ -576,7 +534,6 @@ margin-top: 80px !important;}
   .stackText{ margin-bottom: 28px; }
 }
 
-/* ===== Small phones (≤ 560px) ===== */
 @media (max-width: 560px){
   .wrap{
     margin-top: 40px !important;
@@ -600,7 +557,6 @@ margin-top: 80px !important;}
   .accordion{ max-width: 520px; }
 }
 
-/* ===== Very small phones (≤ 420px) ===== */
 @media (max-width: 420px){
   .heroInner,
   .wrap,
@@ -614,26 +570,21 @@ margin-top: 80px !important;}
   .stepCircle{ width: 104px; height: 104px; }
   .stepIcon{ width: 36px; height: 36px; }
 }
-/* Force-zoom ONLY the 2nd service card image */
 .grid > a:nth-child(2) .thumb { overflow: hidden; } /* safety */
 .grid > a:nth-child(2) .thumb img {
   transform: scale(1.12) !important;   /* base zoom */
   transform-origin: center center;
 }
 
-/* optional: a little extra on hover */
 .grid > a:nth-child(2):hover .thumb img {
   transform: scale(1.16) !important;
 }
-/* Grid for the 6 scroller cards: 3 columns, 20px gap */
 .scrollerGrid {
   display: grid;
   grid-template-columns: repeat(3, 350px);
   justify-content: center;
   gap: 20px; /* exactly 20px between cards */
 }
-/* --- Force the PM (Agile & Scrum Methods) SVG to a bigger, uniform size --- */
-/* hit it by src, alt text, and by “last card” position to beat any internal rules */
 .scrollerGrid img[src*="Group 31 (5).svg"],
 .scrollerGrid > *:last-child img[alt*="Agile"],
 .scrollerGrid > *:last-child img[alt*="Scrum"] {
@@ -645,7 +596,6 @@ margin-top: 80px !important;}
   margin: 8px auto 10px !important;
 }
 
-/* some scroller components cap their logo wrapper; lift those caps just for the last card */
 .scrollerGrid > *:last-child [class*="logo"],
 .scrollerGrid > *:last-child [class*="image"],
 .scrollerGrid > *:last-child [class*="media"] {
@@ -661,33 +611,23 @@ margin-top: 80px !important;}
 @media (max-width: 760px) {
   .scrollerGrid { grid-template-columns: 350px; }
 }
-/* existing styles ... */
-/* Tighten ONLY the intro block above the 6 cards */
 .stackIntroTight {
-  margin: 12px 0 8px !important;   /* was ~100px top/bottom */
+  margin: 12px 0 8px !important;   
   padding: 30px !important;
 }
 
 .stackIntroTight .stackTitle {
-  margin: 0 0 6px !important;      /* reduce title–paragraph gap */
+  margin: 0 0 6px !important;     
 }
 
 .stackIntroTight .stackText {
-  margin: 0 !important;    /* kill paragraph bottom margin */
+  margin: 0 !important;   
 }
 
-/* Reduce the gap before the 6-card grid too */
 .afterIntroTight {
   margin-top: 12px !important;     /* was big; make it small */
 }
 
-/* If your global .wrap added extra spacing, neutralize it here */
-// .wrap {
-  /* leave your horizontal padding if you need it */
-  /* padding: 0 24px; */
-// }
-
-/* Center the intro paragraph */
 .stackIntroTight {
   text-align: center;                 /* center contents */
 }
@@ -698,24 +638,13 @@ margin-top: 80px !important;}
   margin-right: auto !important;
   max-width: 900px;                   /* optional: nicer line length */
 }
-/* Move the whole arrow+logo row down */
 .logoRow {
   padding-top: 15px !important;   /* shifts arrows + logo by 5px */
 }
 
-/* If you want ONLY the logo 5px lower (leave arrows as-is), use this instead: */
-/* .logoHolder { transform: translateY(5px) !important; } */
-
-/* If you also want to force arrows down explicitly (AntD can fight margins), add: */
 .chevBtn {
   transform: translateY(15px) !important;
 }
-/* ================================
-   TABLET & MOBILE ONLY OVERRIDES
-   (append at end of file)
-   ================================ */
-
-/* Narrow tablets / small desktops */
 @media (max-width: 1011px){
   .hero { width: 100%; }
 
@@ -735,7 +664,6 @@ margin-top: 80px !important;}
     margin-bottom: 100px !important;
   }
 
-  /* Service cards → 2 columns */
   .grid{
     display: grid !important;
     width: 100% !important;
@@ -748,7 +676,6 @@ margin-top: 80px !important;}
   .card{ width: 100%; max-width: 420px; }
   .thumb{ aspect-ratio: 16 / 10; }
 
-  /* Process wraps neatly */
   .process{ margin-top: 48px; }
   .processInner{ flex-wrap: wrap; gap: 28px; justify-content: center; }
   .step{ flex: 1 1 260px; min-width: 240px; }
@@ -757,13 +684,10 @@ margin-top: 80px !important;}
   .stepArc{ width: 76%; height: 76%; }
   .stepIcon{ width: 52px; height: 52px; }
 
-  /* TechScroller cards → 2 columns */
   .scrollerGrid { grid-template-columns: repeat(2, 350px); }
 }
 
-/* Tablets / large phones */
 @media (max-width: 811px){
-  /* Service cards → single column full width */
   .grid{
     grid-template-columns: 1fr;
     gap: 28px 20px;
@@ -785,11 +709,9 @@ margin-top: 80px !important;}
   .stepCircle{ width: 130px; height: 130px; }
   .stepIcon{ width: 46px; height: 46px; }
 
-  /* TechScroller cards → single column */
   .scrollerGrid { grid-template-columns: 350px; }
 }
 
-/* Phones */
 @media (max-width: 720px){
   .heroInner{ padding-left: 18px; padding-right: 20px; }
   .wrap{ padding-left: 18px; padding-right: 20px; }
@@ -804,7 +726,6 @@ margin-top: 80px !important;}
   .stackText{ margin-bottom: 28px; }
 }
 
-/* Small phones */
 @media (max-width: 560px){
   .wrap{
     margin-top: 40px !important;
@@ -828,7 +749,6 @@ margin-top: 80px !important;}
   .accordion{ max-width: 520px; }
 }
 
-/* Very small phones */
 @media (max-width: 420px){
   .heroInner,
   .wrap,
@@ -852,7 +772,6 @@ margin-top: 80px !important;}
     padding: 0 20px;
   }
 
-  /* Services cards → neat 2 columns, centered, no overflow */
   .grid {
     grid-template-columns: repeat(2, minmax(320px, 1fr));
     gap: 28px 24px;
@@ -868,7 +787,6 @@ margin-top: 80px !important;}
     border-radius: var(--cardRadius);
   }
 
-  /* Six scroller cards → also 2 columns */
   .scrollerGrid {
     grid-template-columns: repeat(2, minmax(320px, 1fr));
     gap: 36px 28px;
@@ -877,11 +795,9 @@ margin-top: 80px !important;}
   }
   .scrollerGrid > * { min-width: 0; }   /* prevents tiny overflow pushes */
 
-  /* Ensure media never forces a wider line */
   img, svg { max-width: 100%; height: auto; display: block; }
 }
 
-/* ✅ NEW: MOBILE-ONLY MARGIN-TOP FIX */
 @media (max-width: 720px){
   .wrap{
     margin-top: 30px !important;
