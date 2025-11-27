@@ -226,7 +226,7 @@ const AboutUs: React.FC = () => {
               </p>
               <div className={styles.ctaSection}>
                 <Link
-                  to="/portofolio"
+                  to="/portfolio"
                   className={styles.ctaButton}
                   role="link"
                   aria-label="More about us"
@@ -578,7 +578,7 @@ const AboutUs: React.FC = () => {
           </h2>
           <Link
             to="/contactus"
-            className={styles.ctaButton}
+            className={styles.ctaButtonend}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             GET IN TOUCH ↗

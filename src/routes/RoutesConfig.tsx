@@ -1,7 +1,7 @@
 import AboutUs from "@pages/aboutus/AboutUs";
 import Career from "@pages/career/Career";
 import HomePage from "@pages/homepage/HomePage";
-import Portofolio from "@pages/portofolio/Portofolio";
+import Portfolio from "@pages/portofolio/Portofolio";
 import Services from "@pages/services/Services";
 import Blog from "@pages/blog/Blog"
 import Footer from "@components/footer/Footer";
@@ -29,7 +29,7 @@ const RoutesConfig = () => {
       <Route element={<WithHeaderLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/portofolio" element={<Portofolio />} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/services" element={<Services />} />
          <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/career" element={<Career />} />
