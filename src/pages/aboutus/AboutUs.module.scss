@@ -952,3 +952,61 @@ html, body {
     margin-bottom: 15px;
   }
 }
+@media (max-width:440px){ .ctaSection{ justify-content:left; } }
+.ctaButton{
+  display:inline-flex; gap:10px; align-items:left; cursor:pointer;
+}
+.ctaButtonend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.9rem 2.8rem;      // same “pill” size
+  border-radius: 999px;
+
+  background: #99171c;         // LinkPlus red
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  font-size: 0.875rem;         // ~14px
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  // if you ever put an icon/arrow element inside
+  gap: 0.5rem;
+
+  &:hover {
+    background: #b31d22;       // slightly lighter red
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px #ffffff,
+      0 0 0 4px rgba(153, 23, 28, 0.9);
+  }
+}
+
+/* optional: slightly smaller on very small phones */
+@media (max-width: 480px) {
+  .ctaButtonend {
+    padding: 0.8rem 2.2rem;
+    font-size: 0.8rem;
+  }
+}

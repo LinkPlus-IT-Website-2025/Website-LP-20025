@@ -1421,7 +1421,7 @@ margin-left: 430px;
 
 @media (max-width: 852px) {
   .textSection {
-    margin-top: 8px;
+    margin-top: 0px;
     padding: 140px 16px;    
     text-align: left;
   }
@@ -1833,6 +1833,16 @@ font-size: 10px !important;
   .cLabel{ font-size: 15px; }
   .cValue{ font-size: 13px; }
 }
+@media (max-width: 733px){
+  .ctaButton{ padding: 1px 22px !important; 
+  margin-top: 20px;}
+ 
+}
+@media (max-width: 440px){
+  .ctaButton{ padding: 1px 22px !important; 
+  margin-top: 20px;}
+ 
+}
 @media (max-width: 390px){
   .ctaButton{ padding: 1px 22px !important; 
   margin-top: 20px;}
@@ -2034,4 +2044,87 @@ font-size: 10px !important;
   border: 1px solid rgba(16,185,129,.35);
   padding: 10px 12px;
   border-radius: 8px;
+}
+// .buttonreadmore{
+//   padding: 1px;
+// }
+// @media (max-width: 430px) {
+// .buttonreadmore{
+//   padding: 1px;
+// }
+// }
+
+/* Zoom hero background from 1041px and below */
+@media (max-width: 1041px) {
+  .textSection {
+    background-size: 130% auto !important;   /* zoom in a bit */
+    background-position: center center;       /* adjust if needed: center top, etc. */
+  }
+}
+
+/* Optional: even more zoom on very small screens */
+@media (max-width: 640px) {
+  .textSection {
+    background-size: 160% auto !important;
+  }
+}
+@media (max-width: 390px) {
+  .textSection {
+    background-size: 185% auto !important;
+    background-position: center center; // or center top; if you want higher focus
+  }
+}
+.ctaButtonend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.9rem 2.8rem;      // same “pill” size
+  border-radius: 999px;
+
+  background: #99171c;         // LinkPlus red
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  font-size: 0.875rem;         // ~14px
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  // if you ever put an icon/arrow element inside
+  gap: 0.5rem;
+
+  &:hover {
+    background: #b31d22;       // slightly lighter red
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px #ffffff,
+      0 0 0 4px rgba(153, 23, 28, 0.9);
+  }
+}
+
+/* optional: slightly smaller on very small phones */
+@media (max-width: 480px) {
+  .ctaButtonend {
+    padding: 0.8rem 2.2rem;
+    font-size: 0.8rem;
+  }
 }

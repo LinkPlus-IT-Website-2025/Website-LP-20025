@@ -23,8 +23,8 @@ import aboutushero from "../../assets/images/aboutushero.jpg";
 import teamDiscussion from "../../assets/images/teamdiscussion.webp";
 
 const teamMembers = [
-  { image: ermalSadiku, name: "Ermal Sadiku", position: "Partner" },
-  { name: "Lulzim Ibrahimi", position: "Managing partner" },
+  { image: ermalSadiku, name: "Ermal Sadiku", position: "Managing Partner" },
+  { name: "Lulzim Ibrahimi", position: "Partner" },
   { image: ilirianaIbraj, name: "Iliriana Ibraj", position: "Chief Business Development Officer" },
   { image: aleksandarIlioski, name: "Aleksandar Ilioski", position: "Country Manager" },
   { image: leonaTahiri, name: "Leona Tahiri", position: "Business Development Representative" },
@@ -226,7 +226,7 @@ const AboutUs: React.FC = () => {
               </p>
               <div className={styles.ctaSection}>
                 <Link
-                  to="/portofolio"
+                  to="/portfolio"
                   className={styles.ctaButton}
                   role="link"
                   aria-label="More about us"
@@ -578,7 +578,7 @@ const AboutUs: React.FC = () => {
           </h2>
           <Link
             to="/contactus"
-            className={styles.ctaButton}
+            className={styles.ctaButtonend}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             GET IN TOUCH ↗

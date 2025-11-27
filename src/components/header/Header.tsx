@@ -30,7 +30,6 @@ import lpLogo from "../../assets/images/lp-logo.png";
 const { Header } = Layout;
 const { Text } = Typography;
 
-/* ---------- inline styles that are still ok ---------- */
 const WRAP: CSSProperties = {
   position: "absolute",
   top: 0,
@@ -205,8 +204,8 @@ function useMenuItems(opts: {
         {
           key: "portfolio",
           label: (
-            <Link to="/portofolio" onClick={onLinkClick} style={linkStyle}>
-              {tr("navigationlinks.portofolio", "Portofolio")}
+            <Link to="/portfolio" onClick={onLinkClick} style={linkStyle}>
+              {tr("navigationlinks.portfolio", "Portfolio")}
             </Link>
           ),
         },

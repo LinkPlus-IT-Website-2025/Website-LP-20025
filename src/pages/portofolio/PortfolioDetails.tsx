@@ -14,7 +14,7 @@ export default function PortfolioDetails() {
   }, [id]);
 
   const item = useMemo(() => PORTFOLIO.find((p) => p.id === id), [id]);
-  if (!item) return <Navigate to="/portofolio" replace />;
+  if (!item) return <Navigate to="/portfolio" replace />;
 
   const outcomes = [
     item.info.completionDate,
@@ -34,7 +34,7 @@ export default function PortfolioDetails() {
           <div className={styles.breadcrumb}>
             <Link to="/">Home</Link>
             <span className={styles.bcSep}>/</span>
-            <Link to="/portofolio">Portfolio</Link>
+            <Link to="/portoflio">Portfolio</Link>
             <span className={styles.bcSep}>/</span>
             <span className={styles.bcCurrent}>{item.title}</span>
           </div>
@@ -91,7 +91,7 @@ export default function PortfolioDetails() {
               </div>
 
               <div className={styles.backWrap}>
-                <Link to="/portofolio" className={styles.backLink}>← Back to portfolio</Link>
+                <Link to="/portoflio" className={styles.backLink}>← Back to portfolio</Link>
               </div>
             </div>
           </Col>
