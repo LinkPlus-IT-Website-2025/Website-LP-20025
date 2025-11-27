@@ -147,26 +147,39 @@ const ContactUs: React.FC = () => {
             <div className={styles.rowsWrap}>
               <div className={styles.mapWatermark} aria-hidden />
               <ul className={styles.list}>
-                <li className={styles.row}>
-                  <span className={styles.icon}>
-                    <PinIcon />
-                  </span>
-                  <div className={styles.texts}>
-                    <p className={styles.label}>Location</p>
-                    <p className={styles.value}>{ADDRESS}</p>
-                    <p className={styles.value}>{ADDRESS1}</p>
-                  </div>
-                </li>
+            <li className={`${styles.row} ${styles.rowLocations}`}>
+  <div className={styles.texts}>
+    <p className={styles.label}>Location</p>
 
-                <li className={styles.row}>
-                  <span className={styles.icon}>
-                    <MailIcon />
-                  </span>
-                  <div className={styles.texts}>
-                    <p className={styles.label}>Email</p>
-                    <p className={styles.value}>{TO_EMAIL}</p>
-                  </div>
-                </li>
+    <div className={styles.contactLine}>
+      <span className={styles.icon}>
+        <PinIcon />
+      </span>
+      <p className={styles.value}>{ADDRESS}</p>
+    </div>
+
+    <div className={styles.contactLine}>
+      <span className={styles.icon}>
+        <PinIcon />
+      </span>
+      <p className={styles.value}>{ADDRESS1}</p>
+    </div>
+  </div>
+</li>
+
+<li className={`${styles.row} ${styles.rowEmail}`}>
+  <div className={styles.texts}>
+    <p className={styles.label}>Email</p>
+    <div className={styles.contactLine}>
+      <span className={styles.icon}>
+        <MailIcon />
+      </span>
+      <p className={styles.value}>{TO_EMAIL}</p>
+    </div>
+  </div>
+</li>
+
+
               </ul>
             </div>
           </div>

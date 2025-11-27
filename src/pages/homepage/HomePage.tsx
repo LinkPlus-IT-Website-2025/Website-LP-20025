@@ -643,7 +643,7 @@ const HomePage: React.FC = () => {
           </h2>
           <Link
             to="/contactus"
-            className={styles.ctaButton}
+            className={styles.ctaButtonend}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             GET IN TOUCH ↗

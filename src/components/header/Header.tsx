@@ -204,8 +204,8 @@ function useMenuItems(opts: {
         {
           key: "portfolio",
           label: (
-            <Link to="/portofolio" onClick={onLinkClick} style={linkStyle}>
-              {tr("navigationlinks.portofolio", "Portofolio")}
+            <Link to="/portfolio" onClick={onLinkClick} style={linkStyle}>
+              {tr("navigationlinks.portfolio", "Portfolio")}
             </Link>
           ),
         },

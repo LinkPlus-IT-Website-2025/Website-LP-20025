@@ -42,6 +42,9 @@ const Portfolio: React.FC = () => {
       </section>
 
       <main className={styles.container}>
+         <div className={styles.gridHeader}>
+    <h2 className={styles.gridTitle}>Some of Our Key Projects</h2>
+  </div>
         <div className={styles.grid}>
           {TEN_ITEMS.map((p) => (
             <Link

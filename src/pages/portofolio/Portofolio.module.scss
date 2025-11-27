@@ -89,7 +89,7 @@
   gap:48px;
   justify-content:center;
   margin-top: 13px;
-  padding: 100px 0 80px;
+  padding:30px 0 80px;
 }
 
 @media (max-width: 1100px){
@@ -117,4 +117,45 @@
   z-index: 2;
   color: #fff;
   text-align: center;
+}
+/* Zoom hero background from 1041px and below */
+@media (max-width: 1041px) {
+  .heroBg {
+    background-size: 130% auto !important;
+    background-position: center center;
+  }
+}
+
+/* More zoom for tablets / small screens */
+@media (max-width: 640px) {
+  .heroBg {
+    background-size: 160% auto !important;
+  }
+}
+
+/* Extra zoom for very small phones (390px and below) */
+@media (max-width: 390px) {
+  .heroBg {
+    background-size: 185% auto !important;
+    background-position: center center; /* or center top if you want focus higher */
+  }
+}
+/* heading above the portfolio grid */
+.gridHeader {
+  padding-top: 56px;      /* ⬆ more space from hero */
+  margin-bottom: 18px;    /* a bit tighter above grid */
+  text-align: center;
+}
+
+.gridTitle {
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 400;
+  color: #99171C;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* grid of cards – less space on top */
+.grid {
+  margin-top: 8px;        /* ⬇ reduce gap under the h2 */
 }
