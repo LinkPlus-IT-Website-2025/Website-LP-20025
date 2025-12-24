@@ -443,31 +443,60 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      <section className={styles.contactShell} aria-label="Contact form">
-        <div className={styles.contactGrid}>
-          <div className={styles.cLeft}>
-            <span className={styles.cEyebrow}>
-              <span className={styles.cDot} /> OUR CONTACTS
-            </span>
-            <h2 className={styles.cHeading}>Reach Out</h2>
-            <ul className={styles.cList}>
-              <li className={styles.cRow}>
-                <span className={styles.cIcon}><PinIcon /></span>
-                <div className={styles.cTexts}>
-                  <p className={styles.cLabel}>Location</p>
-                  <p className={styles.cValue}>Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo</p>
-                  <p className={styles.cValue}>Flatiron 75, Skopje, North Macedonia</p>
-                </div>
-              </li>
-              <li className={styles.cRow}>
-                <span className={styles.cIcon}><MailIcon /></span>
-                <div className={styles.cTexts}>
-                  <p className={styles.cLabel}>Email</p>
-                  <p className={styles.cValue}>office@linkplus-it.com</p>
-                </div>
-              </li>
-            </ul>
+     <section className={styles.contactShell} aria-label="Contact form">
+  <div className={styles.contactGrid}>
+    <div className={styles.cLeft}>
+      <span className={styles.cEyebrow}>
+        <span className={styles.cDot} /> OUR CONTACTS
+      </span>
+
+      <h2 className={styles.cHeading}>Reach Out</h2>
+
+      <ul className={styles.cList}>
+        {/* LOCATION */}
+        <li className={styles.cRow}>
+          <div className={styles.cTexts}>
+            <p className={styles.cLabel}>Location</p>
+
+            <div className={styles.cLines}>
+              <div className={styles.cLine}>
+                <span className={styles.cIcon}>
+                  <PinIcon />
+                </span>
+                <p className={styles.cValue}>
+                  Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
+                </p>
+              </div>
+
+              <div className={styles.cLine}>
+                <span className={styles.cIcon}>
+                  <PinIcon />
+                </span>
+                <p className={styles.cValue}>Flatiron 75, Skopje, North Macedonia</p>
+              </div>
+            </div>
           </div>
+        </li>
+
+        {/* EMAIL */}
+        <li className={styles.cRow}>
+          <div className={styles.cTexts}>
+            <p className={styles.cLabel}>Email</p>
+
+            <div className={styles.cLines}>
+              <div className={styles.cLine}>
+                <span className={styles.cIcon}>
+                  <MailIcon />
+                </span>
+                <p className={styles.cValue}>office@linkplus-it.com</p>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    
 
           <div className={styles.cRight}>
             <div className={styles.cCard} aria-labelledby="cFormTitle">
