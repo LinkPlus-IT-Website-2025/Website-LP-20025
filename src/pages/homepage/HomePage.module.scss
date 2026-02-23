@@ -1594,6 +1594,7 @@ font-size: 10px !important;
   gap: 24px;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .itCard {
@@ -1607,40 +1608,48 @@ font-size: 10px !important;
   cursor: pointer;
   transition: all 0.3s ease;
 
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-  }
+  display: flex;
+  flex-direction: column;
 
-  h4 {
-    margin: 16px 0 8px;
-    font-size: 1.1rem;
-  }
-
-  .cardText {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.4s ease;
-    color: #555;
-    font-size: 0.9rem;
-    padding: 0 16px;
-  }
-
-  &:hover {
-    img {
-      transform: scale(1.05);
-    }
-
-    .cardText {
-      opacity: 1;
-      max-height: 200px; 
-      margin-bottom: 16px;
-    }
-  }
+  height: 320px;
 }
+
+.itCard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.itCard h4 {
+  margin: 16px 0 8px;
+  font-size: 1.1rem;
+}
+
+.itCard .cardText {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  color: #555;
+  font-size: 0.9rem;
+  padding: 0 16px;
+}
+
+.itCard:hover {
+  height: auto;
+}
+
+.itCard:hover img {
+  transform: scale(1.05);
+}
+
+.itCard:hover .cardText {
+  opacity: 1;
+  max-height: 200px;
+  margin-bottom: 16px;
+}
+
 .tWrap {
   padding: 56px 20px 72px;
 }
@@ -2203,4 +2212,29 @@ font-size: 10px !important;
   line-height: 1.4;
   color: #64748b;
   padding-top: 10px;
+}
+
+@media (max-width: 746px) {
+
+  .sectionDescription + .listGrid {
+    margin-top: 18px !important;
+  }
+
+  .listGrid {
+    margin-bottom: 18px !important;
+  }
+
+  .listGrid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    row-gap: 10px !important;
+  }
+
+  .listGrid ul {
+    display: contents !important;
+  }
+
+  .listGrid li {
+    line-height: 1.5;
+  }
 }

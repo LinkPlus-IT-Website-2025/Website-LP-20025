@@ -1,16 +1,14 @@
-// src/components/tech-scroller/TechScroller.tsx
 import React, { useMemo, useState } from "react";
 import { Card, Button, Space } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { LayoutGroup, motion } from "framer-motion";
 import styles from "./TechScroller.module.scss";
-import defaultHeaderIcon from "../../assets/icons/technologies (1).svg"; // safe fallback
+import defaultHeaderIcon from "../../assets/icons/technologies (1).svg";
 
 export type TechItem = {
   id: string;
   name: string;
   logoSrc: string;
-  /** Optional per-item size hint */
   sizeHint?: "sm" | "md" | "lg" | "xl";
 };
 
@@ -22,9 +20,7 @@ type Props = {
   headerIconSrc?: string;
   showArrows?: boolean;
   centerLogo?: boolean;
-  /** Render a minimal isolated layout (used by your 6th card). */
   solo?: boolean;
-  /** If true, when the scroller is on the LAST item, the logo renders bigger. */
   bigLast?: boolean;
 };
 
@@ -39,10 +35,8 @@ const TechScroller: React.FC<Props> = ({
   solo = false,
   bigLast = false,
 }) => {
-  // ---- SOLO VARIANT ----
   if (solo) {
     const item = items[0] ?? { id: "logo", name: "", logoSrc: "" };
-    // derive size class from sizeHint if provided
     const soloSizeClass =
       item.sizeHint === "xl"
         ? styles.logoXL
@@ -56,7 +50,6 @@ const TechScroller: React.FC<Props> = ({
       <LayoutGroup id={`tech-card-${title}-solo`}>
         <div className={`${styles.wrapSingle} ${styles.isSolo}`}>
           <Card bordered className={styles.card} bodyStyle={{ padding: 24 }}>
-            {/* Header */}
             <div className={styles.headerRow}>
               <Space size={8} align="center" className={styles.headerCenter}>
                 <img
@@ -71,7 +64,6 @@ const TechScroller: React.FC<Props> = ({
               </Space>
             </div>
 
-            {/* Centered logo */}
             <div className={styles.soloCenter}>
               <motion.div
                 layout
@@ -94,18 +86,17 @@ const TechScroller: React.FC<Props> = ({
     );
   }
 
-  // ---- DEFAULT VARIANT ----
   const [index, setIndex] = useState(initialIndex);
   const len = Math.max(items.length, 1);
   const mod = (n: number, m: number) => ((n % m) + m) % m;
   const item = useMemo(() => items[mod(index, len)], [index, len, items]);
+
   const hasMultiple = len > 1;
   const shouldShowArrows = showArrows && hasMultiple && !centerLogo;
 
   const isLast = mod(index, len) === len - 1;
   const lastBoost = bigLast && isLast;
 
-  // size from per-item hint
   const hintClass =
     item.sizeHint === "xl"
       ? styles.logoXL
@@ -122,7 +113,6 @@ const TechScroller: React.FC<Props> = ({
       <div className={rootCls}>
         <Card bordered className={styles.card} bodyStyle={{ padding: 24 }}>
           <div className={styles.cardInner}>
-            {/* Header */}
             <div className={styles.headerRow}>
               <Space size={8} align="center" className={styles.headerCenter}>
                 <img
@@ -137,7 +127,6 @@ const TechScroller: React.FC<Props> = ({
               </Space>
             </div>
 
-            {/* Arrows + logo */}
             <div
               className={styles.logoRow}
               style={{ gridTemplateColumns: shouldShowArrows ? "36px 1fr 36px" : "1fr" }}
@@ -147,6 +136,7 @@ const TechScroller: React.FC<Props> = ({
                   type="text"
                   className={`${styles.chevBtn} ${styles.chevLeft}`}
                   icon={<LeftOutlined />}
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => setIndex((i) => i - 1)}
                   aria-label="Previous"
                 />
@@ -190,6 +180,7 @@ const TechScroller: React.FC<Props> = ({
                   type="text"
                   className={`${styles.chevBtn} ${styles.chevRight}`}
                   icon={<RightOutlined />}
+                  onMouseDown={(e) => e.preventDefault()}
                   onClick={() => setIndex((i) => i + 1)}
                   aria-label="Next"
                 />

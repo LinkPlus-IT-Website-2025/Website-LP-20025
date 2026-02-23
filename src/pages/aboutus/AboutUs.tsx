@@ -89,6 +89,11 @@ const AboutUs: React.FC = () => {
   // --------- progress meters trigger ----------
   const [progressAnimated, setProgressAnimated] = useState(false);
   const progressSectionRef = useRef<HTMLDivElement | null>(null);
+
+  const nameRegex = /^[A-Za-zÀ-ÿ' -]+$/;
+  const phoneRegex = /^[0-9+\s()-]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   useEffect(() => {
     const el = progressSectionRef.current;
     if (!el) return;
@@ -129,13 +134,30 @@ const AboutUs: React.FC = () => {
 
   const onChange =
     (k: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
-      setData((d) => ({ ...d, [k]: e.target.value }));
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        let value = e.target.value;
+
+        if (k === "firstName" || k === "lastName") {
+          value = value.replace(/[^A-Za-zÀ-ÿ' -]/g, ""); // remove numbers & symbols
+        }
+
+        if (k === "phone") {
+          value = value.replace(/[^0-9+\s()-]/g, ""); // allow only phone chars
+        }
+
+        setData((d) => ({ ...d, [k]: value }));
+      };
+
 
   const isValid = React.useMemo(() => {
-    if (!data.firstName || !data.lastName || !data.email || !data.phone) return false;
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
+    return (
+      nameRegex.test(data.firstName.trim()) &&
+      nameRegex.test(data.lastName.trim()) &&
+      phoneRegex.test(data.phone.trim()) &&
+      emailRegex.test(data.email.trim())
+    );
   }, [data]);
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -221,7 +243,7 @@ const AboutUs: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <p className={styles.additionalText}>
+              <p className={styles.description}>
                 We focus on technology that fits your workflow, supports your team, and keeps your operations running smoothly.
               </p>
               <div className={styles.ctaSection}>
@@ -443,60 +465,60 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-     <section className={styles.contactShell} aria-label="Contact form">
-  <div className={styles.contactGrid}>
-    <div className={styles.cLeft}>
-      <span className={styles.cEyebrow}>
-        <span className={styles.cDot} /> OUR CONTACTS
-      </span>
+      <section className={styles.contactShell} aria-label="Contact form">
+        <div className={styles.contactGrid}>
+          <div className={styles.cLeft}>
+            <span className={styles.cEyebrow}>
+              <span className={styles.cDot} /> OUR CONTACTS
+            </span>
 
-      <h2 className={styles.cHeading}>Reach Out</h2>
+            <h2 className={styles.cHeading}>Reach Out</h2>
 
-      <ul className={styles.cList}>
-        {/* LOCATION */}
-        <li className={styles.cRow}>
-          <div className={styles.cTexts}>
-            <p className={styles.cLabel}>Location</p>
+            <ul className={styles.cList}>
+              {/* LOCATION */}
+              <li className={styles.cRow}>
+                <div className={styles.cTexts}>
+                  <p className={styles.cLabel}>Location</p>
 
-            <div className={styles.cLines}>
-              <div className={styles.cLine}>
-                <span className={styles.cIcon}>
-                  <PinIcon />
-                </span>
-                <p className={styles.cValue}>
-                  Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
-                </p>
-              </div>
+                  <div className={styles.cLines}>
+                    <div className={styles.cLine}>
+                      <span className={styles.cIcon}>
+                        <PinIcon />
+                      </span>
+                      <p className={styles.cValue}>
+                        Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
+                      </p>
+                    </div>
 
-              <div className={styles.cLine}>
-                <span className={styles.cIcon}>
-                  <PinIcon />
-                </span>
-                <p className={styles.cValue}>Flatiron 75, Skopje, North Macedonia</p>
-              </div>
-            </div>
+                    <div className={styles.cLine}>
+                      <span className={styles.cIcon}>
+                        <PinIcon />
+                      </span>
+                      <p className={styles.cValue}>Flatiron 75, Skopje, North Macedonia</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              {/* EMAIL */}
+              <li className={styles.cRow}>
+                <div className={styles.cTexts}>
+                  <p className={styles.cLabel}>Email</p>
+
+                  <div className={styles.cLines}>
+                    <div className={styles.cLine}>
+                      <span className={styles.cIcon}>
+                        <MailIcon />
+                      </span>
+                      <p className={styles.cValue}>office@linkplus-it.com</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
-        </li>
 
-        {/* EMAIL */}
-        <li className={styles.cRow}>
-          <div className={styles.cTexts}>
-            <p className={styles.cLabel}>Email</p>
 
-            <div className={styles.cLines}>
-              <div className={styles.cLine}>
-                <span className={styles.cIcon}>
-                  <MailIcon />
-                </span>
-                <p className={styles.cValue}>office@linkplus-it.com</p>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-
-    
 
           <div className={styles.cRight}>
             <div className={styles.cCard} aria-labelledby="cFormTitle">
@@ -524,16 +546,22 @@ const AboutUs: React.FC = () => {
                     name="firstName"
                     value={data.firstName}
                     onChange={onChange("firstName")}
+                    pattern="[A-Za-zÀ-ÿ' -]+"
+                    title="Only letters allowed"
                     required
                   />
+
                   <input
                     className={styles.cInput}
                     placeholder="Last Name*"
                     name="lastName"
                     value={data.lastName}
                     onChange={onChange("lastName")}
+                    pattern="[A-Za-zÀ-ÿ' -]+"
+                    title="Only letters allowed"
                     required
                   />
+
                 </div>
 
                 <div className={styles.cGrid2}>
@@ -544,8 +572,11 @@ const AboutUs: React.FC = () => {
                     name="phone"
                     value={data.phone}
                     onChange={onChange("phone")}
+                    pattern="[0-9+\s()-]+"
+                    title="Only numbers allowed"
                     required
                   />
+
                   <input
                     className={styles.cInput}
                     placeholder="Your email*"
@@ -553,11 +584,11 @@ const AboutUs: React.FC = () => {
                     name="email"
                     value={data.email}
                     onChange={onChange("email")}
+                    pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                    title="Enter a valid email address"
                     required
                   />
                 </div>
-
-             
 
                 <textarea
                   className={`${styles.cInput} ${styles.cTextarea}`}
@@ -581,15 +612,15 @@ const AboutUs: React.FC = () => {
                   <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
                   <span className={styles.cSubmitArrow} aria-hidden>↗</span>
                 </button>
-{toast && (
-  <div
-    role="status"
-    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
-    style={{ marginTop: 12 }}
-  >
-    {toast.text}
-  </div>
-)}
+                {toast && (
+                  <div
+                    role="status"
+                    className={toast.type === "ok" ? styles.toastOk : styles.toastErr}
+                    style={{ marginTop: 12 }}
+                  >
+                    {toast.text}
+                  </div>
+                )}
 
               </form>
             </div>
