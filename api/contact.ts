@@ -15,7 +15,7 @@ const RESEND_KEY =
 const resend = new Resend(RESEND_KEY);
 
 // Where the email is sent
-const TO = ["d.lika@linkplus-it.com"];
+const TO = ["office@linkplus-it.com"];
 
 /**
  * From/sender:

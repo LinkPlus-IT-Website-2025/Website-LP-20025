@@ -24,18 +24,27 @@ import imgFlotilla1 from "../../assets/images/flotillapic1.webp";
 import imgFlotilla2 from "../../assets/images/flotillapic2.webp";
 import imgFlotilla from "../../assets/images/flotilla.png";
 import imgFlotillaP from "../../assets/images/flotillaP.webp";
+import imgFlotilla3 from "../../assets/images/Flotilla3.webp";
+import imgFlotilla4 from "../../assets/images/Flotilla4.webp";
+import imgFlotilla5 from "../../assets/images/Flotilla5.webp";
 import imgLinkOne from "../../assets/images/link-one.png";
 import imgLinkOneP from "../../assets/images/LinkOne-Portrait.webp";
 import imgLinkOne1 from "../../assets/images/LinkOne-pic1.webp";
 import imgLinkOne2 from "../../assets/images/LinkOne-pic2.webp";
+import imgLinkOne3 from "../../assets/images/LinkOne1.webp";
+import imgLinkOne4 from "../../assets/images/LinkOne2.webp";
+import imgLinkOne5 from "../../assets/images/LinkOne3.webp";
 import imgSwissProtect from "../../assets/images/swiss-protect.png";
 import imgSwissProtectP from "../../assets/images/swiss-protectP.webp";
 import imgSwissProtect1 from "../../assets/images/swiss-protect-pic1.png";
 import imgSwissProtect2 from "../../assets/images/swiss-protect-pic2.webp";
+import imgSwissProtectNew1 from "../../assets/images/Swissprotect1.webp";
+import imgSwissProtectNew2 from "../../assets/images/Swissprotect2.webp";
 import imgLHIndustry from "../../assets/images/lufthansa-industry-solutions.png";
 import imgLHIndustryP from "../../assets/images/lufthansa-industry-solutionsP.webp";
 import imgLHIndustry1 from "../../assets/images/lufthansa-industry-solutions-pic1.webp";
 import imgLHIndustry2 from "../../assets/images/lufthansa-industry-solutions-pic2.webp";
+import imgLHIndustryMain from "../../assets/images/Lufthansa Industry Solution1.webp";
 import IMWM1 from "../../assets/images/online-insurance.webp";
 import IMWM2 from "../../assets/images/online-insurance2.webp";
 import DBLAI1 from "../../assets/images/digital-business-list-app-interface.webp";
@@ -50,6 +59,10 @@ export type PortfolioItem = {
   cardImg: string;
   heroImg: string;
   detailMainImg?: string;
+  /** Three images shown inside phone-style frames (e.g. Flotilla, LinkOne) */
+  detailPhoneImages?: string[];
+  /** Single image shown inside laptop/tablet/desktop frame (e.g. Lufthansa, Swiss Protect) */
+  detailDeviceImage?: string;
   gallery: string[];
   info: {
     completionDate: string;
@@ -76,10 +89,12 @@ const GALLERY_SMART_BT = [smartbluetooth1, smartbluetooth2];
 const GALLERY_COPYRIGHT = [CPS1, CPS2];
 const GALLERY_LH = [imgLHIndustry1, imgLHIndustry2];
 
-const SWISS_PROTECT = [imgSwissProtect1, imgSwissProtect2];
+const SWISS_PROTECT = [imgSwissProtectNew1, imgSwissProtect2];
 const LINK_ONE = [imgLinkOne1, imgLinkOne2];
 
 const FLOTILLA = [imgFlotilla1, imgFlotilla2];
+const FLOTILLA_PHONE = [imgFlotilla3, imgFlotilla4, imgFlotilla5];
+const LINK_ONE_PHONE = [imgLinkOne3, imgLinkOne4, imgLinkOne5];
 
 export const PORTFOLIO: PortfolioItem[] = [
   {
@@ -88,7 +103,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     excerpt: "Integration and implementation of Camunda...",
     cardImg: imgLHIndustryP,
     heroImg: imgLHIndustry,
-    detailMainImg: imgLHIndustry,
+    detailMainImg: imgLHIndustryMain,
+    detailDeviceImage: imgLHIndustryMain,
     gallery: GALLERY_LH, 
     info: {
       completionDate: "• Streamlined 7 business processes for Lufthansa",
@@ -178,7 +194,8 @@ export const PORTFOLIO: PortfolioItem[] = [
     excerpt: "Access Control Solution - Implementation of a web platform...",
     cardImg: imgSwissProtectP,
     heroImg: imgSwissProtect,
-    detailMainImg: imgSwissProtect,
+    detailMainImg: imgSwissProtectNew2,
+    detailDeviceImage: imgSwissProtectNew2,
     gallery: SWISS_PROTECT,
     info: {
       completionDate: "• Employee attendance tracking",
@@ -201,6 +218,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: imgLinkOneP,
     heroImg: imgLinkOne,
     detailMainImg: imgLinkOne,
+    detailPhoneImages: LINK_ONE_PHONE,
     gallery: LINK_ONE,
     info: {
       completionDate: "• Accurate location tracking & geofencing",
@@ -223,6 +241,7 @@ export const PORTFOLIO: PortfolioItem[] = [
     cardImg: imgFlotillaP,
     heroImg: imgFlotilla,
     detailMainImg: imgFlotilla,
+    detailPhoneImages: FLOTILLA_PHONE,
     gallery: FLOTILLA,
     info: {
       completionDate: "• One-click trip booking & in-app payments",

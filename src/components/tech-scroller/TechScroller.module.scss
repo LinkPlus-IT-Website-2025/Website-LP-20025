@@ -1,40 +1,50 @@
-/* Shell */
-.wrapSingle { display: grid; justify-items: center; }
+.wrapSingle {
+  display: grid;
+  justify-items: center;
+}
 
-/* Card */
 .card {
   width: 300px;
   height: 210px;
   border-radius: 16px;
-  // border-color: #8b1d1d;
   background: #ffffff;
   box-shadow: 0 12px 14px rgba(100, 100, 100, 0.323);
 }
-.cardInner { height: 100%; display: flex; flex-direction: column; gap: 12px; }
 
-/* Header */
-.headerRow { display: flex; justify-content: center; margin-top: 6px; }
-.headerCenter { display: inline-flex; align-items: center; gap: 8px; }
+.cardInner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-/* === Title: EXACT 25px, 500 weight === */
+.headerRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.headerCenter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .titleText {
   font-size: 20px !important;
   font-weight: 500 !important;
   line-height: 1.1;
-  color: #8b1d1d !important;   /* keep your red */
+  color: #8b1d1d !important;
   letter-spacing: 0.2px;
   text-transform: none;
 }
 
-/* Title icon tint (your /icons svgs) */
 .techIconImg {
   width: 16px;
   height: 16px;
   display: block;
-  // filter: invert(13%) sepia(74%) saturate(1673%) hue-rotate(338deg) brightness(85%) contrast(94%);
 }
 
-/* ---- Default variant (with arrows) ---- */
 .logoRow {
   flex: 1;
   display: grid;
@@ -42,31 +52,147 @@
   align-items: center;
   gap: 6px;
   padding: 6px 8px 14px;
-
 }
-.chevBtn { justify-self: center; color: #7a1a1a; font-size: 20px; line-height: 1; padding: 0; height: auto; }
-:global(.ant-btn-text).chevBtn { background: transparent !important; }
-.chevBtn:hover { color: #5f1212; }
-.chevLeft { grid-column: 1; } .chevRight { grid-column: 3; }
 
-.logoArea { grid-column: 2; display: grid; place-items: center; gap: 8px; }
-.logoHolder { display: grid; place-items: center; width: clamp(100px, 22vw, 150px); height: clamp(60px, 10vw, 110px); }
-.logo { max-width: 100%; max-height: 100%; object-fit: contain;  width: 85px !important;
-  height: 85px !important; }
-.caption { font-size: 12px; font-weight: 600; color: #8b1919; }
+.chevBtn {
+  justify-self: center;
+  color: #7a1a1a;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0;
+  height: auto;
+  outline: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  background: transparent !important;
+  -webkit-tap-highlight-color: transparent;
+}
 
-/* ---- Solo variant (only if you used it for the 6th card) ---- */
+.chevBtn:hover {
+  color: #5f1212;
+  background: transparent !important;
+}
+
+.chevBtn:active,
+.chevBtn:focus,
+.chevBtn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+.chevLeft {
+  grid-column: 1;
+}
+
+.chevRight {
+  grid-column: 3;
+}
+
+.wrapSingle :global(.ant-btn).chevBtn,
+.wrapSingle :global(.ant-btn-text).chevBtn {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.wrapSingle :global(.ant-btn).chevBtn:focus,
+.wrapSingle :global(.ant-btn).chevBtn:focus-visible,
+.wrapSingle :global(.ant-btn).chevBtn:active,
+.wrapSingle :global(.ant-btn-text).chevBtn:focus,
+.wrapSingle :global(.ant-btn-text).chevBtn:focus-visible,
+.wrapSingle :global(.ant-btn-text).chevBtn:active {
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.wrapSingle :global(.ant-btn).chevBtn::after,
+.wrapSingle :global(.ant-btn-text).chevBtn::after {
+  display: none !important;
+}
+
+.wrapSingle :global(.ant-wave),
+.wrapSingle :global(.ant-wave-wave) {
+  display: none !important;
+}
+
+.logoArea {
+  grid-column: 2;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+}
+
+.logoHolder {
+  display: grid;
+  place-items: center;
+  width: clamp(100px, 22vw, 150px);
+  height: clamp(60px, 10vw, 110px);
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  width: 85px !important;
+  height: 85px !important;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 600;
+  color: #8b1919;
+}
+
 .isSolo {
-  .headerRow { margin-top: 6px; justify-content: center; }
-  .soloCenter { flex: 1; display: grid; place-items: center; height: 100%; padding: 4px 8px 12px; }
-  .soloHolder { width: 200px; height: 120px; display: grid; place-items: center; }
-  .logo { max-width: 100%; max-height: 100%; object-fit: contain; }
-  .caption, .logoRow, .chevBtn, .chevLeft, .chevRight { display: none !important; }
+  .headerRow {
+    margin-top: 6px;
+    justify-content: center;
+  }
+
+  .soloCenter {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    padding: 4px 8px 12px;
+  }
+
+  .soloHolder {
+    width: 200px;
+    height: 120px;
+    display: grid;
+    place-items: center;
+  }
+
+  .logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .caption,
+  .logoRow,
+  .chevBtn,
+  .chevLeft,
+  .chevRight {
+    display: none !important;
+  }
 }
 
-/* Optional small-screen tweak */
 @media (max-width: 400px) {
-  .card { width: 320px; height: 240px; }
-  .logoRow { grid-template-columns: 32px 1fr 32px; }
-  .chevBtn { font-size: 18px; }
+  .card {
+    width: 320px;
+    height: 240px;
+  }
+
+  .logoRow {
+    grid-template-columns: 32px 1fr 32px;
+  }
+
+  .chevBtn {
+    font-size: 18px;
+  }
 }

@@ -105,12 +105,36 @@
   margin-bottom: 24px !important;
 }
 
+.quickLinksSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .sectionTitle {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .footerLinks {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    align-items: center;
+
+    .footerLink {
+      padding-left: 0 !important;
+      padding-right: 12px !important;
+    }
+  }
+}
+
 .footerLinks {
   display: flex;
   flex-direction: column;
   gap: 6px;
   align-items: flex-start;
-  margin-left: 55px;
   padding: 0 !important;
 }
 
@@ -333,25 +357,48 @@
     color: #0f172a;
   }
 }
+
 .modalBody {
   background: #fff;
   padding: 18px 26px 24px;
   max-height: min(76vh, 860px);
   overflow: auto;
+
   h3 {
-    margin: 14px 0 8px;
-    font-size: 18px;
+    margin: 18px 0 10px;
+    font-size: 20px;
     font-weight: 800;
     color: #0f172a;
+    line-height: 1.25;
   }
+
+  h4 {
+    margin: 14px 0 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #0f172a;
+    line-height: 1.35;
+  }
+
   p,
   li {
     color: #1f2937;
     font-size: 15px;
     line-height: 1.65;
   }
-  ul {
+
+  ul,
+  ol {
     padding-left: 18px;
+  }
+
+  a {
+    color: #99171c;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }
 
@@ -416,12 +463,35 @@
     margin-left: 12px;
   }
 }
+
 .awardModal img,
 .modalImg {
-  max-width: 60% !important;  
+  max-width: 95% !important;
+  width: 100%;
   height: auto !important;
   display: block;
-  margin: 0 auto 16px;
+  margin: 0 auto 20px;
   border-radius: 8px;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.awardModal .modalBody img:last-of-type {
+  margin-bottom: 0;
+}
+
+.contactEmailLink,
+.contactEmailLink:visited,
+.contactEmailLink:hover,
+.contactEmailLink:active,
+.contactEmailLink:focus {
+  color: #cbd5e0 !important;
+  text-decoration: none !important;
+  opacity: 0.9;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+}
+
+.contactEmailLink:hover {
+  opacity: 1;
 }

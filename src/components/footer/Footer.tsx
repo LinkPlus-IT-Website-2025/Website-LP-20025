@@ -16,6 +16,7 @@ import lpLogo from "../../assets/images/lp-logo.png";
 
 import impactStarsImg from "../../assets/images/impact-stars.png";
 import isoCertificatesImg from "../../assets/images/iso-certificates.jpg";
+import lpDeloitteImg from "../../assets/images/LP deloitte.webp";
 
 import presidentialMedalImg from "../../assets/images/Medalja e Presidentes.webp";
 import genderEquityImg from "../../assets/images/Screenshot 2025-10-28 at 11.10.57.webp";
@@ -24,9 +25,9 @@ const { Title, Text } = Typography;
 
 interface FooterLinkProps {
   children: React.ReactNode;
-  to?: string;         
-  href?: string;       
-  onClick?: () => void; 
+  to?: string;
+  href?: string;
+  onClick?: () => void;
 }
 
 const FooterLink: React.FC<FooterLinkProps> = ({ children, to, href = "#", onClick }) => {
@@ -57,9 +58,9 @@ const FooterLink: React.FC<FooterLinkProps> = ({ children, to, href = "#", onCli
         onClick={
           clickable
             ? (e) => {
-                e.preventDefault();
-                onClick?.();
-              }
+              e.preventDefault();
+              onClick?.();
+            }
             : undefined
         }
         className={styles.footerLink}
@@ -79,14 +80,17 @@ const Footer: React.FC = () => {
   const [showConduct, setShowConduct] = useState(false);
   const [showDataProtection, setShowDataProtection] = useState(false);
   const [awardOpen, setAwardOpen] = useState(false);
-  const [awardSrc, setAwardSrc] = useState<string | null>(null);
+  const [awardSrc, setAwardSrc] = useState<string | string[] | null>(null);
   const [awardCaption, setAwardCaption] = useState<React.ReactNode>(null);
 
-  const openAward = (src: string, caption: React.ReactNode) => {
+  const openAward = (src: string | string[], caption: React.ReactNode) => {
     setAwardSrc(src);
     setAwardCaption(caption);
     setAwardOpen(true);
   };
+
+  const emailTo = "office@linkplus-it.com";
+  const mailtoHref = `mailto:${emailTo}`;
 
   return (
     <>
@@ -107,7 +111,9 @@ const Footer: React.FC = () => {
                   <div className={styles.footerBrand}>
                     <div className={styles.logoContainer}>
                       <img src={lpLogo} alt="" className={styles.brandLogo} />
-                      <Title level={3} className={styles.brandName}>LINKPLUS IT</Title>
+                      <Title level={3} className={styles.brandName}>
+                        LINKPLUS IT
+                      </Title>
                     </div>
 
                     <Text className={styles.brandDescription}>
@@ -151,8 +157,10 @@ const Footer: React.FC = () => {
                 </Col>
 
                 <Col xs={24} sm={12} md={5} lg={5}>
-                  <div className={styles.footerSection}>
-                    <Title level={4} className={styles.sectionTitle}>Quick Links</Title>
+                  <div className={`${styles.footerSection} ${styles.quickLinksSection}`}>
+                    <Title level={4} className={styles.sectionTitle}>
+                      Quick Links
+                    </Title>
                     <div className={styles.footerLinks}>
                       <FooterLink to="/aboutus">About Us</FooterLink>
                       <FooterLink to="/services">Services</FooterLink>
@@ -165,9 +173,12 @@ const Footer: React.FC = () => {
 
                 <Col xs={24} sm={12} md={7} lg={7}>
                   <div className={styles.footerSection}>
-                    <Title level={4} className={styles.sectionTitle}>Awards</Title>
+                    <Title level={4} className={styles.sectionTitle}>
+                      Awards
+                    </Title>
 
                     <div className={`${styles.footerLinkss} ${styles.awardsGlass}`}>
+
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
                         <button
@@ -176,7 +187,7 @@ const Footer: React.FC = () => {
                           aria-label="View Impact Stars award"
                           onClick={() =>
                             openAward(
-                              impactStarsImg,
+                              lpDeloitteImg,
                               <>
                                 Laureate of <strong>Impact Stars</strong>,{" "}
                                 <strong>Technology Fast 50 2022 Central Europe, Deloitte</strong>
@@ -188,25 +199,23 @@ const Footer: React.FC = () => {
                           <strong>Technology Fast 50 2022 Central Europe, Deloitte</strong>
                         </button>
                       </p>
-
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
                         <button
                           type="button"
                           className={styles.awardBtn}
-                          aria-label="View ISO certificates"
+                          aria-label="View ISO and Impact Stars certificates"
                           onClick={() =>
                             openAward(
-                              isoCertificatesImg,
+                              [impactStarsImg, isoCertificatesImg],
                               <>ISO 9001:2015 &amp; ISO 27001 CERTIFIED</>
                             )
                           }
                         >
-                          <span className={styles.badge}>
-                            ISO 9001:2015 &amp; ISO 27001 CERTIFIED
-                          </span>
+                          <span className={styles.badge}>ISO 9001:2015 &amp; ISO 27001 CERTIFIED</span>
                         </button>
                       </p>
+
 
                       <p className={styles.awardLine}>
                         <TrophyOutlined className={styles.awardIcon} />
@@ -237,14 +246,7 @@ const Footer: React.FC = () => {
                           type="button"
                           className={styles.awardBtn}
                           aria-label="View Gender Equity in Workplace Award"
-                          onClick={() =>
-                            openAward(
-                              genderEquityImg,
-                              <>
-                                <strong>Gender Equity in Workplace Award (2023)</strong>
-                              </>
-                            )
-                          }
+                          onClick={() => openAward(genderEquityImg, <strong>Gender Equity in Workplace Award (2023)</strong>)}
                         >
                           <span className={styles.awardText}>
                             <strong>Gender Equity in Workplace Award (2023)</strong>
@@ -257,7 +259,9 @@ const Footer: React.FC = () => {
 
                 <Col xs={24} sm={12} md={6} lg={6}>
                   <div className={`${styles.footerSection} ${styles.contactSection}`}>
-                    <Title level={4} className={styles.sectionTitle}>Contact</Title>
+                    <Title level={4} className={styles.sectionTitle}>
+                      Contact
+                    </Title>
                     <div className={styles.contactInfo}>
                       <Space align="start" size={8} style={{ display: "flex" }}>
                         <EnvironmentOutlined style={{ fontSize: 14, color: "#fff", marginTop: 2 }} />
@@ -265,15 +269,17 @@ const Footer: React.FC = () => {
                           Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo
                         </Text>
                       </Space>
+
                       <Space align="start" size={8} style={{ display: "flex", marginTop: 8 }}>
                         <EnvironmentOutlined style={{ fontSize: 14, color: "#fff", marginTop: 2 }} />
-                        <Text className={styles.contactAddress}>
-                          Flatiron 75, Skopje, North Macedonia
-                        </Text>
+                        <Text className={styles.contactAddress}>Flatiron 75, Skopje, North Macedonia</Text>
                       </Space>
+
                       <Space align="start" size={8} style={{ display: "flex", marginTop: 8 }}>
                         <MailOutlined style={{ fontSize: 14, color: "#fff", marginTop: 2 }} />
-                        <Text className={styles.contactEmail}>office@linkplus-it.com</Text>
+                        <a href={mailtoHref} className={styles.contactEmailLink} aria-label={`Email ${emailTo}`}>
+                          {emailTo}
+                        </a>
                       </Space>
                     </div>
                   </div>
@@ -293,7 +299,7 @@ const Footer: React.FC = () => {
 
             <div className={styles.footerBottom}>
               <Text className={styles.copyrightText}>
-                © 2025 <span className={styles.brandHighlight}>LINKPLUS IT</span> | All rights reserved
+                © 2026 <span className={styles.brandHighlight}>LINKPLUS IT</span> | All rights reserved
               </Text>
             </div>
           </div>
@@ -304,7 +310,7 @@ const Footer: React.FC = () => {
         open={awardOpen}
         onCancel={() => setAwardOpen(false)}
         footer={null}
-        width={720}
+        width={920}
         title={null}
         className={styles.awardModal}
         centered
@@ -313,7 +319,12 @@ const Footer: React.FC = () => {
           <h2>Award</h2>
         </div>
         <div className={styles.modalBody}>
-          {awardSrc && <img src={awardSrc} alt="Award" className={styles.modalImg} />}
+          {awardSrc &&
+            (Array.isArray(awardSrc)
+              ? awardSrc.map((src, i) => (
+                <img key={i} src={src} alt={`Award ${i + 1}`} className={styles.modalImg} />
+              ))
+              : <img src={awardSrc} alt="Award" className={styles.modalImg} />)}
           {awardCaption && <div className={styles.modalCaption}>{awardCaption}</div>}
         </div>
       </Modal>
@@ -327,7 +338,9 @@ const Footer: React.FC = () => {
         className={styles.legalModal}
         centered
       >
-        <div className={styles.modalHeader}><h2>Privacy Policy</h2></div>
+        <div className={styles.modalHeader}>
+          <h2>Privacy Policy</h2>
+        </div>
         <div className={styles.modalBody}>
           <div className={styles.modalBody}>
             <h3>1. Security and performance</h3>
@@ -530,6 +543,7 @@ const Footer: React.FC = () => {
               September 01, 2023. You will not be notified for changes in our privacy policy, and you are
               required to visit the privacy policy on our website.
             </p>
+
             <h4>How to contact us</h4>
             <p>
               If you want to request information about our privacy policy you can email us or write to:
@@ -545,7 +559,6 @@ const Footer: React.FC = () => {
         </div>
       </Modal>
 
-      {/* Code of Conduct */}
       <Modal
         open={showConduct}
         onCancel={() => setShowConduct(false)}
@@ -555,7 +568,9 @@ const Footer: React.FC = () => {
         className={styles.legalModal}
         centered
       >
-        <div className={styles.modalHeader}><h2>Code of Conduct</h2></div>
+        <div className={styles.modalHeader}>
+          <h2>Code of Conduct</h2>
+        </div>
         <div className={styles.modalBody}>
           <div className={styles.modalBody}>
             <h3>Foreword</h3>
@@ -775,7 +790,9 @@ const Footer: React.FC = () => {
         className={styles.legalModal}
         centered
       >
-        <div className={styles.modalHeader}><h2>Data Protection Policy</h2></div>
+        <div className={styles.modalHeader}>
+          <h2>Data Protection Policy</h2>
+        </div>
         <div className={styles.modalBody}>
           <div className={styles.modalBody}>
             <h3>Introduction</h3>
@@ -812,9 +829,9 @@ const Footer: React.FC = () => {
             <h3>2. Roles and Responsibilities</h3>
             <p>
               Everyone who works for or with Link Plus IT is responsible for ensuring that the collection, storage, handling,
-              and protection of data is being done appropriately.  
+              and protection of data is being done appropriately.
               <br />
-              Email: <a href="mailto:informationsecurity@linkplus-it.com">informationsecurity@linkplus-it.com</a>  
+              Email: <a href="mailto:informationsecurity@linkplus-it.com">informationsecurity@linkplus-it.com</a>
               Phone: +38348224445
             </p>
             <p><strong>Information Security Manager and Data Protection Officer (DPO) is responsible for:</strong></p>
@@ -911,7 +928,7 @@ const Footer: React.FC = () => {
             <h4>7.1 Data Modification</h4>
             <p>
               Clients can request data modification or correction by emailing{" "}
-              <a href="mailto:information.security@linkpusit.com">information.security@linkpusit.com</a> or
+              <a href="mailto:informationsecurity@linkpusit.com">informationsecurity@linkpusit.com</a> or
               through the digital form available on our website. LINK PLUS IT will verify each request before proceeding.
             </p>
 

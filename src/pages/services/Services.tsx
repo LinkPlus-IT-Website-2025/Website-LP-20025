@@ -139,7 +139,7 @@ const Services: React.FC = () => {
               className={styles.cardLink}
               aria-label={s.title}
             >
-              <ServiceFeatureCard imageSrc={s.image} title={s.title} excerpt={s.excerpt} showIcon />
+              <ServiceFeatureCard imageSrc={s.image} title={s.title} excerpt={s.excerpt} showIcon size="lg" />
             </Link>
           ))}
         </div>

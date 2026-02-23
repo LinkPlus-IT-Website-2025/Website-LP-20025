@@ -38,10 +38,12 @@ const WRAP: CSSProperties = {
   zIndex: 1000,
   color: "#fff",
 };
+
 const TOPBAR: CSSProperties = {
   borderBottom: "1px solid rgba(255,255,255,0.25)",
   background: "transparent",
 };
+
 const MAINBAR: CSSProperties = {
   background: "transparent",
   padding: 0,
@@ -50,16 +52,18 @@ const MAINBAR: CSSProperties = {
 
 const NAV_LINK_DESKTOP: CSSProperties = {
   color: "#fff",
-  opacity: 0.9,
-  fontWeight: 500,
+  opacity: 0.92,
+  fontWeight: 600,
   fontSize: 13,
 };
+
 const DROPDOWN_LINK_DESKTOP: CSSProperties = {
   color: "#111827",
   opacity: 0.95,
   fontWeight: 500,
   fontSize: 13,
 };
+
 const NAV_LINK_MOBILE: CSSProperties = {
   color: "#111827",
   opacity: 1,
@@ -72,12 +76,14 @@ const TOPBAR_TEXT: CSSProperties = {
   opacity: 0.85,
   fontSize: 11,
 };
+
 const GRADIENT_BTN: CSSProperties = {
   border: "none",
   borderRadius: 10,
   fontWeight: 600,
   fontSize: 12,
 };
+
 const SOCIAL_ICON_LINK: CSSProperties = {
   color: "#fff",
   textDecoration: "none",
@@ -85,8 +91,8 @@ const SOCIAL_ICON_LINK: CSSProperties = {
   alignItems: "center",
 };
 
-/* ---------- width hook ---------- */
 const MOBILE_CUTOFF = 1145;
+
 function useIsDesktop(cutoff = MOBILE_CUTOFF) {
   const [w, setW] = useState<number>(() =>
     typeof window === "undefined" ? Number.POSITIVE_INFINITY : window.innerWidth
@@ -99,19 +105,13 @@ function useIsDesktop(cutoff = MOBILE_CUTOFF) {
   return w > cutoff;
 }
 
-/* ---------- Logo ---------- */
 const Logo: React.FC = () => (
-  <Link
-    to="/"
-    className={styles.brand}
-    aria-label="LinkPlus IT — Home"
-  >
+  <Link to="/" className={styles.brand} aria-label="LinkPlus IT — Home">
     <img src={lpLogo} alt="" className={styles.brandImg} />
     <span className={styles.brandText}>LINKPLUS&nbsp;IT</span>
   </Link>
 );
 
-/* ---------- ISO (trophy always visible, long text on hover) ---------- */
 const IsoInline: React.FC = () => (
   <div className={styles.isoCenter}>
     <Tooltip
@@ -119,21 +119,14 @@ const IsoInline: React.FC = () => (
       placement="bottom"
       trigger={["hover"]}
     >
-      <span
-        className={styles.isoInline}
-        aria-label="ISO certifications"
-        // data-label="ISO 9001:2015 Quality Management & ISO/IEC 27001 Information Security"
-      >
+      <span className={styles.isoInline} aria-label="ISO certifications">
         <TrophyOutlined className={styles.isoIcon} />
-        <span className={styles.isoLabel}>
-          ISO 9001:2015 &amp; 27001 CERTIFIED
-        </span>
+        <span className={styles.isoLabel}>ISO 9001:2015 &amp; 27001 CERTIFIED</span>
       </span>
     </Tooltip>
   </div>
 );
 
-/* ---------- menu items ---------- */
 function useMenuItems(opts: {
   isAuthenticated?: boolean;
   isCompanyUser?: boolean;
@@ -152,20 +145,12 @@ function useMenuItems(opts: {
             label: (
               <div style={{ display: "flex", alignItems: "center", gap: 15 }}>
                 {isCompanyUser && (
-                  <Link
-                    to="/company/dashboard"
-                    onClick={onLinkClick}
-                    style={linkStyle}
-                  >
+                  <Link to="/company/dashboard" onClick={onLinkClick} style={linkStyle}>
                     {tr("navigationlinks.dashboard", "Dashboard")}
                   </Link>
                 )}
                 {isEmployeeUser && (
-                  <Link
-                    to="/employee/dashboard"
-                    onClick={onLinkClick}
-                    style={linkStyle}
-                  >
+                  <Link to="/employee/dashboard" onClick={onLinkClick} style={linkStyle}>
                     {tr("navigationlinks.dashboard", "Dashboard")}
                   </Link>
                 )}
@@ -211,11 +196,7 @@ function useMenuItems(opts: {
         },
         {
           key: "other",
-          label: (
-            <span style={linkStyle}>
-              {tr("navigationlinks.other", "Other")}
-            </span>
-          ),
+          label: <span style={linkStyle}>{tr("navigationlinks.other", "Other")}</span>,
           children: [
             {
               key: "career",
@@ -244,46 +225,37 @@ function useMenuItems(opts: {
   return { desktop, mobile };
 }
 
-/* ---------- top utility bar ---------- */
 const UtilityBar: React.FC = () => (
   <div className={styles.topbar} style={TOPBAR}>
     <div className={styles.container}>
-      <Row align="middle" gutter={[12, 4]}>
-        <Col flex="auto">
-          <Space
-            size={16}
-            wrap
-            className={styles.utGroup}
-          >
-            {/* Hours */}
-            <Space size={6} style={{ color: "#fff" }}>
-              <ClockCircleOutlined style={{ fontSize: 12 }} />
-              <Text style={TOPBAR_TEXT}>Mon - Fri : 9:00 - 17:00</Text>
-            </Space>
+      <Row align="middle" gutter={[12, 4]} wrap={false}>
+        <Col flex="auto" style={{ minWidth: 0 }}>
+          <div className={styles.utRow}>
+            <div className={styles.utItem}>
+              <ClockCircleOutlined className={styles.utIcon} />
+              <Text className={styles.utText}>Mon - Fri : 9:00 - 17:00</Text>
+            </div>
 
-            {/* Email */}
-            <Space size={6} style={{ color: "#fff" }}>
-              <MailOutlined style={{ fontSize: 12 }} />
-              <Text style={TOPBAR_TEXT}>info@linkplus.com</Text>
-            </Space>
+            <div className={styles.utItem}>
+              <MailOutlined className={styles.utIcon} />
+              <Text className={styles.utText}>info@linkplus.com</Text>
+            </div>
 
-            {/* Address */}
-            <Space size={6} style={{ color: "#fff" }}>
-              <EnvironmentOutlined style={{ fontSize: 12 }} />
-              <Text style={TOPBAR_TEXT}>
-                Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000,
-                Kosovo
+            <div className={styles.utItem}>
+              <EnvironmentOutlined className={styles.utIcon} />
+              <Text className={styles.utTextEllipsis}>
+                Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo
               </Text>
-              <EnvironmentOutlined style={{ fontSize: 12, paddingLeft: 10 }} />
-              <Text style={TOPBAR_TEXT}>
-                Flatiron 75, Skopje, North Macedonia
-              </Text>
-            </Space>
-          </Space>
+            </div>
+
+            <div className={styles.utItem}>
+              <EnvironmentOutlined className={styles.utIcon} />
+              <Text className={styles.utTextEllipsis}>Flatiron 75, Skopje, North Macedonia</Text>
+            </div>
+          </div>
         </Col>
 
-        {/* Socials */}
-        <Col>
+        <Col flex="none">
           <Space size={10} style={{ color: "#fff" }}>
             <a
               href="https://www.facebook.com/LinkPlusIT/"
@@ -322,7 +294,6 @@ const UtilityBar: React.FC = () => (
   </div>
 );
 
-/* ---------- main header ---------- */
 type Props = {
   isAuthenticated?: boolean;
   isCompanyUser?: boolean;
@@ -340,6 +311,7 @@ export const SiteHeader: React.FC<Props> = ({
   const [open, setOpen] = useState(false);
 
   const handleLinkClick = () => setOpen(false);
+
   const { desktop, mobile } = useMenuItems({
     isAuthenticated,
     isCompanyUser,
@@ -355,23 +327,23 @@ export const SiteHeader: React.FC<Props> = ({
       <Header className={styles.headerCompact} style={MAINBAR}>
         <div className={styles.container}>
           <Row align="middle" gutter={12} wrap={false}>
-            {/* Logo */}
-            <Col>
+            <Col flex="none">
               <Logo />
             </Col>
 
-            {/* Nav */}
-            <Col
-              flex="auto"
-              style={{ display: "flex", justifyContent: "flex-start", minWidth: 0 }}
-            >
+            <Col flex="auto" style={{ minWidth: 0, display: "flex" }}>
               {isDesktop ? (
-                <Menu
-                  mode="horizontal"
-                  selectable={false}
-                  items={desktop}
-                  style={{ border: "none", background: "transparent" }}
-                />
+                <div className={styles.navScope}>
+                  <Menu
+                    className={styles.navMenu}
+                    mode="horizontal"
+                    selectable={false}
+                    items={desktop}
+                    disabledOverflow
+                    overflowedIndicator={null}
+                    style={{ border: "none", background: "transparent", minWidth: 0, flex: 1 }}
+                  />
+                </div>
               ) : (
                 <Button
                   type="text"
@@ -384,21 +356,12 @@ export const SiteHeader: React.FC<Props> = ({
               )}
             </Col>
 
-            {/* Right side */}
-            <Col flex="none" style={{ whiteSpace: "nowrap" }}>
-              <Space
-                size={16}
-                align="center"
-                style={{ color: "#fff", padding: "15px" }}
-              >
+            <Col flex="none" className={styles.rightCluster}>
+              <Space size={16} align="center" style={{ color: "#fff" }}>
                 <IsoInline />
                 <Link to="/contactus">
-                  <Button
-                    className={styles.contactBtn}
-                    style={{ ...GRADIENT_BTN, whiteSpace: "nowrap" }}
-                  >
-                    CONTACT US{" "}
-                    <ExportOutlined style={{ marginLeft: 6, fontSize: 12 }} />
+                  <Button className={styles.contactBtn} style={GRADIENT_BTN}>
+                    CONTACT US <ExportOutlined style={{ marginLeft: 6, fontSize: 12 }} />
                   </Button>
                 </Link>
               </Space>
@@ -407,7 +370,6 @@ export const SiteHeader: React.FC<Props> = ({
         </div>
       </Header>
 
-      {/* Sidebar Drawer */}
       <Drawer
         rootClassName={styles.drawerRoot}
         title={<span>LINKPLUS IT</span>}

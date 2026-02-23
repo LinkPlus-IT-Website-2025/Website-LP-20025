@@ -43,9 +43,25 @@ export default function PortfolioDetails() {
       </section>
 
       <div className={styles.container}>
-        <div className={styles.heroImgWrap}>
-          <img src={item.detailMainImg ?? item.heroImg} alt={item.title} loading="lazy" />
-        </div>
+        {item.detailPhoneImages && item.detailPhoneImages.length > 0 ? (
+          <div className={styles.phoneFramesWrap}>
+            {item.detailPhoneImages.map((src, i) => (
+              <div key={i} className={styles.phoneFrame}>
+                <img src={src} alt={`${item.title} screen ${i + 1}`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        ) : item.detailDeviceImage ? (
+          <div className={styles.deviceFrameWrap}>
+            <div className={styles.deviceFrame}>
+              <img src={item.detailDeviceImage} alt={item.title} loading="lazy" />
+            </div>
+          </div>
+        ) : (
+          <div className={styles.heroImgWrap}>
+            <img src={item.detailMainImg ?? item.heroImg} alt={item.title} loading="lazy" />
+          </div>
+        )}
 
         <Row gutter={[48, 24]} className={styles.contentRow}>
           <Col xs={24} lg={16}>

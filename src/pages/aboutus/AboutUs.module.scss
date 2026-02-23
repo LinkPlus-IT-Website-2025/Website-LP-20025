@@ -143,7 +143,6 @@ html, body {
   display:flex; align-items:center; justify-content:center;
   padding: clamp(96px, 16vw, 180px) var(--gutter) clamp(80px, 10vw, 120px);
   color: #fff;
-  
 }
 .heroBackground{
   position:absolute; top:-20%; left:0; width:100%; height:120%;
@@ -158,9 +157,10 @@ html, body {
   position: absolute;
   inset: 0;
   background: rgba(82, 12, 14, 0.799); /* footer-like red veil */
-}.heroContent{ position:relative; z-index:2; width:100%; }
+}
+.heroContent{ position:relative; z-index:2; width:100%; }
 .heroTitle{
-  font-size:64px; font-weight:800; letter-spacing:-.02em; line-height:1.1; margin:0 0 12px;
+  font-size:64px; font-weight:700; letter-spacing:-.02em; line-height:1.1; margin:0 0 12px;
   background:linear-gradient(135deg,#fff,#e5e7eb);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   text-align:center;
@@ -171,18 +171,18 @@ html, body {
 }
 @media (max-width: 768px) {
   .heroContent {
-    display: flex;            
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;         
-    padding: 0px !important;           
+    text-align: center;
+    padding: 0px !important;
   }
 
   .heroContainer {
     width: 100%;
-    display: grid;            
+    display: grid;
     gap: 8px;
-    justify-items: center;    
+    justify-items: center;
     margin: 0 auto;
   }
 
@@ -190,7 +190,7 @@ html, body {
     display: flex;
     gap: 6px;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
   }
 
   .heroTitle {
@@ -217,12 +217,12 @@ html, body {
     margin: 0 auto;
     display: grid;
     gap: 6px;
-    justify-items: center; 
+    justify-items: center;
   }
 
   .breadcrumb {
     display: flex;
-    flex-wrap: wrap;     
+    flex-wrap: wrap;
     gap: 4px;
     justify-content: center;
     font-size: 11px;
@@ -242,7 +242,6 @@ html, body {
     margin: 2px 0 0;
   }
 }
-
 
 .mainContent{ background:#fff; position:relative; z-index:3; }
 
@@ -301,6 +300,7 @@ html, body {
 
 .additionalText{ color:var(--muted); line-height:1.7; margin-top:6px; display: flex;align-items: start; text-align: left;}
 @media (max-width:1126px){ .additionalText{ justify-content:center; padding-right: 50px ;} }
+
 .ctaSection{ display:flex; align-items:center; gap:12px; margin-top:10px; flex-wrap:wrap; }
 @media (max-width:1126px){ .ctaSection{ justify-content:center; } }
 .ctaButton{
@@ -309,7 +309,6 @@ html, body {
   font-weight:700; font-size:12px; display:inline-flex; gap:10px; align-items:center; cursor:pointer;
   box-shadow:0 6px 22px rgba(153,23,28,.25); transition:transform .25s ease, box-shadow .25s ease;
 }
-
 @media (max-width:1126px){ .ctaButton{ justify-content:center; margin-right:40px !important;} }
 .ctaButton:hover{ transform:translateY(-2px); }
 .ctaArrow{ transition:transform .25s ease; }
@@ -342,21 +341,21 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    padding: 0 16px;     
-      padding: 0% !important;
-    margin: 0% !important;      
+    padding: 0 16px;
+    padding: 0% !important;
+    margin: 0% !important;
   }
-.techIndex{
-  position:relative; display:flex;margin-top: 0% !important; justify-content:center; align-items:center; min-height:250px; }
+  .techIndex{
+    position:relative; display:flex;margin-top: 0% !important; justify-content:center; align-items:center; min-height:250px; }
 
   .secondaryImage { display: none !important; }
-.imageContent{ position:relative; display:flex; justify-content:center; align-items:center; min-height:250px; }
+  .imageContent{ position:relative; display:flex; justify-content:center; align-items:center; min-height:250px; }
 
   .primaryImage {
     width: 100%;
-    max-width: 420px;            
+    max-width: 420px;
     height: 240px !important;
-    margin: 10px 0 !important;   
+    margin: 10px 0 !important;
     padding: 0% !important;
     margin: 0% !important;
   }
@@ -404,9 +403,10 @@ html, body {
 
 .statsSection{ width:100%; }
 @media (max-width:424px){
-  .statsSection{ margin-right: 120px !important;
-  padding-right: 30px !important; 
-}
+  .statsSection{
+    margin-right: 120px !important;
+    padding-right: 30px !important;
+  }
 }
 .statsBanner{
   position:relative; width:100%;
@@ -450,21 +450,21 @@ html, body {
   text-transform: uppercase;
   font-weight: 700;
   opacity: .95;
-  line-height: 1;             
+  line-height: 1;
 }
 @media (max-width:390px){
   .statsSection{ align-items: center;
-  padding-left: 15px !important;
-}
+    padding-left: 15px !important;
+  }
 }
 .statsDot{
-  display: inline-block;       
+  display: inline-block;
   width: 8px;
   height: 8px;
   background: #fff;
   border-radius: 2px;
   vertical-align: middle;
-  margin-right: 8px;          
+  margin-right: 8px;
 }
 
 .statsRight{ position:relative; background:#f2f5fb; padding:clamp(22px,3.2vw,36px); display:grid; place-items:center; }
@@ -494,11 +494,13 @@ html, body {
 
 .techIndex{
   display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-  gap:clamp(24px,4vw,48px); align-items:start; padding-top:40px; padding-bottom:8px;  margin-left: 50px;margin-right: 50px;margin-top: 90px;
+  gap:clamp(24px,4vw,48px); align-items:start; padding-top:40px; padding-bottom:8px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 90px;
 }
 @media (max-width:1126px){ .techIndex{ grid-template-columns:1fr; } }
 @media (max-width:430px){ .techIndex{ margin-top: 0px; padding-top: 20px; } }
-
 
 .techLeft{ text-align:left;padding-right: 100px;padding-left: 100px; }
 .techBadge{ display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:800; letter-spacing:.14em; color:var(--brand); text-transform:uppercase; }
@@ -517,7 +519,7 @@ html, body {
   .techLeft { padding: 0 40px !important; }
 }
 @media (max-width: 640px) {
-  .techLeft { padding: 0 14px !important; }   
+  .techLeft { padding: 0 14px !important; }
 }
 
 @media (max-width: 640px) {
@@ -550,7 +552,7 @@ html, body {
 }
 .teamCard{ flex:0 0 var(--card-w); display:flex; flex-direction:column; align-items:center; text-align:center; padding:10px; }
 .teamMember{ width:100%; height:clamp(220px,24vw,280px); object-fit:cover; border-radius:12px; margin-bottom:12px; filter: grayscale(100%);
-  -webkit-filter: grayscale(100%); 
+  -webkit-filter: grayscale(100%);
   transition: filter 250ms ease;}
 .teamName{ font-size:16px; font-weight:600; margin-bottom:4px; color:#222; }
 .teamPosition{ font-size:13px; color:#777; }
@@ -562,12 +564,12 @@ html, body {
   width: 100vw !important;
   margin-left: calc(50% - 50vw) !important;
   margin-right: calc(50% - 50vw) !important;
-  background-color: #f3f4f6 !important; 
+  background-color: #f3f4f6 !important;
   background-image:
-    linear-gradient(180deg, transparent, transparent), 
+    linear-gradient(180deg, transparent, transparent),
     repeating-linear-gradient(90deg, rgba(255,255,255,.86) 0 1px, transparent 1px 20px),
     repeating-linear-gradient(0deg,  rgba(255,255,255,.86) 0 1px, transparent 1px 20px) !important;
-  background-size: auto, 20px 20px, 20px 20px !important; 
+  background-size: auto, 20px 20px, 20px 20px !important;
   background-repeat: no-repeat, repeat, repeat !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -602,7 +604,6 @@ html, body {
 .dot:hover{ transform:scale(1.08); }
 .activeDot{ background:#111827; transform:scale(1.18); }
 
-
 .tWrap{ background:#fff; padding:56px 0 64px; }
 .tInner{ position:relative; text-align:center; }
 .tTitle{ text-transform:uppercase; font-weight:800; letter-spacing:.04em; color:#0b0b0b; font-size:clamp(22px,3vw,36px); margin:0 0 6px; }
@@ -629,13 +630,15 @@ html, body {
 .ctaBand{ position:relative; isolation:isolate; width:100%; min-height:260px; display:grid; place-items:center; overflow:hidden; }
 .ctaBg{ position:absolute; inset:0; background-color:var(--brand); transform:scale(1.02); filter:brightness(.6) contrast(1.05); z-index:-2; }
 .ctaOverlay{ position:absolute; inset:0; z-index:-1; }
-.ctaTitle{   margin: 0 0 22px;
+.ctaTitle{
+  margin: 0 0 22px;
   color: #e9e8ff;
   font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.2;
   font-size: 30px;
-  text-wrap: balance;}
+  text-wrap: balance;
+}
 .ctaButton{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
   padding:12px 24px; border-radius:999px; text-decoration:none; font-weight:800; font-size:13px; letter-spacing:.04em; color:#fff;
@@ -715,11 +718,10 @@ html, body {
   .ctaButton, .backToTop{ transition:none !important; }
 }
 
-
 .tWrap {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 34px 24px 56px; 
+  padding: 34px 24px 56px;
   background:
     radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.06) 1px, transparent 1px)
       0 0 / 40px 40px no-repeat;
@@ -814,13 +816,13 @@ html, body {
   height: 10px !important;
   min-width: 3px;
   min-height: 3px;
-  display: inline-block;   
-  padding: 0;             
-  line-height: 0;        
+  display: inline-block;
+  padding: 0;
+  line-height: 0;
   border: 0;
   border-radius: 999px;
   background: #d1d5db;
-  transform: none !important;    
+  transform: none !important;
 }
 
 .tDots .tDotActive,
@@ -842,12 +844,12 @@ html, body {
   .tInner { min-height: 300px; }
   .tAvatar { width: 42px; height: 42px; }
 }
+
 .page {
   --wrap: 1240px;
   --gutter: clamp(16px, 4vw, 32px);
   --ink: #101828;
 }
-
 
 .heroInner {
   width: min(var(--wrap), 92vw);
@@ -877,24 +879,24 @@ html, body {
 }
 
 .heroTitle {
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: 0.01em;
-  font-size: clamp(32px, 6vw, 56px);
+  font-size: 64px;
 }
 @media (max-width: 640px) {
   .heroTitle { text-align: center !important;
-  padding-left: 30px !important;}
+    padding-left: 30px !important;}
   .breadcrumb{text-align: center !important;
-  padding-left: 30px !important;}
-   .hero{height: 520px !important;}
+    padding-left: 30px !important;}
+  .hero{height: 520px !important;}
 }
 
 @media (min-width: 401px) and (max-width: 640px) {
   .heroTitle,
   .breadcrumb {
-    padding-left: 0 !important; 
-    text-align: center !important; 
+    padding-left: 0 !important;
+    text-align: center !important;
   }
   .hero{height: 520px !important;}
 }
@@ -906,13 +908,14 @@ html, body {
 }
 
 .toastOk {
-  color: #0a7a28;               
-  font-weight: 700;            
+  color: #0a7a28;
+  font-weight: 700;
   background: rgba(16,185,129,.12);
   border: 1px solid rgba(16,185,129,.35);
   padding: 10px 12px;
   border-radius: 8px;
 }
+
 .teamMember {
   width: 98%;
   height: 230px !important;
@@ -935,7 +938,7 @@ html, body {
   .teamMember {
     height: 200px;
   }
-   .hero{height: 520px !important;}
+  .hero{height: 520px !important;}
 }
 
 @media (max-width: 520px) {
@@ -955,10 +958,12 @@ html, body {
     margin-bottom: 15px;
   }
 }
+
 @media (max-width:440px){ .ctaSection{ justify-content:left; } }
 .ctaButton{
   display:inline-flex; gap:10px; align-items:left; cursor:pointer;
 }
+
 .ctaButtonend {
   display: inline-flex;
   align-items: center;
@@ -985,11 +990,10 @@ html, body {
     box-shadow 0.2s ease,
     transform 0.2s ease;
 
-  // if you ever put an icon/arrow element inside
   gap: 0.5rem;
 
   &:hover {
-    background: #b31d22;       // slightly lighter red
+    background: #b31d22;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
   }
@@ -1013,6 +1017,7 @@ html, body {
     font-size: 0.8rem;
   }
 }
+
 /* list */
 .cList {
   margin: 0;
@@ -1086,6 +1091,58 @@ html, body {
   font-size: 13px;
   line-height: 1.4;
   color: #64748b;
-    padding-top: 10px;
+  padding-top: 10px;
+}
 
+@media (max-width: 746px) {
+  .ctaTitle{
+    font-size: larger;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .techRight { margin-right: 0 !important; }
+  .meter { text-align: center; }
+  .meterTrack { margin-inline: auto; }
+}
+
+@media (max-width: 350px) {
+  html, body { overflow-x: hidden; }
+
+  .techIndex {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .techLeft {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .techRight {
+    margin-right: 0 !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .mainTitle,
+  .description,
+  .additionalText {
+    padding-right: 0 !important;
+  }
+
+  .heroContent {
+    padding-right: 0 !important;
+  }
+
+  .statsSection {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .meterTag { right: 0 !important; }
 }

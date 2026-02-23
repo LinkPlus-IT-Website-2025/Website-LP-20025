@@ -76,7 +76,7 @@ const Career: React.FC = () => {
         </section>
 
         <section className={styles.opps} aria-label="Career opportunities">
-          <h2 className={styles.h2}>
+          <h2 className={styles.h1}>
             Current Career
             <br />
             Opportunities
