@@ -87,7 +87,7 @@ const Team: React.FC = () => {
         <div className={styles.heroShade} />
         <div className={styles.container}>
           <div className={styles.breadcrumb}>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             <span className={styles.bcSep}>/</span>
             <span>Our Team</span>
           </div>

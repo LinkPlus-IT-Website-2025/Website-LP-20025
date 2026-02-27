@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from "react";
+import { ArrowUpRight } from "@components/icons/ArrowUpRight";
 import styles from "./ContactUs.module.scss";
 import heroImg from "../../assets/images/pic4.jpg";
 
-const TO_EMAIL = "info@linkplus.com";
+const TO_EMAIL = "office@linkplus-it.com";
 const ADDRESS =
-  "Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo";
+  "Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo";
 const ADDRESS1 =
   "Flatiron 75, Skopje, North Macedonia";
 
@@ -60,14 +61,31 @@ const ContactUs: React.FC = () => {
   );
   const [submitting, setSubmitting] = useState(false);
 
+  const sanitizeName = (v: string) =>
+    v.replace(/[0-9]/g, "").replace(/\s+/g, " ").trim();
+  const sanitizePhone = (v: string) =>
+    v.replace(/[A-Za-z]/g, "").replace(/\s+/g, " ").trim();
+
   const onChange =
     (k: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setData((d) => ({ ...d, [k]: e.target.value }));
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const raw = e.target.value;
+      if (k === "firstName" || k === "lastName") {
+        setData((d) => ({ ...d, [k]: sanitizeName(raw) }));
+        return;
+      }
+      if (k === "phone") {
+        setData((d) => ({ ...d, [k]: sanitizePhone(raw) }));
+        return;
+      }
+      setData((d) => ({ ...d, [k]: raw }));
+    };
 
   const isValid = useMemo(() => {
     if (!data.firstName || !data.lastName || !data.email || !data.phone)
       return false;
+    if (/\d/.test(data.firstName) || /\d/.test(data.lastName)) return false;
+    if (/[A-Za-z]/.test(data.phone.replace(/\s/g, ""))) return false;
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email);
   }, [data]);
 
@@ -125,9 +143,9 @@ const ContactUs: React.FC = () => {
         <div className={styles.heroBlob} aria-hidden />
         <div className={styles.container}>
           <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <a href="/">HOME</a>
+            <a href="/">Home</a>
             <span className={styles.bcSep}>/</span>
-            <span>CONTACT US</span>
+            <span>Contact us</span>
           </nav>
           <h1 className={styles.heroTitle}>Contact us</h1>
         </div>
@@ -271,10 +289,7 @@ const ContactUs: React.FC = () => {
                   }`}
                   disabled={!isValid || submitting}
                 >
-                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
-                  <span className={styles.submitArrow} aria-hidden>
-                    ↗
-                  </span>
+                  {submitting ? "Sending…" : <>SEND VIA EMAIL <ArrowUpRight size="1.2em" /></>}
                 </button>
 
                 {toast && (

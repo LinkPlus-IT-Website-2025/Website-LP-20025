@@ -121,7 +121,7 @@ const Services: React.FC = () => {
         <div className={styles.heroShade} />
         <div className={styles.heroInner}>
           <div className={styles.breadcrumb}>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             <span className={styles.bcSep}>/</span>
             <span>Services</span>
           </div>

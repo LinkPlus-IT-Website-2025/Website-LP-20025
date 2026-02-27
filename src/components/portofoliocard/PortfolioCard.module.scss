@@ -1,7 +1,15 @@
 .linkWrap {
   display: block;
-  text-decoration: none;
-  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #2563eb;
+  color: #ffffff;
+}
+
+/* Same as default: blue underline, no red (overrides global a:hover) */
+.linkWrap:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: #2563eb;
 }
 
 .card {

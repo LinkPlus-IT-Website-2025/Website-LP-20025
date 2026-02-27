@@ -92,6 +92,16 @@
   text-decoration: none !important;
   opacity: 0.85;
 }
+.topbar a:focus,
+.topbar a:focus-visible {
+  outline: none !important;
+}
+.navScope :global(.ant-menu-item):focus,
+.navScope :global(.ant-menu-submenu):focus,
+.navScope :global(.ant-menu-item) a:focus,
+.navScope :global(.ant-menu-item) a:focus-visible {
+  outline: none !important;
+}
 
 .brand {
   display: inline-flex;
@@ -168,10 +178,17 @@
 
 .navScope a:hover,
 .navScope a:focus,
+.navScope a:focus-visible,
 .rightCluster a,
 .rightCluster a:hover,
-.rightCluster a:focus {
+.rightCluster a:focus,
+.rightCluster a:focus-visible {
   text-decoration: none !important;
+  outline: none !important;
+}
+.brand:focus,
+.brand:focus-visible {
+  outline: none !important;
 }
 
 .navScope :global(.ant-menu-item:hover) a,

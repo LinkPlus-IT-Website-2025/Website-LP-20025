@@ -25,6 +25,10 @@ const perks = [
   },
 ];
 
+const sendToLink = () => {
+  window.open("https://jobs.hrbee.ai/company-jobs/67", "_blank", "noopener,noreferrer");
+};
+
 const Career: React.FC = () => {
   return (
     <div className={styles.page}>
@@ -85,17 +89,15 @@ const Career: React.FC = () => {
             We are looking for dynamic and dedicated people
           </p>
 
-          <a
+          <button
             className={styles.cta}
-            href="https://jobs.hrbee.ai/company-jobs/67"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={sendToLink}
           >
 <span
   style={{
     backgroundColor: '#99171C',
     color: '#fff',
-    padding: '8px 14px',
+    padding: '8px 0px 8px 14px',
     borderRadius: '999px',
     fontWeight: 700,
   }}
@@ -118,7 +120,7 @@ const Career: React.FC = () => {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </button>
         </section>
       </main>
     </div>

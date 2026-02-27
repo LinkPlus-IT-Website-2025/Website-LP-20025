@@ -15,11 +15,35 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: inherit;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #99171c;
+}
+a:focus,
+a:focus-visible {
+  outline: none;
+}
+a span, button span {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+a:focus span, a:focus-visible span, a:hover span,
+button:focus span, button:focus-visible span, button:hover span {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+svg[data-arrow="up-right"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 html, body, #root {
   padding: 0 !important;
@@ -51,11 +75,18 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #99171c;
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+}
+
+.ant-menu-item:focus,
+.ant-menu-item:focus-visible,
+.ant-menu-item a:focus,
+.ant-menu-item a:focus-visible {
+  outline: none !important;
 }
 
 @media (prefers-color-scheme: light) {
@@ -64,7 +95,7 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #99171c;
   }
   button {
     background-color: #f9f9f9;

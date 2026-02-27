@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ArrowUpRight } from "@components/icons/ArrowUpRight";
 import styles from "./HomePage.module.scss";
 
 import itServicesBg from "../../assets/images/intro-pattern-light.svg";
@@ -585,7 +586,7 @@ const HomePage: React.FC = () => {
                         <PinIcon />
                       </span>
                       <p className={styles.cValue}>
-                        Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
+                        Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo
                       </p>
                     </div>
 
@@ -700,10 +701,7 @@ const HomePage: React.FC = () => {
                   className={`${styles.cSubmit} ${!isValid || submitting ? styles.cDisabled : ""}`}
                   disabled={!isValid || submitting}
                 >
-                  <span>{submitting ? "Sending…" : "SEND VIA EMAIL"}</span>
-                  <span className={styles.cSubmitArrow} aria-hidden>
-                    ↗
-                  </span>
+                  {submitting ? "Sending…" : <>SEND VIA EMAIL <ArrowUpRight size="1em" /></>}
                 </button>
 
                 {toast && (
@@ -730,7 +728,7 @@ const HomePage: React.FC = () => {
             data and modernising your technology?
           </h2>
           <Link to="/contactus" className={styles.ctaButtonend} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            GET IN TOUCH ↗
+            GET IN TOUCH <ArrowUpRight size="1.2em" />
           </Link>
         </div>
       </section>
