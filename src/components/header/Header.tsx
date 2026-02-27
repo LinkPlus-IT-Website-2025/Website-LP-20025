@@ -238,7 +238,7 @@ const UtilityBar: React.FC = () => (
 
             <div className={styles.utItem}>
               <MailOutlined className={styles.utIcon} />
-              <Text className={styles.utText}>info@linkplus.com</Text>
+              <Text className={styles.utText}>office@linkplus-it.com</Text>
             </div>
 
             <div className={styles.utItem}>

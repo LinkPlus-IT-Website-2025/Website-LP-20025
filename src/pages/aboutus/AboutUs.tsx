@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Check, ArrowUp } from "lucide-react";
 import styles from "./AboutUs.module.scss";
 import { Link, useLocation } from "react-router-dom";
+import { ArrowUpRight } from "@components/icons/ArrowUpRight";
 import deboraMeta from "../../assets/images/debora-meta.webp";
 import ermalSadiku from "../../assets/images/ermal-sadiku.png";
 import ilirianaIbraj from "../../assets/images/iliriana-ibraj.png";
@@ -486,7 +487,7 @@ const AboutUs: React.FC = () => {
                         <PinIcon />
                       </span>
                       <p className={styles.cValue}>
-                        Str.Tirana, Ico Tower - 12 Floor, no.46, Prishtine, 10000, Kosovo
+                        Str.Tirana, Icon Tower – 12th Floor, no.46, Prishtine, 10000, Kosovo
                       </p>
                     </div>
 
@@ -609,8 +610,7 @@ const AboutUs: React.FC = () => {
                   className={`${styles.cSubmit} ${!isValid || submitting ? styles.cDisabled : ""}`}
                   disabled={!isValid || submitting}
                 >
-                  <span>{submitting ? "Sending…" : "Send VIA EMAIL"}</span>
-                  <span className={styles.cSubmitArrow} aria-hidden>↗</span>
+                  {submitting ? "Sending…" : <>SEND VIA EMAIL <ArrowUpRight size="1em" /></>}
                 </button>
                 {toast && (
                   <div
@@ -641,7 +641,7 @@ const AboutUs: React.FC = () => {
             className={styles.ctaButtonend}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
-            GET IN TOUCH ↗
+            GET IN TOUCH <ArrowUpRight size="1.2em" />
           </Link>
         </div>
       </section>

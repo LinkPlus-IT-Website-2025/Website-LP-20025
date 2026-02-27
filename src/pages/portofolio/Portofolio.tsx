@@ -33,7 +33,7 @@ const Portfolio: React.FC = () => {
         <div className={styles.heroDecor} aria-hidden />
         <div className={styles.container}>
           <div className={styles.breadcrumb}>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
             <span className={styles.bcSep}>/</span>
             <span>Portfolio</span>
           </div>

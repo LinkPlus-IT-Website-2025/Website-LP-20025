@@ -34,9 +34,11 @@ export default function PortfolioDetails() {
           <div className={styles.breadcrumb}>
             <Link to="/">Home</Link>
             <span className={styles.bcSep}>/</span>
-            <Link to="/portoflio">Portfolio</Link>
+            <Link to="/portfolio">Portfolio</Link>
             <span className={styles.bcSep}>/</span>
-            <span className={styles.bcCurrent}>{item.title}</span>
+            <span className={styles.bcCurrent}>
+              {item.title.charAt(0).toUpperCase() + item.title.slice(1).toLowerCase()}
+            </span>
           </div>
           <h1 className={styles.heroTitle}>{item.title}</h1>
         </div>
@@ -66,14 +68,15 @@ export default function PortfolioDetails() {
         <Row gutter={[48, 24]} className={styles.contentRow}>
           <Col xs={24} lg={16}>
             <Title level={2} className={styles.detailTitle}>{item.title}</Title>
-            <Paragraph className={styles.lead}>{item.detailBody ?? item.body}</Paragraph>
-
-            <div className={styles.galleryRow}>
-              {item.gallery.slice(0, 2).map((src, i) => (
-                <div key={i} className={styles.galleryItem}>
-                  <img src={src} alt={`${item.title} ${i + 1}`} loading="lazy" />
-                </div>
-              ))}
+            <div className={styles.leadAndGallery}>
+              <Paragraph className={styles.lead}>{item.detailBody ?? item.body}</Paragraph>
+              <div className={styles.galleryRow}>
+                {item.gallery.slice(0, 2).map((src, i) => (
+                  <div key={i} className={styles.galleryItem}>
+                    <img src={src} alt={`${item.title} ${i + 1}`} loading="lazy" />
+                  </div>
+                ))}
+              </div>
             </div>
           </Col>
 
@@ -107,7 +110,7 @@ export default function PortfolioDetails() {
               </div>
 
               <div className={styles.backWrap}>
-                <Link to="/portoflio" className={styles.backLink}>← Back to portfolio</Link>
+                <Link to="/portfolio" className={styles.backLink}>← Back to portfolio</Link>
               </div>
             </div>
           </Col>

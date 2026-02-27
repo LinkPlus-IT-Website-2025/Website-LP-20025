@@ -54,9 +54,8 @@
   gap:10px;
   align-items:center;
   justify-content:center;
-  font-size:12px;
+  font-size:14px;
   letter-spacing:.06em;
-  text-transform:uppercase;
   opacity:.9;
   color:#fff;
   margin-top: 8px;
@@ -80,9 +79,9 @@
 }
 
 .intro{
-  padding: 56px 0 12px;
+  padding: 32px 0 12px;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 24px;
 }
 
 .h1{
@@ -104,10 +103,10 @@
 .grid{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 56px 72px;
+  gap: 32px 48px;
   justify-content: center;
   justify-items: center;
-  padding: 38px 0 80px;
+  padding: 24px 0 48px;
   text-align: center;
 }
 
@@ -136,7 +135,7 @@
 
 .opps{
   text-align: center;
-  padding: 14px 0 96px;
+  padding: 14px 0 48px;
 }
 
 .h2{

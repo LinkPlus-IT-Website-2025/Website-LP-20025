@@ -226,7 +226,7 @@ export const PORTFOLIO: PortfolioItem[] = [
       completionDateee: "• User activity insights & customization",
       completionDateeee: "• Real-time data via Intercom & Firebase",
       completionDateeeee: "• Scalable, reliable mobile infrastructure",
-      location: "",
+      location: "Switzerland",
       techstack: "Django, Android/Kotlin, iOS/Swift (Mobile)",
     },
     body:
@@ -249,7 +249,7 @@ export const PORTFOLIO: PortfolioItem[] = [
       completionDateee: "• Automated report generation and content management",
       completionDateeee: "• Scalable solution handling thousands of daily requests",
       completionDateeeee: "• Integrated CMS for pricing and operational control",
-      location: "",
+      location: "Germany",
       techstack: "Java, Angular, iOS (Swift), Android (Java) • 5 Engineers",
     },
     body:

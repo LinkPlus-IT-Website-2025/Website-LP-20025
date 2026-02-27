@@ -225,7 +225,7 @@ html, body {
     flex-wrap: wrap;
     gap: 4px;
     justify-content: center;
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.2;
   }
   .bcSep { margin: 0 2px; }
@@ -687,7 +687,7 @@ html, body {
   transition:border-color .2s, box-shadow .2s;
 }
 .cInput::placeholder{ color:#9aa3b4; }
-.cInput:focus{ border-color:#cdd7ff; box-shadow:0 0 0 4px rgba(91,44,255,.12); }
+.cInput:focus{ border-color: #99171c; box-shadow: 0 0 0 4px rgba(153, 23, 28, 0.2); }
 .cTextarea{ min-height:110px; resize:vertical; }
 .cError{ color:#c1121f; font-size:12px; }
 
@@ -695,12 +695,13 @@ html, body {
   display:inline-flex; align-items:center; gap:6px; border:none; cursor:pointer; color:#fff; font-weight:800;
   border-radius:12px; padding:12px 18px; letter-spacing:.03em; width:max-content;
   background:linear-gradient(135deg,var(--brand-dark),var(--brand));
-  box-shadow:0 10px 24px rgba(59,87,255,.16); font-size:12px; margin-top:6px;
+  box-shadow: 0 10px 24px rgba(153, 23, 28, 0.25); font-size:12px; margin-top:6px;
   transition:transform .15s ease, filter .15s ease, box-shadow .15s ease;
 }
 .cSubmit:hover{ filter:brightness(1.03); transform:translateY(-1px); }
 .cSubmit:focus-visible{ outline:2px solid var(--brand-dark); outline-offset:2px; }
-.cSubmitArrow{ display:inline-grid; place-items:center; width:22px; height:22px; border-radius:7px; background:#ffffff1a; font-size:12px; }
+.cSubmitArrow{ display: inline !important; background: none !important; border: none !important; outline: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; font-size: inherit !important; color: inherit !important; -webkit-tap-highlight-color: transparent !important; border-radius: 0 !important; }
+.cSubmit .cSubmitArrow:focus, .cSubmit:focus .cSubmitArrow, .cSubmit:focus-visible .cSubmitArrow, .ctaButtonend:focus span, .ctaButtonend:focus-visible span, .ctaButtonend:hover span { background: transparent !important; border: none !important; outline: none !important; box-shadow: none !important; color: inherit !important; }
 .cDisabled{ opacity:.6; pointer-events:none; }
 
 @media (max-width:1126px){
@@ -864,7 +865,7 @@ html, body {
   font-weight: 600;
   letter-spacing: 0.04em;
   opacity: 0.92;
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 8px;
 }
 
@@ -994,6 +995,7 @@ html, body {
 
   &:hover {
     background: #b31d22;
+    color: #ffffff !important;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     transform: translateY(-1px);
   }
@@ -1003,7 +1005,10 @@ html, body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   }
 
+  &:focus,
   &:focus-visible {
+    color: #ffffff !important;
+    outline: none;
     box-shadow:
       0 0 0 2px #ffffff,
       0 0 0 4px rgba(153, 23, 28, 0.9);

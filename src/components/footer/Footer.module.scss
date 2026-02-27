@@ -2,6 +2,13 @@
   position: relative;
   width: 100%;
   flex-shrink: 0;
+
+  a:focus,
+  a:focus-visible,
+  button:focus,
+  button:focus-visible {
+    outline: none !important;
+  }
 }
 
 .footerBackground {
@@ -93,7 +100,7 @@
   font-size: 18px;
   transition: all 0.3s ease;
   &:hover {
-    color: #99171c !important;
+    color: #fbbf24 !important;
     transform: translateY(-2px);
   }
 }
@@ -174,6 +181,11 @@
   position: relative;
   overflow: hidden;
 
+  &:focus,
+  &:focus-visible {
+    outline: none !important;
+  }
+
   &:hover {
     color: #fff !important;
     background-color: #99171c !important;
@@ -229,13 +241,13 @@
   color: #f3f4f6;
   font-size: 13px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
 }
 .awardIcon {
   font-size: 14px;
   line-height: 1;
-  margin-top: 2px;
+  flex-shrink: 0;
   color: #f3f4f6;
   opacity: 0.9;
 }
@@ -296,6 +308,10 @@
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s ease;
+}
+.policyLinks .footerLink:focus,
+.policyLinks .footerLink:focus-visible {
+  outline: none !important;
 }
 .policyLinks .footerLink:hover {
   color: #ff4d4f;
@@ -385,6 +401,7 @@
     color: #1f2937;
     font-size: 15px;
     line-height: 1.65;
+    text-align: justify;
   }
 
   ul,
