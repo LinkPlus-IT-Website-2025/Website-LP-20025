@@ -37,7 +37,7 @@ export default function PortfolioDetails() {
             <Link to="/portfolio">Portfolio</Link>
             <span className={styles.bcSep}>/</span>
             <span className={styles.bcCurrent}>
-              {item.title.charAt(0).toUpperCase() + item.title.slice(1).toLowerCase()}
+              {item.title}
             </span>
           </div>
           <h1 className={styles.heroTitle}>{item.title}</h1>
