@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight } from "@components/icons/ArrowUpRight";
+import { Check } from "lucide-react";
 import styles from "./HomePage.module.scss";
+import aboutStyles from "../aboutus/AboutUs.module.scss";
 
 import itServicesBg from "../../assets/images/intro-pattern-light.svg";
 import teamImage from "../../assets/images/team.jpg";
@@ -309,47 +311,66 @@ const HomePage: React.FC = () => {
         ))}
       </div>
 
-      <div className={styles.exclusiveSection}>
-        <div className={styles.exclusiveText}>
-          <p className={styles.sectionLabel}>WHO WE BRING</p>
-          <h2 className={styles.sectionHeading}>Built to Scale, Designed to Work</h2>
-          <p className={styles.sectionDescription}>
-            With over 12 years of experience, we design and deliver IT solutions that adapt, scale, and evolve with your
-            business.
-          </p>
-          <div className={styles.listGrid}>
-            <ul>
-              <li>✔ Application Development</li>
-              <li>✔ Managed IT Services</li>
-            </ul>
-            <ul>
-              <li>✔ IT Support Services</li>
-              <li>✔ Maintenance & Support</li>
-            </ul>
-          </div>
-          <p className={styles.sectionDescription}>
-            We focus on technology that fits your workflow, supports your team, and keeps your operations running smoothly.
-          </p>
-          <div className={styles.ctaSection}>
-            <button className={styles.ctaButton}>
-              <Link
-                to="/aboutus"
-                className={styles.button}
-                role="button"
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              >
-                MORE ABOUT US
-              </Link>
-              <span className={styles.ctaArrow}>→</span>
-            </button>
-          </div>
-        </div>
+      <section className={aboutStyles.mainContent}>
+        <div className={aboutStyles.container}>
+          <div className={aboutStyles.contentGrid}>
+            <div className={aboutStyles.textContent}>
+              <div className={aboutStyles.badge}>
+                <span className={aboutStyles.badgeDot} />
+                <span className={aboutStyles.badgeText}>WHO WE ARE</span>
+              </div>
+              <h2 className={aboutStyles.mainTitle}>Built to Scale, Designed to Work</h2>
+              <p className={aboutStyles.description}>
+                With over 12 years of experience, we design and deliver IT solutions that adapt, scale, and evolve with your business.
+              </p>
+              <div className={aboutStyles.servicesList}>
+                {["Application Development", "Managed IT Services", "IT Support Services", "Maintenance & Support"].map((service, i) => (
+                  <div key={i} className={aboutStyles.serviceItem}>
+                    <div className={aboutStyles.serviceIcon}>
+                      <Check size={16} />
+                    </div>
+                    <span>{service}</span>
+                  </div>
+                ))}
+              </div>
+              <p className={aboutStyles.description}>
+                We focus on technology that fits your workflow, supports your team, and keeps your operations running smoothly.
+              </p>
+              <div className={aboutStyles.ctaSection}>
+                <Link
+                  to="/aboutus"
+                  className={aboutStyles.ctaButton}
+                  role="link"
+                  aria-label="More about us"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                >
+                  <span>MORE ABOUT US</span>
+                  <span className={aboutStyles.ctaArrow}>→</span>
+                </Link>
+              </div>
+            </div>
 
-        <div className={styles.exclusiveImages}>
-          <img src={teamMeeting} alt="Team meeting" className={styles.imgTop} loading="lazy" decoding="async" />
-          <img src={teamDiscussion} alt="Team discussion" className={styles.imgBottom} loading="lazy" decoding="async" />
+            <div className={aboutStyles.imageContent}>
+              <div className={aboutStyles.imageWrapper}>
+                <div className={aboutStyles.primaryImage} style={{ backgroundImage: `url(${teamMeeting})` }} />
+                <div className={aboutStyles.secondaryImage} style={{ backgroundImage: `url(${teamDiscussion})` }} />
+
+                <div className={aboutStyles.decorativePattern}>
+                  {Array.from({ length: 25 }, (_, i) => (
+                    <div key={i} className={aboutStyles.patternDot} />
+                  ))}
+                </div>
+
+                <div className={aboutStyles.decorativeLines}>
+                  {Array.from({ length: 3 }, (_, i) => (
+                    <div key={i} className={aboutStyles.line} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       <div className={styles.itServicesSection} style={{ ["--it-services-bg" as any]: `url(${itServicesBg})` }}>
         <p className={styles.subheadingg}>OUR SERVICES</p>

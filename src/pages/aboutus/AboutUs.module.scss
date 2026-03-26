@@ -160,7 +160,7 @@ html, body {
 }
 .heroContent{ position:relative; z-index:2; width:100%; }
 .heroTitle{
-  font-size:64px; font-weight:700; letter-spacing:-.02em; line-height:1.1; margin:0 0 12px;
+  font-size: clamp(40px, 6vw, 64px); font-weight:700; letter-spacing:-.02em; line-height:1.1; margin:0 0 12px;
   background:linear-gradient(135deg,#fff,#e5e7eb);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
   text-align:center;
@@ -194,7 +194,7 @@ html, body {
   }
 
   .heroTitle {
-    font-size: clamp(28px, 7vw, 40px);
+    font-size: clamp(40px, 6vw, 64px);
     line-height: 1.15;
     margin: 6px 0 0;
   }
@@ -231,7 +231,7 @@ html, body {
   .bcSep { margin: 0 2px; }
 
   .heroTitle {
-    font-size: clamp(22px, 9vw, 30px);
+    font-size: clamp(40px, 6vw, 64px);
     line-height: 1.15;
     margin: 4px 0 0;
   }
@@ -273,7 +273,9 @@ html, body {
 
 .textContent{ display:flex; flex-direction:column; gap:clamp(16px,2vw,24px); min-width:0; }
 .badge{ display:inline-flex; align-items:center; gap:8px; width:fit-content; margin-inline:auto 0;text-align: left; margin-left: 0px !important; }
-@media (max-width:1126px){ .badge{ margin-inline:auto; } }
+@media (max-width:1126px){
+  .badge{ margin: 0 auto !important; margin-left: auto !important; margin-right: auto !important; }
+}
 .badgeDot{ width:8px; height:8px; background:var(--brand); border-radius:2px; transform:rotate(45deg); text-align: left; margin-left: 0px !important; }
 .badgeText{ color:var(--brand); font-weight:800; font-size:11px; letter-spacing:.1em; text-transform:uppercase;text-align: left; margin-left: 0px; }
 
@@ -283,7 +285,7 @@ html, body {
 }
 @media (max-width:1126px){ .mainTitle{ text-align:left; padding-right: 50px ; } }
 
-.description{ color:var(--muted); font-size:clamp(1rem,1.6vw,1.125rem); line-height:1.7; text-align:left; }
+.description{ color:var(--muted); font-size:clamp(1rem,1.6vw,1.125rem); line-height:1.7; text-align:left; margin:0; }
 @media (max-width:1126px){ .description{ text-align:left; padding-right: 50px ; } }
 
 .servicesList{
@@ -404,8 +406,32 @@ html, body {
 .statsSection{ width:100%; }
 @media (max-width:424px){
   .statsSection{
-    margin-right: 120px !important;
-    padding-right: 30px !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
+
+@media (max-width:640px){
+  .statsLeft{
+    text-align: center;
+  }
+
+  .statsBadge{
+    text-align: center;
+    margin: 0 auto !important;
+    justify-self: center !important;
+    align-self: center !important;
+  }
+
+  .statsTitle{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .kpiGrid{
+    justify-items: center;
   }
 }
 .statsBanner{
@@ -883,7 +909,7 @@ html, body {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: 0.01em;
-  font-size: 64px;
+  font-size: clamp(40px, 6vw, 64px);
 }
 @media (max-width: 640px) {
   .heroTitle { text-align: center !important;

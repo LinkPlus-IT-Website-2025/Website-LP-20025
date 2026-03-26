@@ -39,7 +39,7 @@
 }
 
 .heroImgWrap{
-  width:80%; border-radius:36px; overflow:hidden;
+  width:75%; border-radius:36px; overflow:hidden;
   margin:90px auto 28px;
 
   img{
@@ -80,6 +80,20 @@
     vertical-align: top;
     object-fit: contain;
     object-position: center;
+  }
+}
+
+/* Keep the framed/cropped look for phone screenshots on larger mobile widths.
+   Current layout uses `object-fit: contain`, which shows "full image" when the frame grows. */
+@media (min-width: 426px) {
+  .phoneFrame {
+    /* phone-like aspect ratio so overflow:hidden actually crops */
+    aspect-ratio: 9 / 16;
+  }
+
+  .phoneFrame img {
+    height: 100%;
+    object-fit: cover;
   }
 }
 

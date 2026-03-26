@@ -23,6 +23,12 @@
   display: grid;
 }
 
+@media (min-width: 326px) and (max-width: 900px) {
+  .card {
+    height: clamp(460px, 70vw, 620px);
+  }
+}
+
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 28px 56px rgba(2, 6, 23, 0.16);
