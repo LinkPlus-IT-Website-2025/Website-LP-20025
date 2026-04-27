@@ -431,7 +431,12 @@ html, body {
   }
 
   .kpiGrid{
-    justify-items: center;
+    justify-items: stretch;
+  }
+
+  .kpi{
+    width:100%;
+    justify-self:stretch;
   }
 }
 .statsBanner{
@@ -506,7 +511,12 @@ html, body {
   gap:clamp(12px,2vw,20px);
   width:100%; max-width:560px;
 }
-@media (max-width:640px){ .kpiGrid{ grid-template-columns:1fr; } }
+@media (max-width:640px){
+  .kpiGrid{
+    grid-template-columns:1fr;
+    max-width:100%;
+  }
+}
 
 .kpi{
   display:grid; grid-template-columns:auto 1fr; align-items:center;

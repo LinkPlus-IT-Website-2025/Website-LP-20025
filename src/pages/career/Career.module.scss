@@ -138,7 +138,7 @@
 
 .opps{
   text-align: center;
-  padding: 14px 0 48px;
+  padding: 0px 0 48px;
 }
 
 .h2{
@@ -199,8 +199,11 @@
 
 @media (max-width: 720px){
   .grid{
-    padding: 0px !important;
-    margin: 0px !important;
+    /* Keep equal vertical rhythm on mobile:
+       40px above first card + 40px between cards */
+    padding: 40px 0 40px !important;
+    margin: 0 !important;
+    gap: 40px !important;
   }
 
   .h1{
@@ -214,8 +217,9 @@
 }
 @media (max-width: 440px){
   .grid{
-    padding: 0px !important;
-    margin: 0px !important;
+    padding: 40px 0 40px !important;
+    margin: 0 !important;
+    gap: 40px !important;
   }
 
   .h1{
@@ -238,8 +242,9 @@
 }
 @media (max-width: 390px){
   .grid{
-    padding: 0px !important;
-    margin: 0px !important;
+    padding: 40px 0 40px !important;
+    margin: 0 !important;
+    gap: 40px !important;
   }
 
   .h1{
@@ -253,8 +258,9 @@
 }
 @media (max-width: 360px){
   .grid{
-    padding: 0px !important;
-    margin: 0px !important;
+    padding: 40px 0 40px !important;
+    margin: 0 !important;
+    gap: 40px !important;
   }
 
   .h1{
