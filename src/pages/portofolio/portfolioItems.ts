@@ -213,7 +213,7 @@ export const PORTFOLIO: PortfolioItem[] = [
 
   {
     id: "linkone",
-    title: "LinkOne",
+    title: "LinkOne, Switzerland",
     excerpt: "Location Tracking/Geofencing App - The application relies...",
     cardImg: imgLinkOneP,
     heroImg: imgLinkOne,
@@ -236,7 +236,7 @@ export const PORTFOLIO: PortfolioItem[] = [
 
   {
     id: "flotilla-airport-transfer",
-    title: "Flotilla Airport Transfer Application",
+    title: "Flotilla Airport Transfer Application, Germany",
     excerpt: "Flotilla Taxi & Limousinen offers you a wide range of...",
     cardImg: imgFlotillaP,
     heroImg: imgFlotilla,

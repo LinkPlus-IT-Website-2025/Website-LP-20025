@@ -35,6 +35,33 @@
   text-align: center;
 }
 
+@media (max-width: 1024px) {
+  .title {
+    margin-top: 62px;
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContainer{
+    padding: 4rem 1rem;
+  }
+  .title {
+    margin-top: 50px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContainer{
+    padding: 3.5rem 1rem;
+  }
+  .title {
+    margin-top: 40px;
+    font-size: 24px;
+  }
+}
+
 .slice {
   width: 100%;
   height: clamp(28px, 4.2vw, 56px);
